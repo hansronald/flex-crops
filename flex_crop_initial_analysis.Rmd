@@ -1,0 +1,265 @@
+---
+title: "Flex crop initial analysis"
+author: "Robin Lindström"
+date: "23/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+```
+
+
+```{r echo = FALSE, include = FALSE}
+setwd("~/Google Drive/SRC/Thesis/")
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+library(tmap)
+#setwd("~/Google Drive/SRC/Thesis/3.Code")
+source("~/Google Drive/SRC/Thesis/3.Code/flex_crops_functions.R")
+
+```
+
+
+```{r echo = FALSE}
+theme_set(theme_light(base_size = 10))
+
+# Get names of different crop groups
+all_crops = unique(crop_production_data_raw$item)
+flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
+emerging_flex_crops = c("Cassava", "Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts") # Have left out coconuts
+other_crops = setdiff(flex_crops, all_crops)
+harvest_measure = c("Production", "Area harvested", "Yield")
+
+# check decade before and after financial crash
+year = 1961:2017
+
+# Get the crop data from the raw data
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+```
+
+
+### Point plot of flex crops (2017)
+Plots the production of flex crops for the top 20 countries
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+# Make time series plot of flex crops
+#fig.width=5, fig.height = 10"
+
+production_year = "2017"
+measure = "Production"
+n_countries = 10
+
+point_plot(crop_data %>% filter(flex_crop_category == "Flex crop"), measure, production_year, n_countries)
+
+#t1 = point_plot(crop_data, flex_crops[1], production_year)
+#t2 = point_plot(crop_data, flex_crops[2], production_year)
+#t3 = point_plot(crop_data, flex_crops[3], production_year)
+#t4 = point_plot(crop_data, flex_crops[4], production_year)
+
+#grid.arrange(t1, t2, t3, t4, nrow = 2)
+
+```
+
+As expected, the US, Brazil and Argentina have the greates production of Soybeans. Brazil and India have the most of sugar cane production. Indonesia and Malaysia ha most of the Oil palm fruit and the US, China, Brazil and Argentina have the most Maize.
+
+Interesting is that in the top 20 there are some eastern european countries for both Soybeans and Maize, Ukraine especially but also Romania, Serbia and Hungary.
+
+### Point plot of emergin flex crops (2017)
+Plots the production of emerging flex crops for the top 20 countries
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+# Make time series plot of flex crops
+
+production_year = "2017"
+measure = "Production"
+n_countries = 10
+
+point_plot(crop_data %>% filter(flex_crop_category == "Emerging flex crop"), measure, production_year, n_countries)
+
+```
+
+Ukraine is again in the top of Sugar beet, Rapeseed and Sunflower seed.
+
+## Break point analysis of global production of flex crops 2000 - 2017
+Plots time series of the aggregated total production of individual flex crops.
+
+### Flex crops
+The two vertical lines are the breakpoints (using segmented package in r specifying n = 2 breaks)
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Production"
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops)
+```
+
+Looking at production (in million tonnes) only soybeans seem to have a breakpoint after the financial crisis, both in production and area harvested. Maize seem to have a breakpoint some years before. Also soybeans seem to be the only one where the yield is steadily increasing.
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Area harvested"
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops)
+```
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Yield"
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops)
+```
+
+Most flex crops seem to either reach a peak or decrease when it comes to yield. Only soybeans is steadily increasing over time.
+
+# Emerging flex crops
+Some plots are missing break points. This is because of a bug in segmented package which has not been resolved yet, see:
+https://stackoverflow.com/questions/12135400/errors-in-segmented-package-breakpoints-confusion
+Another one says that is has to be nearly countinous, a sharp change in a time series could perhaps be an explanation to why it fails to find breakpoints:
+https://www.r-bloggers.com/r-for-ecologists-putting-together-a-piecewise-regression/
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Production"
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+```
+
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Area harvested"
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+```
+
+
+```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
+measure = "Yield"
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+```
+
+```{r eval=FALSE, fig.height=6, include=FALSE, out.height="100%", out.width="100%"}
+# Make time series plot of flex crops
+
+category = "Flex crop"
+measure = "Production"
+
+time_series_plot(crop_data, category, measure, scale = "free_y")
+
+```
+
+At first glance, both Soybean and Maize seem to have increased in production after 2009. Oil palm fruit seem to grow at a rather constant rate. Sugar cane on the other hand seem to be declining.
+
+### Global production of emerging flex crops 2000 - 2017
+Plots time series of the aggregated total production of individual emerging flex crops
+
+
+```{r eval=FALSE, fig.height=6, include=FALSE, out.height="100%", out.width="100%"}
+# Make time series plot of flex crops
+
+category = "Emerging flex crop"
+measure = "Production"
+
+time_series_plot(crop_data, category, measure, scale = "free_y")
+
+```
+
+
+```{r}
+theme_set(theme_light(base_size = 12))
+```
+
+
+### Time series of total production and area harvested of flex crop and non flex crop
+Index start at 1990, dotted line is 2009 and represents the before and after the financial crash
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure = harvest_measure, year)
+time_series_category_plot(crop_data, index_plot = FALSE, scale = "free_y")
+
+```
+
+### Time series of individual flex crop production and area harvested
+Index start at 1990, dotted line is 2009 and represents the before and after the financial crash
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+measure = "Production"
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure = measure, year)
+time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot = FALSE)
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
+
+crop_data = get_crop_data(crop_production_data_raw, c("Potatoes"), harvest_measure = measure, year)
+time_series_crop_comparison_plot(crop_data, category = "Non flex crop", index_plot = FALSE)
+
+```
+
+
+```{r echo = FALSE}
+theme_set(theme_light(base_size = 12))
+production_year = c(1975, 1990, 2000, 2017)
+crop_data = get_crop_data(crop_production_data_raw, flex_crops,
+                          "Production", production_year)
+crop_map_data = make_crop_map_data(crop_data)
+
+```
+
+
+
+### Global concentration of soybean production
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+  map(flex_crops, function(x) { # values to feed to filter function
+    tm_shape(crop_map_data %>% 
+           filter(item == x, harvest_measure == "Yield")) +
+      tm_fill(col = "value", palette = "BuPu", style = "equal", title = "yield") +
+#  tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = "")) +
+      tm_facets(by = "year", nrow = 2) +
+      tm_layout(title = x, scale = 1, asp = 1, legend.position = c("RIGHT", "center"))
+  })
+
+```
+
+
+### Global concentration of sugar cane production
+
+
+
+### Global concentration of oil palm fruit production
+
+
+### Global concentration of maize production
+
+
+
+```{r echo = FALSE}
+production_year = c(2002, 2007, 2012, 2017)
+emerging_flex_crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops,
+                          "Production", production_year)
+emering_flex_crop_map_data = make_crop_map_data(emerging_flex_crop_data)
+
+```
+
+### Global concentration of cassava production
+
+
+
+### Global concentration of rapeseed production
+
+
+
+### Global concentration of sugar beet production
+
+
+
+### Global concentration of sunflower seed production
+
+
+

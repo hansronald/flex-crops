@@ -1,5 +1,5 @@
 # Read data ---------------------------------------
-setwd("~/Google Drive/SRC/Thesis/")
+# setwd("~/Google Drive/SRC/Thesis/")
 
 library(tidyverse) # For tidyr and dplyr
 library(data.table) # For fread to read large data tables
@@ -17,21 +17,21 @@ established_flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
 emerging_flex_crops = c("Cassava", "Coconuts", "Rapeseed", "Sugar beet", "Sunflower seed")
 all_flex_crops = c(established_flex_crops, emerging_flex_crops)
 
-crop_production_categories = as_tibble(fread("7.Data/Categories/crop-livestock-categories.csv")) %>% 
+crop_production_categories = as_tibble(fread("5.Data/Categories/crop-livestock-categories.csv")) %>% 
   clean_names() %>%
   filter(item_group == "Crops Primary") %>% 
   filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
   dplyr::select(flex_crop_category, item) %>%
   distinct()
 
-FAO_codes = as_tibble(fread("7.Data/Categories/FAO_codes.csv")) %>%
+FAO_codes = as_tibble(fread("5.Data/Categories/FAO_codes.csv")) %>%
   clean_names() %>%
   dplyr::select(country_code, iso2_code)
 
 #exclude_years = paste("y",1961:1979, sep ="")
 #exclude_years_type =  paste("y",1961:1979, "f", sep ="")
 # Flex crop production
-crop_production_data_raw = as_tibble(fread("7.Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
+crop_production_data_raw = as_tibble(fread("5.Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
   clean_names() %>%
 #  select(-exclude_years) %>% 
 #  select(-exclude_years_type) %>% 
@@ -118,21 +118,47 @@ make_crop_map = function(crop_map){
 #    tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = ""))
 }
 
-point_plot = function(crop_data, measure, production_year, n_countries){
+point_plot = function(crop_data, category, measure, production_year, n_countries){
   
-  crop_data %>%
-    filter(harvest_measure == measure, year == production_year) %>% 
-    mutate(country_f = as.factor(country)) %>% 
+  # crop_data %>%
+  #   filter(harvest_measure == measure, year == production_year) %>% 
+  #   mutate(country_f = as.factor(country)) %>% 
+  #   group_by(item, value) %>% 
+  #   arrange(item, desc(value)) %>%
+  #   group_by(item) %>% 
+  #   top_n(n_countries, value) %>% 
+  #   #group_by(item) %>% 
+  #   #mutate(country = fct_reorder(country, value)) %>% 
+  #   ggplot(aes(value, country_f)) +
+  #   geom_point() +
+  #   labs(title = measure, y = "", x = measure) +
+  #   facet_wrap(~item, scales = "free", ncol = 2)
+  
+  len = length(unique(crop_data$item))
+  plot_data = crop_data %>%
+    filter(harvest_measure == measure,
+           year == production_year, flex_crop_category == category) %>% 
     group_by(item, value) %>% 
     arrange(item, desc(value)) %>%
     group_by(item) %>% 
-    top_n(n_countries, value) %>% 
-    #group_by(item) %>% 
-    #mutate(country = fct_reorder(country, value)) %>% 
-    ggplot(aes(value, country_f)) +
-    geom_point() +
-    labs(title = measure, y = "", x = measure) +
-    facet_wrap(~item, scales = "free", ncol = 2)
+    top_n(n_countries, value) %>%
+    arrange(item, desc(value)) %>% 
+    ungroup() %>% 
+    mutate(rank = n_countries*len - row_number() + 1)
+  
+  plot_data %>% 
+    ggplot() +
+    geom_segment( aes(x=rank, xend=rank, y=0, yend=value), color="grey") +
+    geom_point( aes(x=rank, y=value), size = 3) +
+    coord_flip() +
+    labs(title = measure, y = "", x = "") +
+    facet_wrap(~item, scales = "free", ncol = 2) +
+    scale_x_continuous(
+      breaks = plot_data$rank, # specify tick breaks using rank column
+      labels = plot_data$country, # specify tick labels using x column
+    )
+
+
   
 #   crop_data %>% 
 #     filter(item == crop) %>% 

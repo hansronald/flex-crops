@@ -17,7 +17,9 @@ setwd("~/Google Drive/SRC/Thesis/")
 library(scales)
 library(gridExtra)
 library(sf) # For loading map data
-library(tmap)
+#library(tmap)
+library(plotly)
+
 source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
 ```
@@ -182,6 +184,23 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot =
 
 ```
 
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+measure = c("Production", "Area harvested", "Yield")
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+
+plot_crop_data = crop_data %>% 
+  filter(flex_crop_category == "Flex crop", item == "Maize",
+         harvest_measure == "Production") %>% 
+  select(-iso2_code, -flex_crop_category, -harvest_measure, -item)
+
+p1 = plot_crop_data %>% 
+  ggplot(aes(x=year, y=value, fill=country)) + 
+  geom_area() +
+  theme(legend.position = "none")
+
+ggplotly(p1)
+```
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
 

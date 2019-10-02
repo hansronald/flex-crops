@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
+knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
 
 ```
 
@@ -18,8 +18,7 @@ library(scales)
 library(gridExtra)
 library(sf) # For loading map data
 library(tmap)
-#setwd("~/Google Drive/SRC/Thesis/3.Code")
-source("~/Google Drive/SRC/Thesis/3.Code/flex_crops_functions.R")
+source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
 ```
 
@@ -46,21 +45,12 @@ crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, 
 Plots the production of flex crops for the top 20 countries
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-# Make time series plot of flex crops
-#fig.width=5, fig.height = 10"
 
-production_year = "2017"
-measure = "Production"
+production_year = "1961"
 n_countries = 10
 
-point_plot(crop_data %>% filter(flex_crop_category == "Flex crop"), measure, production_year, n_countries)
-
-#t1 = point_plot(crop_data, flex_crops[1], production_year)
-#t2 = point_plot(crop_data, flex_crops[2], production_year)
-#t3 = point_plot(crop_data, flex_crops[3], production_year)
-#t4 = point_plot(crop_data, flex_crops[4], production_year)
-
-#grid.arrange(t1, t2, t3, t4, nrow = 2)
+point_plot(crop_data, category = "Flex crop",
+           measure = "Production", production_year, n_countries)
 
 ```
 
@@ -110,7 +100,7 @@ crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure 
 break_point_plot(crop_data, measure = measure, crops = flex_crops)
 ```
 
-Most flex crops seem to either reach a peak or decrease when it comes to yield. Only soybeans is steadily increasing over time.
+Only soybeans is steadily increasing over time. The yield for maize has a breakpoint and could be peaking.
 
 # Emerging flex crops
 Some plots are missing break points. This is because of a bug in segmented package which has not been resolved yet, see:
@@ -201,7 +191,7 @@ time_series_crop_comparison_plot(crop_data, category = "Non flex crop", index_pl
 ```
 
 
-```{r echo = FALSE}
+```{r eval=FALSE, include=FALSE}
 theme_set(theme_light(base_size = 12))
 production_year = c(1975, 1990, 2000, 2017)
 crop_data = get_crop_data(crop_production_data_raw, flex_crops,
@@ -214,7 +204,7 @@ crop_map_data = make_crop_map_data(crop_data)
 
 ### Global concentration of soybean production
 
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+```{r eval=FALSE, fig.height=6, include=FALSE, out.height="100%", out.width="100%"}
 
   map(flex_crops, function(x) { # values to feed to filter function
     tm_shape(crop_map_data %>% 
@@ -239,7 +229,7 @@ crop_map_data = make_crop_map_data(crop_data)
 
 
 
-```{r echo = FALSE}
+```{r eval=FALSE, include=FALSE}
 production_year = c(2002, 2007, 2012, 2017)
 emerging_flex_crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops,
                           "Production", production_year)

@@ -1,5 +1,5 @@
 # Read data ---------------------------------------
-# setwd("~/Google Drive/SRC/Thesis/")
+#setwd("~/Google Drive/SRC/Thesis/")
 
 library(tidyverse) # For tidyr and dplyr
 library(data.table) # For fread to read large data tables
@@ -73,7 +73,7 @@ world_filtered = world %>%
 #world_iso3code = left_join(world, codelist %>%
 #                             select(iso2c, iso3c), by = c("iso_a2" = "iso2c"))
 
-get_crop_data = function(data, crops = unique(data$item), harvest_measure, year){
+get_crop_data = function(data, crops = unique(data$item), measure, year){
   
   # Need y before year since it is in the columns
   year_column = paste("y",year, sep = "")
@@ -84,7 +84,6 @@ get_crop_data = function(data, crops = unique(data$item), harvest_measure, year)
   # Filter out the crops selected, remove NA and gather on year
   data = data %>%
     filter(item %in% crops) %>%
-    filter(harvest_measure %in% harvest_measure) %>%
     dplyr::select(selected_columns) %>%
     gather(year, value, -country, -iso2_code, -item, -harvest_measure, -flex_crop_category) %>% 
     #mutate(value = value/1000000) %>%
@@ -92,7 +91,8 @@ get_crop_data = function(data, crops = unique(data$item), harvest_measure, year)
     spread(harvest_measure, value) %>% 
 #    clean_names() %>% 
     mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
-    gather("harvest_measure", "value", `Area harvested`, `Production`, `Yield`) %>% 
+    gather("harvest_measure", "value", `Area harvested`, `Production`, `Yield`) %>%
+    filter(harvest_measure %in% measure) %>%
     na.omit()
 
   data$year = as.numeric(gsub("y", "", data$year))

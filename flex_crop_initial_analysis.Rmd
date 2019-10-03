@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
-
+Sys.setlocale('LC_ALL','C')
 ```
 
 
@@ -70,7 +70,8 @@ production_year = "2017"
 measure = "Production"
 n_countries = 10
 
-point_plot(crop_data %>% filter(flex_crop_category == "Emerging flex crop"), measure, production_year, n_countries)
+point_plot(crop_data, category = "Emerging flex crop",
+           measure = "Production", production_year, n_countries)
 
 ```
 
@@ -84,7 +85,7 @@ The two vertical lines are the breakpoints (using segmented package in r specify
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = flex_crops)
 ```
 
@@ -92,13 +93,13 @@ Looking at production (in million tonnes) only soybeans seem to have a breakpoin
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Area harvested"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = flex_crops)
 ```
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Yield"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = flex_crops)
 ```
 
@@ -112,21 +113,21 @@ https://www.r-bloggers.com/r-for-ecologists-putting-together-a-piecewise-regress
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
 ```
 
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Area harvested"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
 ```
 
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Yield"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
 break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
 ```
 
@@ -136,7 +137,7 @@ break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
 category = "Flex crop"
 measure = "Production"
 
-time_series_plot(crop_data, category, measure, scale = "free_y")
+#time_series_plot(crop_data, category, measure, scale = "free_y")
 
 ```
 
@@ -152,7 +153,7 @@ Plots time series of the aggregated total production of individual emerging flex
 category = "Emerging flex crop"
 measure = "Production"
 
-time_series_plot(crop_data, category, measure, scale = "free_y")
+#time_series_plot(crop_data, category, measure, scale = "free_y")
 
 ```
 
@@ -167,7 +168,7 @@ Index start at 1990, dotted line is 2009 and represents the before and after the
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure = harvest_measure, year)
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 time_series_category_plot(crop_data, index_plot = FALSE, scale = "free_y")
 
 ```
@@ -179,7 +180,7 @@ Index start at 1990, dotted line is 2009 and represents the before and after the
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot = FALSE)
 
 ```
@@ -187,7 +188,7 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot =
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 measure = c("Production", "Area harvested", "Yield")
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure, year)
 
 plot_crop_data = crop_data %>% 
   filter(flex_crop_category == "Flex crop", item == "Maize",
@@ -200,11 +201,12 @@ p1 = plot_crop_data %>%
   theme(legend.position = "none")
 
 ggplotly(p1)
+
 ```
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
 
-crop_data = get_crop_data(crop_production_data_raw, c("Potatoes"), harvest_measure = measure, year)
+crop_data = get_crop_data(crop_production_data_raw, c("Potatoes"), harvest_measure, year)
 time_series_crop_comparison_plot(crop_data, category = "Non flex crop", index_plot = FALSE)
 
 ```

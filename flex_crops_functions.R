@@ -258,6 +258,29 @@ time_series_crop_comparison_plot = function(crop_data, category, index_plot){
   }
 }
 
+time_series_crop_comparison_plot_proportion = function(crop_data){
+  
+  flex_crops_total_value_and_index = crop_data %>% 
+    dplyr::select(year, value, harvest_measure, flex_crop_category) %>%
+    group_by(year, harvest_measure, flex_crop_category) %>% 
+    summarize(total_value = sum(value)) %>% 
+    group_by(harvest_measure) %>% 
+    mutate(value_index = total_value/total_value[year == min(year)]) %>% 
+    group_by(year, harvest_measure) %>% 
+    mutate(total_value_all = sum(total_value)) %>% 
+    mutate(fraction_value = total_value/total_value_all)
+  # mutate(flex_fraction = total_value[flex_crop_category == "Flex crop"] / sum(total_value))
+  
+  ggplot(flex_crops_total_value_and_index %>%
+           filter(flex_crop_category != "Non flex crop")) + geom_line(aes(x=year, y=fraction_value, colour =
+                                                                            flex_crop_category)) +
+    labs(y = "value", x = "") +
+    facet_wrap(~harvest_measure, ncol = 2, scales = "free_y") +
+    scale_y_continuous(limits=c(0,NA))
+  
+}
+
+
 break_point_plot = function(crop_data, measure, crops){
 
   flex_production = crop_data %>% 
@@ -422,7 +445,7 @@ plot_HH_index = function(crop_data, category, measure){
     group_by(item, harvest_measure, year) %>% 
     mutate(HH_index = value / sum(value)) %>% 
     arrange(desc(HH_index)) %>% 
-    summarise_at(vars(HH_index), function(x){return(sum(x^2))})
+    summarise_at(vars(HH_index), function(x){return(sum((x*100)^2))})
   
   HH_index_data %>%
     ggplot(aes(x = year, y = HH_index, color = item)) +

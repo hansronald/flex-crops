@@ -187,20 +187,10 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot =
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-measure = c("Production", "Area harvested", "Yield")
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, harvest_measure, year)
+crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 
-plot_crop_data = crop_data %>% 
-  filter(flex_crop_category == "Flex crop", item == "Maize",
-         harvest_measure == "Production") %>% 
-  select(-iso2_code, -flex_crop_category, -harvest_measure, -item)
-
-p1 = plot_crop_data %>% 
-  ggplot(aes(x=year, y=value, fill=country)) + 
-  geom_area() +
-  theme(legend.position = "none")
-
-ggplotly(p1)
+stacked_area_plot(crop_data, category = "Flex crop", crop = "Maize",
+                             measure = "Production", n_countries = 5)
 
 ```
 

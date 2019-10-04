@@ -415,6 +415,25 @@ stacked_area_plot = function(crop_data, category, crop, measure, n_countries){
     theme(axis.text.x = element_text(angle=90, hjust=1))
 }
 
+plot_HH_index = function(crop_data, category, measure){
+  
+  HH_index_data = crop_data %>%
+    filter(flex_crop_category == category, harvest_measure %in% measure) %>% 
+    group_by(item, harvest_measure, year) %>% 
+    mutate(HH_index = value / sum(value)) %>% 
+    arrange(desc(HH_index)) %>% 
+    summarise_at(vars(HH_index), function(x){return(sum(x^2))})
+  
+  HH_index_data %>%
+    ggplot(aes(x = year, y = HH_index, color = item)) +
+    geom_line() +
+    facet_wrap(~harvest_measure, ncol = 2, scale = "free_y") +
+    labs(y = "Herfindahl-Hirschman Index") +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 9)) +
+    theme(axis.text.x = element_text(angle=60, hjust=1))
+
+}
+
 #year = c("2004", "2006")
 #year_column = paste("y",year, sep = "")
 #crop_data = get_crop_data(crop_production_data_raw, "Maize", "Area harvested", year)

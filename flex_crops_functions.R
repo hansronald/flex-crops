@@ -158,8 +158,6 @@ point_plot = function(crop_data, category, measure, production_year, n_countries
       labels = plot_data$country, # specify tick labels using x column
     )
 
-
-  
 #   crop_data %>% 
 #     filter(item == crop) %>% 
 #     filter(year == production_year) %>% 
@@ -171,7 +169,6 @@ point_plot = function(crop_data, category, measure, production_year, n_countries
 # #    scale_x_continuous(labels = comma) +
 #     labs(title = paste(crop, " (", production_year, ")", sep = ""), y = "", x ="")
 }
-
 
 time_series_plot = function(crop_data, category, measure, scale){
   
@@ -307,12 +304,11 @@ break_point_plot = function(crop_data, measure, crops){
     labs(title = measure) +
     facet_wrap(~ item, ncol = 2, scales = "free_y") +
     geom_vline(data = breaks, aes(xintercept = year), size = 0.5, linetype = "dashed") +
-    geom_text(data = breaks, aes(x = year, y = 0, label = year), hjust = -.25, size = 2.5)
+    geom_text(data = breaks, aes(x = year, y = 0, label = year), hjust = -.25, size = 2.5) +
+    theme(axis.text.x = element_text(angle=60, hjust=1))
   
   
 }
-
-
 
 break_point_plot2 = function(crop_data, measure, crops){
   
@@ -387,6 +383,36 @@ break_point_plot2 = function(crop_data, measure, crops){
   annotate_figure(figure, top = text_grob(measure, face = "bold", size = 14))
   #grid.arrange(grobs = plot_list, top = measure)
   
+}
+
+stacked_area_plot = function(crop_data, category, crop, measure, n_countries){
+
+  plot_data = crop_data %>% 
+    filter(flex_crop_category == category, item == crop,
+           harvest_measure == measure) %>%  
+    #         year %in% 1960:1970,
+    #         country %in% unique(crop_data$country)[50:70]) %>% 
+    select(-iso2_code, -flex_crop_category, -harvest_measure, -item)
+  
+  plot_order = plot_data %>% 
+    mutate(country = as.character(country)) %>%
+    filter(year == last(year)) %>% 
+    arrange(desc(value)) %>% 
+    mutate(rank = row_number())
+  
+  final_plot <- plot_data %>% 
+    mutate(country = as.character(country)) %>%
+    mutate(plot_label = ifelse(country %in% plot_order$country[1:n_countries], country, 'Other')) %>%
+    mutate(plot_label = factor(plot_label, levels = c(rev(plot_order$country[1:n_countries]), 'Other'))) %>%
+    group_by(plot_label, year) %>%
+    summarise(value = sum(value)) 
+  
+  final_plot %>%
+    ggplot(aes(x=year, y=value, fill=plot_label)) + 
+    geom_area() +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+    labs(title = paste(crop, measure, sep = ", "), fill = "") +
+    theme(axis.text.x = element_text(angle=90, hjust=1))
 }
 
 #year = c("2004", "2006")

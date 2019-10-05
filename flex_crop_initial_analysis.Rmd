@@ -1,8 +1,10 @@
 ---
 title: "Flex crop initial analysis"
 author: "Robin Lindström"
-date: "23/09/2019"
-output: html_document
+date: "04/10/2019"
+output:
+  html_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -26,7 +28,7 @@ source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
 
 ```{r echo = FALSE}
-theme_set(theme_light(base_size = 10))
+theme_set(theme_light(base_size = 8))
 
 # Get names of different crop groups
 all_crops = unique(crop_production_data_raw$item)
@@ -42,17 +44,25 @@ year = 1961:2017
 crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 ```
 
+## Some key findings
+* **Global flex crop production as proportion of total crop production is increasing and could pass non flex crops in a near future**
+* **Several countries from the former Sovietunion are dominating of the production of rapeseed, sugarbeet and sunflower seed**
+* **Market concentration is in general lower for the emerging flex crops than of flex crops.**
+* **On a global level yield of flex crops has fallen over time.**
 
-### Point plot of flex crops (2017)
-Plots the production of flex crops for the top 20 countries
+
+## Which nations are the main producers and has the largest area harvested in 2017?
+
+### Plots of countries with highest production, area harvested and yield of flex crops.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-production_year = "1961"
-n_countries = 10
+production_year = "2017"
+measure = "Production"
+n_countries = 6
 
 point_plot(crop_data, category = "Flex crop",
-           measure = "Production", production_year, n_countries)
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
 
 ```
 
@@ -60,10 +70,31 @@ As expected, the US, Brazil and Argentina have the greates production of Soybean
 
 Interesting is that in the top 20 there are some eastern european countries for both Soybeans and Maize, Ukraine especially but also Romania, Serbia and Hungary.
 
-### Point plot of emergin flex crops (2017)
-Plots the production of emerging flex crops for the top 20 countries
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+production_year = "2017"
+measure = "Area harvested"
+n_countries = 8
+
+point_plot(crop_data, category = "Flex crop",
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+
+```
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+production_year = "2017"
+measure = "Yield"
+n_countries = 6
+
+point_plot(crop_data, category = "Flex crop",
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+
+```
+
+### Plots of countries with highest production, area harvested and yield of flex crops.
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
 
 production_year = "2017"
@@ -71,93 +102,355 @@ measure = "Production"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = "Production", production_year, n_countries)
+           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
 
 ```
 
-Ukraine is again in the top of Sugar beet, Rapeseed and Sunflower seed.
+There are several countries from the former Sovietunion in the top of the production of Rapeseed, Sugarbeet and Sunflower seed.
 
-# Plot the Herfindahl–Hirschman Index (HHI)
-The HHI is a measure of market concentration (Investopedia 2019, Herfindahl-Hirschman Index) and to determine the competativeness of a market. According to the Department of Justice and the Federal Trade Commission of the United States of America (Department of Justice 2010) the concentration of a specific market can be measured by the following ranges
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+# Make time series plot of flex crops
+
+production_year = "2017"
+measure = "Area harvested"
+n_countries = 10
+
+point_plot(crop_data, category = "Emerging flex crop",
+           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+# Make time series plot of flex crops
+
+production_year = "2017"
+measure = "Yield"
+n_countries = 10
+
+point_plot(crop_data, category = "Emerging flex crop",
+           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
+```
+
+## Global share of production and area harvested.
+
+## Flex crops.
+Absolute and proportional (1961 - 2017)
+
+
+How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". 
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
+                       measure = "Production", n_countries = 5)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Production", n_countries = 5)
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Production", n_countries = 5)
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
+                       measure = "Production", n_countries = 5)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
+                       measure = "Area harvested", n_countries = 5)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Area harvested", n_countries = 5)
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Area harvested", n_countries = 5)
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
+                       measure = "Area harvested", n_countries = 5)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+  
+#})
+
+```
+
+
+## Emerging flex crops
+Absolute and proportional (1961 - 2017)
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[1],
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[2],
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[3],
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[4],
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[5],
+                       measure = "Production", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[1],
+                       measure = "Production", n_countries = 5)
+p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[2],
+                       measure = "Production", n_countries = 5)
+p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[3],
+                       measure = "Production", n_countries = 5)
+p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[4],
+                       measure = "Production", n_countries = 5)
+p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[5],
+                       measure = "Production", n_countries = 5)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[1],
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[2],
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[3],
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[4],
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[5],
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
+  
+#})
+
+```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#map(flex_crops, function(x) {
+  
+p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[1],
+                       measure = "Area harvested", n_countries = 5)
+p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[2],
+                       measure = "Area harvested", n_countries = 5)
+p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[3],
+                       measure = "Area harvested", n_countries = 5)
+p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[4],
+                       measure = "Area harvested", n_countries = 5)
+p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
+                       crop = emerging_flex_crops[5],
+                       measure = "Area harvested", n_countries = 5)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
+  
+#})
+
+```
+
+## Market concentration
+The Herfindahl–Hirschman Index (HHI) is a measure of market concentration (Investopedia 2019, Herfindahl-Hirschman Index) and to determine the competativeness of a market. According to the Department of Justice and the Federal Trade Commission of the United States of America (Department of Justice 2010) the concentration of a specific market can be measured by the following ranges
 
 * Unconcentrated Markets: HHI below 1500
 * Moderately Concentrated Markets: HHI between 1500 and 2500
 * Highly Concentrated Markets: HHI above 2500
 
+### Market concentration of global production of flex crops
+
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 category = "Flex crop"
-measure = c("Production", "Area harvested", "Yield")
+measure = c("Production")
 plot_HH_index(crop_data, category, measure)
 
 ```
-## How has the production and area harvested of flex crops been distributed over time?
-Using a stacked area plot this is visualised below. The top 5 countries are shown and the rest of the countries are aggregated into "Other".
+
+Here we can see that in terms of production the market concentration went down on Soybeans, which is in line with Oliviera & Schneider (2016) that the concentration withered with the expansion of production in Brazil and China. The market concentration for oil palm fruit has increased, and is the only one which today would clearly fall into the category "highly concentrated market". The reasons for this are captured by this quote by the president of the Colombian FEDEPALMA:
+
+> Oil palm industry development of our world leader, Indonesia, is underpinned by cheap labor force, low production costs and large swathes of land given under concession and other forms by the government. But those conditions are neither easy to find somewhere else, especially in Latin America, nor sustainable. Thus, oil palm agroindustry must build and consolidate com- petitive advantages over more solid bases (Hunsberger & Alonso-Fradejas 2016)
+
+### Market concentration of global production of emerging flex crops
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
-map(flex_crops, function(x) {
-  
-  p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
-                             measure = "Production", n_countries = 5)
-  p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
-                             measure = "Area harvested", n_countries = 5)
-  
-  ggarrange(p1, p2, ncol = 1)
-  
-})
+category = "Emerging flex crop"
+measure = c("Production")
+plot_HH_index(crop_data, category, measure)
 
 ```
 
+Market concentration is in general lower for the emerging flex crops, with coconuts in the top and it has a positive trend. In the last decade also the market concentration of sunflower has increased significantly and could soon be considered a moderately concentrated market.
 
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
-map(emerging_flex_crops, function(x) {
-  
-  p1 = stacked_area_plot(crop_data, category = "Emerging flex crop", crop = x,
-                             measure = "Production", n_countries = 5)
-  p2 = stacked_area_plot(crop_data, category = "Emerging flex crop", crop = x,
-                             measure = "Area harvested", n_countries = 5)
-  
-  ggarrange(p1, p2, ncol = 1)
-  
-})
-
-```
-
-## Break point analysis of global production of flex crops 2000 - 2017
+## Break point analysis of global production of flex crops
 Plots time series of the aggregated total production of individual flex crops and estimates two breakpoints.
 
-### Flex crops
-The two vertical lines are the breakpoints (using segmented package in r specifying n = 2 breaks)
+### Flex crops production
+The two vertical lines are the breakpoints (using segmented package in r specifying n = 2 breaks). Note that I have not actually had time to look into what the criterias for finding the breakpoints are, nor can I motivate why I have chosen 2 breakpoints. It is also possible to put in starting values (e.g. 1995 and 2012 for Soybean production where it seem to have breakpoints just eyballing it.)
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "Tonnes (millions)")
 ```
 
-Looking at production (in million tonnes) only soybeans seem to have a breakpoint after the financial crisis, both in production and area harvested. Maize seem to have a breakpoint some years before. Also soybeans seem to be the only one where the yield is steadily increasing.
+Looking at production (in million tonnes) only soybeans seem to have a breakpoint after the financial crisis. Maize seem to have a breakpoint some years before. Also soybeans seem to be the only one where the yield is steadily increasing.
 
 At first glance, both Soybean and Maize seem to have increased in production after 2009. Oil palm fruit seem to grow at a rather constant rate. Sugar cane on the other hand seem to be declining.
 
+### Flex crops area harvested
+
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Area harvested"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "Hectares (thousands)")
 ```
+
+The area harvested for Oil palm fruit seem to be increasing exponentially in the last decades. Sugar cane could have reached a peak in its area harvested. Most of their breakpoints seem to come earlier that the financial crisis.
+
+### Flex crops yield
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Yield"
-crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "tonnes per hectare (thousands)")
 ```
 
-Only soybeans is steadily increasing over time. The yield for maize has a breakpoint and could be peaking.
+Only soybeans is steadily increasing over time, and well so in the last few years. The yield for maize has a breakpoint and could be peaking.
 
-# Emerging flex crops
+### Emerging flex crops production
+
 Some plots are missing break points. This is because of a bug in segmented package which has not been resolved yet, see:
 https://stackoverflow.com/questions/12135400/errors-in-segmented-package-breakpoints-confusion
 The data has to be "nearly countinous" and a sharp change in a time series could perhaps be an explanation to why it fails to find breakpoints. There is a sharp change in production of crops (especially the emerging ones) after the fall of the soviet union and this could perhaps be a reason for why the segmented-package has trouble to handle the data.
@@ -165,22 +458,24 @@ https://www.r-bloggers.com/r-for-ecologists-putting-together-a-piecewise-regress
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops, y_axis_text = "tonnes (millions)")
 ```
 
+### Emerging flex crops area harvested
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Area harvested"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops,  y_axis_text = "hectares (thousands)")
 ```
 
+### Emerging flex crops yield
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Yield"
-crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops)
+#crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
+break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops, y_axis_text = "tonnes per hectare (thousands)")
 ```
 
 
@@ -189,38 +484,52 @@ theme_set(theme_light(base_size = 12))
 ```
 
 
-### Time series of total production and area harvested of flex crop and non flex crop
-Index start at 1990, dotted line is 2009 and represents the before and after the financial crash
+## Global aggregation of production, area harvested and yield
+
+### Between crop categories (absolute values)
+Time series of total production, area harvested and yield of flex crops and non flex crops. Non flex crops is just defined as all other crops that are not defined as flex crops or emerging flex crops.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 time_series_category_plot(crop_data, index_plot = FALSE, scale = "free_y")
 
 ```
 
-Here we see that the global 
-
-### Time series of individual flex crop production and area harvested
-Index start at 1990, dotted line is 2009 and represents the before and after the financial crash
-
+### Between crop categories (proportional)
+What proportion is each category of the total production.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-measure = "Production"
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
-time_series_crop_comparison_plot(crop_data, category = "Flex crop", index_plot = FALSE)
-
-```
-
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
 time_series_crop_comparison_plot_proportion(crop_data)
 
+
+```
+
+The proportion of flex crops production and area harvested has increased significantly, meaning that flex crops has increased relatively and not just in absolute numbers. The most interesting pattern here is that the increased proportion of global flex crop production means that it could pass the non flex crops in a near future. The emerging flex crop has increased some in proportion the area harvested but not in production. Also interesting is that yield of flex crops has fallen over time, which I would have expected to increase.
+
+## Global aggregation of individual flex crop production, area harvested and yield.
+Time series (as a proportion of all flex crops)
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+measure = c("Production", "Area harvested")
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure, fraction = TRUE)
+
 ```
 
 
+## Time series of individual emerging flex crop production, area harvested and yield as a proportion of all emerging flex crops.
+
+```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+measure = c("Production", "Area harvested")
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", measure, fraction = TRUE)
+
+```
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
 
@@ -231,64 +540,37 @@ time_series_crop_comparison_plot_proportion(crop_data)
 
 
 ```{r eval=FALSE, include=FALSE}
-theme_set(theme_light(base_size = 12))
-production_year = c(1975, 1990, 2000, 2017)
-crop_data = get_crop_data(crop_production_data_raw, flex_crops,
-                          "Production", production_year)
-crop_map_data = make_crop_map_data(crop_data)
+#theme_set(theme_light(base_size = 12))
+#production_year = c(1975, 1990, 2000, 2017)
+#crop_data = get_crop_data(crop_production_data_raw, flex_crops,
+#                          "Production", production_year)
+#crop_map_data = make_crop_map_data(crop_data)
 
 ```
 
 
-
-### Global concentration of soybean production
-
 ```{r eval=FALSE, fig.height=6, include=FALSE, out.height="100%", out.width="100%"}
 
-  map(flex_crops, function(x) { # values to feed to filter function
-    tm_shape(crop_map_data %>% 
-           filter(item == x, harvest_measure == "Yield")) +
-      tm_fill(col = "value", palette = "BuPu", style = "equal", title = "yield") +
+#  map(flex_crops, function(x) { # values to feed to filter function
+#    tm_shape(crop_map_data %>% 
+#           filter(item == x, harvest_measure == "Yield")) +
+#      tm_fill(col = "value", palette = "BuPu", style = "equal", title = "yield") +
 #  tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = "")) +
-      tm_facets(by = "year", nrow = 2) +
-      tm_layout(title = x, scale = 1, asp = 1, legend.position = c("RIGHT", "center"))
+#      tm_facets(by = "year", nrow = 2) +
+#      tm_layout(title = x, scale = 1, asp = 1, legend.position = c("RIGHT", "center"))
   })
 
 ```
 
 
-### Global concentration of sugar cane production
-
-
-
-### Global concentration of oil palm fruit production
-
-
-### Global concentration of maize production
-
-
 
 ```{r eval=FALSE, include=FALSE}
-production_year = c(2002, 2007, 2012, 2017)
-emerging_flex_crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops,
-                          "Production", production_year)
-emering_flex_crop_map_data = make_crop_map_data(emerging_flex_crop_data)
+#production_year = c(2002, 2007, 2012, 2017)
+#emerging_flex_crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops,
+#                          "Production", production_year)
+#emering_flex_crop_map_data = make_crop_map_data(emerging_flex_crop_data)
 
 ```
-
-### Global concentration of cassava production
-
-
-
-### Global concentration of rapeseed production
-
-
-
-### Global concentration of sugar beet production
-
-
-
-### Global concentration of sunflower seed production
 
 
 

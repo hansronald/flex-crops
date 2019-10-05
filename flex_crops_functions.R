@@ -19,8 +19,8 @@ all_flex_crops = c(established_flex_crops, emerging_flex_crops)
 
 crop_production_categories = as_tibble(fread("5.Data/Categories/crop-livestock-categories.csv")) %>% 
   clean_names() %>%
-  filter(item_group == "Crops Primary") %>% 
-  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
+#  filter(item_group == "Crops Primary") %>% 
+#  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
   dplyr::select(flex_crop_category, item) %>%
   distinct()
 
@@ -33,6 +33,7 @@ FAO_codes = as_tibble(fread("5.Data/Categories/FAO_codes.csv")) %>%
 # Flex crop production
 crop_production_data_raw = as_tibble(fread("5.Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
   clean_names() %>%
+  filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>%
 #  select(-exclude_years) %>% 
 #  select(-exclude_years_type) %>% 
   rename("country" = "area", "country_code" = "area_code", "harvest_measure" = "element") %>% 
@@ -83,6 +84,8 @@ get_crop_data = function(data, crops = unique(data$item), measure, year){
   
   # Filter out the crops selected, remove NA and gather on year
   data = data %>%
+    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
+    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
     filter(item %in% crops) %>%
     dplyr::select(selected_columns) %>%
     gather(year, value, -country, -iso2_code, -item, -harvest_measure, -flex_crop_category) %>% 
@@ -118,7 +121,7 @@ make_crop_map = function(crop_map){
 #    tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = ""))
 }
 
-point_plot = function(crop_data, category, measure, production_year, n_countries){
+point_plot = function(crop_data, category, measure, production_year, n_countries, x_axis_text){
   
   # crop_data %>%
   #   filter(harvest_measure == measure, year == production_year) %>% 
@@ -151,12 +154,13 @@ point_plot = function(crop_data, category, measure, production_year, n_countries
     geom_segment( aes(x=rank, xend=rank, y=0, yend=value), color="grey") +
     geom_point( aes(x=rank, y=value), size = 3) +
     coord_flip() +
-    labs(title = measure, y = "", x = "") +
     facet_wrap(~item, scales = "free", ncol = 2) +
+    labs(title = measure, y = x_axis_text, x = "") +
     scale_x_continuous(
       breaks = plot_data$rank, # specify tick breaks using rank column
-      labels = plot_data$country, # specify tick labels using x column
+      labels = str_wrap(plot_data$country, width = 15) # specify tick labels using x column
     )
+  #scale_color_manual(labels = function(x) str_wrap(x, width = 5))
 
 #   crop_data %>% 
 #     filter(item == crop) %>% 
@@ -210,28 +214,37 @@ time_series_category_plot = function(crop_data, index_plot, scale){
     mutate(value_index = total_value/total_value[year == min(year)])
   
   if(index_plot == TRUE){
-    ggplot(flex_crops_total_value_and_index) + geom_line(aes(x=year, y=value_index, colour = 
-                                                               flex_crop_category)) +
-      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
+    ggplot(flex_crops_total_value_and_index) +
+      geom_line(aes(x=year, y=value_index, colour = str_wrap(flex_crop_category, width = 10))) +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
       labs(y = "index", x = "") +
       facet_wrap(~harvest_measure, ncol = 2, scales = scale) +
-      scale_y_continuous(limits=c(1,NA))
+      scale_y_continuous(limits=c(1,NA)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+#      guides(shape = guide_legend(override.aes = list(size = 0.5)))
+      theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
     
   }else{
-    ggplot(flex_crops_total_value_and_index) + geom_line(aes(x=year, y=total_value, colour =
-                                                               flex_crop_category)) +
-      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
+    ggplot(flex_crops_total_value_and_index) +
+      geom_line(aes(x=year, y=total_value, colour = str_wrap(flex_crop_category, width = 10))) +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+#      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
       labs(y = "value", x = "") +
       facet_wrap(~harvest_measure, ncol = 2, scales = scale) +
-      scale_y_continuous(limits=c(0,NA))
+      scale_y_continuous(limits=c(0,NA)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+#      guides(shape = guide_legend(override.aes = list(size = 0.5)))
+      theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
     
   }
+  
 }
 
-time_series_crop_comparison_plot = function(crop_data, category, index_plot){
+time_series_crop_comparison_plot = function(crop_data, category, measure, fraction){
 
+  category
   crop_plot_data = crop_data %>% 
-    filter(flex_crop_category == category) %>% 
+    filter(flex_crop_category == category, harvest_measure %in% measure) %>% 
     dplyr::select(year, value, harvest_measure, item) %>%
     group_by(year, harvest_measure, item) %>% 
     summarize(total_value = sum(value)) %>% 
@@ -239,22 +252,34 @@ time_series_crop_comparison_plot = function(crop_data, category, index_plot){
     mutate(value_index = total_value / total_value) %>% 
     #print()
     group_by(harvest_measure, item) %>% 
-    mutate(value_index = total_value/total_value[year == min(unique(year))])
+    mutate(value_index = total_value/total_value[year == min(unique(year))]) %>% 
+    group_by(harvest_measure, year) %>%
+    mutate(fraction_value = total_value / sum(total_value))
   
   #  dplyr::select(-total_value)
-  if(index_plot == TRUE){
-    ggplot(crop_plot_data) + geom_line(aes(x=year, y=value_index, colour = item)) +
-      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
+  if(fraction == TRUE){
+    ggplot(crop_plot_data) +
+      geom_line(aes(x=year, y=fraction_value, colour = str_wrap(item, width = 8))) +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+#      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
       labs(y = "index", x = "") +
       facet_wrap(~harvest_measure, nrow = 2, scales = "free_y") +
-      scale_y_continuous(limits=c(1,NA))
+      scale_y_continuous(limits=c(0,NA)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+#      guides(shape = guide_legend(override.aes = list(size = 0.5)))
+      theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
     
     }else{
-      ggplot(crop_plot_data) + geom_line(aes(x=year, y=total_value, colour = item)) +
-        geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
-        labs(y = "index", x = "") +
+      ggplot(crop_plot_data) +
+        geom_line(aes(x=year, y=total_value, colour = str_wrap(item, width = 10))) +
+        scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+#        geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
+        labs(y = "value", x = "") +
         facet_wrap(~harvest_measure, nrow = 2, scales = "free_y") +
-        scale_y_continuous(limits=c(0,NA))
+        scale_y_continuous(limits=c(0,NA)) +
+        theme(axis.text.x = element_text(angle=60, hjust=1)) +
+#        guides(shape = guide_legend(override.aes = list(size = 0.5)))
+        theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
   }
 }
 
@@ -271,17 +296,19 @@ time_series_crop_comparison_plot_proportion = function(crop_data){
     mutate(fraction_value = total_value/total_value_all)
   # mutate(flex_fraction = total_value[flex_crop_category == "Flex crop"] / sum(total_value))
   
-  ggplot(flex_crops_total_value_and_index %>%
-           filter(flex_crop_category != "Non flex crop")) + geom_line(aes(x=year, y=fraction_value, colour =
-                                                                            flex_crop_category)) +
-    labs(y = "value", x = "") +
+  ggplot(flex_crops_total_value_and_index) +
+    geom_line(aes(x=year, y=fraction_value, colour = str_wrap(flex_crop_category, width = 10))) +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+    labs(y = "proportion", x = "") +
     facet_wrap(~harvest_measure, ncol = 2, scales = "free_y") +
-    scale_y_continuous(limits=c(0,NA))
-  
+    scale_y_continuous(limits=c(0,NA)) +
+    theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank()) +
+    theme(axis.text.x = element_text(angle=60, hjust=1))
+  #filter(flex_crop_category != "Non flex crop")
 }
 
 
-break_point_plot = function(crop_data, measure, crops){
+break_point_plot = function(crop_data, measure, crops, y_axis_text){
 
   flex_production = crop_data %>% 
     mutate(item = as.factor(item)) %>% 
@@ -324,7 +351,7 @@ break_point_plot = function(crop_data, measure, crops){
     scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
     geom_line() +
     #scale_y_continuous(limits=c(0,NA)) +
-    labs(title = measure) +
+    labs(title = measure, y = y_axis_text, x = "") +
     facet_wrap(~ item, ncol = 2, scales = "free_y") +
     geom_vline(data = breaks, aes(xintercept = year), size = 0.5, linetype = "dashed") +
     geom_text(data = breaks, aes(x = year, y = 0, label = year), hjust = -.25, size = 2.5) +
@@ -408,8 +435,9 @@ break_point_plot2 = function(crop_data, measure, crops){
   
 }
 
-stacked_area_plot = function(crop_data, category, crop, measure, n_countries){
-
+stacked_area_plot = function(crop_data, category, crop, measure = "Production",
+                             n_countries = 5, y_axis_text = "", proportion = TRUE){
+  
   plot_data = crop_data %>% 
     filter(flex_crop_category == category, item == crop,
            harvest_measure == measure) %>%  
@@ -428,14 +456,33 @@ stacked_area_plot = function(crop_data, category, crop, measure, n_countries){
     mutate(plot_label = ifelse(country %in% plot_order$country[1:n_countries], country, 'Other')) %>%
     mutate(plot_label = factor(plot_label, levels = c(rev(plot_order$country[1:n_countries]), 'Other'))) %>%
     group_by(plot_label, year) %>%
-    summarise(value = sum(value)) 
+    summarise(value = sum(value)) %>% 
+    group_by(year) %>% 
+    mutate(percentage = value / sum(value))
   
-  final_plot %>%
-    ggplot(aes(x=year, y=value, fill=plot_label)) + 
-    geom_area() +
-    scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
-    labs(title = paste(crop, measure, sep = ", "), fill = "") +
-    theme(axis.text.x = element_text(angle=90, hjust=1))
+  if(proportion == TRUE){
+    final_plot %>%
+      ggplot(aes(x=year, y=percentage, fill=str_wrap(plot_label, width = 10))) + 
+      geom_area() +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+      labs(title = paste(crop, measure, sep = ": "), fill = "", x = "", y = "proportional") +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+      theme(legend.key.size = unit(0.2, "cm"), legend.text = element_text(size = 6))
+      #guides(shape = guide_legend(override.aes = list(size = 0.2)))
+      #theme(legend.text = element_text(function(x) str_wrap(x, width = 5))) +
+      #scale_color_manual(labels = function(x) str_wrap(x, width = 5))
+  }else{
+    final_plot %>%
+      ggplot(aes(x=year, y=value, fill=str_wrap(plot_label, width = 10))) + 
+      geom_area() +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+      labs(title = paste(crop, measure, sep = ": "), fill = "", x = "", y = y_axis_text) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+      theme(legend.key.size = unit(0.2, "cm"), legend.text = element_text(size = 6))
+    #guides(shape = guide_legend(override.aes = list(size = 0.2)))
+    #theme(legend.text = element_text(function(x) str_wrap(x, width = 5))) +
+    #scale_color_manual(labels = function(x) str_wrap(x, width = 5))
+  }
 }
 
 plot_HH_index = function(crop_data, category, measure){
@@ -450,6 +497,9 @@ plot_HH_index = function(crop_data, category, measure){
   HH_index_data %>%
     ggplot(aes(x = year, y = HH_index, color = item)) +
     geom_line() +
+    geom_line(aes(y=1500), color = "black", linetype = "dashed", size = 0.5) +
+    geom_line(aes(y=2500), color = "black", linetype = "dashed", size = 0.5) +
+#    geom_hline(aes(yintercept=1500), color = "red", linetyp = "dashed") +
     facet_wrap(~harvest_measure, ncol = 2, scale = "free_y") +
     labs(y = "Herfindahl-Hirschman Index") +
     scale_x_continuous(breaks = scales::pretty_breaks(n = 9)) +

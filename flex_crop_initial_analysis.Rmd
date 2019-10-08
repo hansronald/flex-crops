@@ -77,7 +77,7 @@ measure = "Area harvested"
 n_countries = 8
 
 point_plot(crop_data, category = "Flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+           measure = measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
 
 ```
 
@@ -88,7 +88,7 @@ measure = "Yield"
 n_countries = 6
 
 point_plot(crop_data, category = "Flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes per hectare (thousands)")
 
 ```
 
@@ -102,7 +102,7 @@ measure = "Production"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
 
 ```
 
@@ -116,7 +116,7 @@ measure = "Area harvested"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
+           measure = measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
 
 ```
 
@@ -129,7 +129,7 @@ measure = "Yield"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "hectares (in thousands)")
+           measure = measure, production_year, n_countries, x_axis_text = "tonnes per hectares (thousands)")
 ```
 
 ## Global share of production and area harvested.
@@ -147,16 +147,16 @@ How has the distribution of production and area harvested of flex crops changed 
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -175,16 +175,16 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -255,23 +255,23 @@ Absolute and proportional (1961 - 2017)
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[1],
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[2],
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[3],
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[4],
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[5],
                        measure = "Production", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -322,23 +322,23 @@ ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[1],
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p2 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[2],
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Tonnes (millions)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p3 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[3],
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p4 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[4],
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p5 = stacked_area_plot(crop_data, category = "Emerging flex crop",
                        crop = emerging_flex_crops[5],
                        measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "Hectares (thousands)", proportion = FALSE)
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -422,7 +422,7 @@ The two vertical lines are the breakpoints (using segmented package in r specify
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Production"
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "Tonnes (millions)")
+break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "tonnes (millions)")
 ```
 
 Looking at production (in million tonnes) only soybeans seem to have a breakpoint after the financial crisis. Maize seem to have a breakpoint some years before. Also soybeans seem to be the only one where the yield is steadily increasing.
@@ -434,7 +434,7 @@ At first glance, both Soybean and Maize seem to have increased in production aft
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
 measure = "Area harvested"
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "Hectares (thousands)")
+break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "hectares (thousands)")
 ```
 
 The area harvested for Oil palm fruit seem to be increasing exponentially in the last decades. Sugar cane could have reached a peak in its area harvested. Most of their breakpoints seem to come earlier that the financial crisis.

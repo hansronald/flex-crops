@@ -35,13 +35,13 @@ all_crops = unique(crop_production_data_raw$item)
 flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
 emerging_flex_crops = c("Cassava", "Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts") # Have left out coconuts
 other_crops = setdiff(flex_crops, all_crops)
-harvest_measure = c("Production", "Area harvested", "Yield")
+measure = c("Production", "Area harvested", "Yield")
 
 # check decade before and after financial crash
 year = 1961:2017
 
 # Get the crop data from the raw data
-crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 ```
 
 ## Some key findings
@@ -51,9 +51,11 @@ crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, 
 * **On a global level yield of flex crops has fallen over time.**
 
 
-## Which nations are the main producers and has the largest area harvested in 2017?
+## largest producers and area harvested of flex crops in 2017
+With these plots we can see the largest producing countries in terms of weight produced and area harvested. It is interesting to see where the largest share of each crop is produced today.
 
-### Plots of countries with highest production, area harvested and yield of flex crops.
+### Production per country in in 2017.
+This first plot shows the production in terms of weight. This shows the top 6 producing countries because most other countries are difficult to differentiate because they all are close to zero in relation to the other countries.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
@@ -70,6 +72,9 @@ As expected, the US, Brazil and Argentina have the greates production of Soybean
 
 Interesting is that in the top 20 there are some eastern european countries for both Soybeans and Maize, Ukraine especially but also Romania, Serbia and Hungary.
 
+## Area harvested per country in 2017
+This first plot shows the production in terms of area harvested. This shows the top 8 producing countries because most other countries are difficult to differentiate because they all are close to zero in relation to the other countries.
+
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 production_year = "2017"
@@ -80,6 +85,9 @@ point_plot(crop_data, category = "Flex crop",
            measure = measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
 
 ```
+
+## Yield per country in 2017
+This first plot shows the production in terms of yield. This shows the top 6 producing countries because most after that at very similar yields.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
@@ -92,7 +100,11 @@ point_plot(crop_data, category = "Flex crop",
 
 ```
 
-### Plots of countries with highest production, area harvested and yield of flex crops.
+### Discussion
+An interesting question here would be why does Hungary have a yield four times greater than anyone else? Another one is why drier countries like the UAE and Isreal are at the top of yield of Maize?
+
+### Production per country in 2017
+Here I have chosen 10 countries because that is when most curves change.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
@@ -106,7 +118,11 @@ point_plot(crop_data, category = "Emerging flex crop",
 
 ```
 
-There are several countries from the former Sovietunion in the top of the production of Rapeseed, Sugarbeet and Sunflower seed.
+One interesting observation here is that there are several countries from the former Sovietunion in the top of the production of Rapeseed, Sugarbeet and Sunflower seed. Why are these crops grown in such large volumes?
+
+
+### Area harvested per country in 2017
+The elbow of the curve happenes generally around the top 5 countries, but 10 countries are included to show that there are many former countries of the Soviet union in top producing countries.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
@@ -120,6 +136,8 @@ point_plot(crop_data, category = "Emerging flex crop",
 
 ```
 
+### Yield harvested per country in 2017
+
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
@@ -132,17 +150,18 @@ point_plot(crop_data, category = "Emerging flex crop",
            measure = measure, production_year, n_countries, x_axis_text = "tonnes per hectares (thousands)")
 ```
 
+Again there is an example of rather dry countries in the top of yield. Especially Isreal stands out in Sunflower seed production. Are these examples of plants that grow well in dry conditions or are they heavily irrigated?
+
 ## Global share of production and area harvested.
 
 ## Flex crops.
 Absolute and proportional (1961 - 2017)
 
+How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". Top 5 are chosen mainly because the countries after that usually has a quite smaller area 
 
-How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". 
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
@@ -168,9 +187,9 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 ```
 
 
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
@@ -198,7 +217,7 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
@@ -222,7 +241,7 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
@@ -249,7 +268,7 @@ Absolute and proportional (1961 - 2017)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
@@ -285,7 +304,7 @@ ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
@@ -316,7 +335,7 @@ ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
@@ -352,7 +371,7 @@ ggarrange(p1, p2, p3, p4, p5, ncol = 2, nrow = 3)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Emerging flex crop",
@@ -491,7 +510,7 @@ Time series of total production, area harvested and yield of flex crops and non 
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 time_series_category_plot(crop_data, index_plot = FALSE, scale = "free_y")
 
 ```
@@ -501,7 +520,7 @@ What proportion is each category of the total production.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 time_series_crop_comparison_plot_proportion(crop_data)
 
 
@@ -515,7 +534,7 @@ Time series (as a proportion of all flex crops)
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 measure = c("Production", "Area harvested")
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure, fraction = TRUE)
 
 ```
@@ -526,14 +545,14 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure, fra
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 measure = c("Production", "Area harvested")
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", measure, fraction = TRUE)
 
 ```
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
 
-#crop_data = get_crop_data(crop_production_data_raw, c("Potatoes"), harvest_measure, year)
+#crop_data = get_crop_data(crop_production_data_raw, c("Potatoes"), measure, year)
 #time_series_crop_comparison_plot(crop_data, category = "Non flex crop", index_plot = FALSE)
 
 ```
@@ -553,7 +572,7 @@ time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", mea
 
 #  map(flex_crops, function(x) { # values to feed to filter function
 #    tm_shape(crop_map_data %>% 
-#           filter(item == x, harvest_measure == "Yield")) +
+#           filter(item == x, measure == "Yield")) +
 #      tm_fill(col = "value", palette = "BuPu", style = "equal", title = "yield") +
 #  tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = "")) +
 #      tm_facets(by = "year", nrow = 2) +

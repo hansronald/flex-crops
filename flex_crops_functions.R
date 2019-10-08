@@ -9,62 +9,82 @@ library(spData) # For world data
 library(scales)
 library(segmented)
 library(ggpubr) # For ggarrange
+library(WDI)
 
 #library(sf) # For loading map data
 #library(tmap)    # for static and interactive maps
 
-established_flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
-emerging_flex_crops = c("Cassava", "Coconuts", "Rapeseed", "Sugar beet", "Sunflower seed")
-all_flex_crops = c(established_flex_crops, emerging_flex_crops)
+#established_flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
+#emerging_flex_crops = c("Cassava", "Coconuts", "Rapeseed", "Sugar beet", "Sunflower seed")
+#all_flex_crops = c(established_flex_crops, emerging_flex_crops)
 
-crop_production_categories = as_tibble(fread("5.Data/Categories/crop-livestock-categories.csv")) %>% 
-  clean_names() %>%
-#  filter(item_group == "Crops Primary") %>% 
-#  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
-  dplyr::select(flex_crop_category, item) %>%
-  distinct()
-
-FAO_codes = as_tibble(fread("5.Data/Categories/FAO_codes.csv")) %>%
-  clean_names() %>%
-  dplyr::select(country_code, iso2_code)
-
-
-# Read the production file. Rename countries with long names to shorter names.
-crop_production_data_raw = as_tibble(fread("5.Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
-  clean_names() %>%
-  filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>% # This is just a temporary work-around
-  rename("country" = "area", "country_code" = "area_code", "measures" = "element") %>% 
-  mutate(country = replace(country, country == "United States of America", "USA")) %>%  
-  mutate(country = replace(country, country == "Venezuela (Bolivarian Republic of)", "Venezuela")) %>%  
-  mutate(country = replace(country, country == "Syrian Arab Republic", "Syria")) %>% 
-  mutate(country = replace(country, country == "Russian Federation", "Russia")) %>% 
-  mutate(country = replace(country, country == "Republic of Moldova", "Moldova")) %>% 
-  mutate(country = replace(country, country == "Republic of Korea", "South korea")) %>% 
-  mutate(country = replace(country, country == "Iran (Islamic Republic of)", "Iran")) %>% 
-  mutate(country = replace(country, country == "Lao People's Democratic Republic", "Laos")) %>% 
-  mutate(country = replace(country, country == "Democratic Republic of the Congo", "DR Congo")) %>% 
-  mutate(country = replace(country, country == "Democratic People's Republic of Korea", "North korea")) %>% 
-  mutate(country = replace(country, country == "China, Taiwan Province of", "Taiwan")) %>% 
-  mutate(country = replace(country, country == "China, mainland", "China")) %>% 
-  mutate(country = replace(country, country == "Bolivia (Plurinational State of)", "Bolivia")) %>% 
-  mutate(country = replace(country, country == "Bosnia and Herzegovina", "Bosnia")) %>%
-  mutate(country = replace(country, country == "United Republic of Tanzania", "Tanzania")) %>%
-  mutate(country = replace(country, country == "The former Yugoslav Republic of Macedonia", "North macedonia")) %>%
-  left_join(FAO_codes) %>% 
-  left_join(crop_production_categories) %>% 
-  filter(iso2_code != "") %>% 
-  filter(!is.na(flex_crop_category))
-  # clean_names renames columan names with snake_case
-  #clean_names() %>%
-  #rename(unit_weight = unit, weight = value) %>%
-  #filter(item %in% all_flex_crops)
-
-# Replace all NA values in yield/production/area harvested with 0
-#crop_production_data_raw[,8:121][is.na(crop_production_data_raw[,8:121])] = 0
-
-world_filtered = world %>% 
-  filter(name_long != "Antarctica")
+read_data = function(year){
+  crop_production_categories = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Categories/crop-livestock-categories.csv")) %>% 
+    clean_names() %>%
+  #  filter(item_group == "Crops Primary") %>% 
+  #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
+    dplyr::select(flex_crop_category, item) %>%
+    distinct()
   
+  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Categories/FAO_codes.csv")) %>%
+    clean_names() %>%
+    dplyr::select(country_code, iso2_code) %>% 
+    rename("iso2c" = "iso2_code")
+  
+  # Get land area from WDI, use the latest year because I am most interested in countries existing now.
+  country_land_area_raw <- data.frame(
+    WDI(country = "all",
+        indicator = "AG.LND.TOTL.K2",
+        start = 2018,
+        end = 2018,
+        extra = TRUE))
+  
+  # Filter only countries and convert to hectares
+  country_land_area = country_land_area_raw %>%
+    filter(region != "Aggregates") %>% 
+    rename("land_area" = "AG.LND.TOTL.K2") %>% 
+    dplyr::select(iso2c, land_area) %>% 
+    mutate(land_area = land_area * 0.0001)
+  
+  # Read the production file. Rename countries with long names to shorter names.
+  crop_production_data_raw = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
+    clean_names() %>%
+    filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>% # This is just a temporary work-around
+    rename("country" = "area", "country_code" = "area_code", "measures" = "element") %>% 
+    mutate(country = replace(country, country == "United States of America", "USA")) %>%  
+    mutate(country = replace(country, country == "Venezuela (Bolivarian Republic of)", "Venezuela")) %>%  
+    mutate(country = replace(country, country == "Syrian Arab Republic", "Syria")) %>% 
+    mutate(country = replace(country, country == "Russian Federation", "Russia")) %>% 
+    mutate(country = replace(country, country == "Republic of Moldova", "Moldova")) %>% 
+    mutate(country = replace(country, country == "Republic of Korea", "South korea")) %>% 
+    mutate(country = replace(country, country == "Iran (Islamic Republic of)", "Iran")) %>% 
+    mutate(country = replace(country, country == "Lao People's Democratic Republic", "Laos")) %>% 
+    mutate(country = replace(country, country == "Democratic Republic of the Congo", "DR Congo")) %>% 
+    mutate(country = replace(country, country == "Democratic People's Republic of Korea", "North korea")) %>% 
+    mutate(country = replace(country, country == "China, Taiwan Province of", "Taiwan")) %>% 
+    mutate(country = replace(country, country == "China, mainland", "China")) %>% 
+    mutate(country = replace(country, country == "Bolivia (Plurinational State of)", "Bolivia")) %>% 
+    mutate(country = replace(country, country == "Bosnia and Herzegovina", "Bosnia")) %>%
+    mutate(country = replace(country, country == "United Republic of Tanzania", "Tanzania")) %>%
+    mutate(country = replace(country, country == "The former Yugoslav Republic of Macedonia", "North macedonia")) %>%
+    left_join(FAO_codes) %>% 
+    left_join(crop_production_categories) %>% 
+    left_join(country_land_area) %>% 
+    filter(iso2c != "") %>% 
+    filter(!is.na(flex_crop_category))
+    # clean_names renames columan names with snake_case
+    #clean_names() %>%
+    #rename(unit_weight = unit, weight = value) %>%
+    #filter(item %in% all_flex_crops)
+  
+  # Replace all NA values in yield/production/area harvested with 0
+  #crop_production_data_raw[,8:121][is.na(crop_production_data_raw[,8:121])] = 0
+  
+  
+  #world_filtered = world %>% 
+  #  filter(name_long != "Antarctica")
+  return(crop_production_data_raw)
+}
 
 # Read data ---------------------------------------------------------------
 
@@ -93,33 +113,34 @@ get_crop_data = function(data, crops = unique(data$item), measure, year){
   year_column = paste("y",year, sep = "")
   
   # Which columns am I interested in
-  selected_columns = c("country", "iso2_code", "item", "measures", "flex_crop_category", year_column)
+  selected_columns = c("country", "iso2c", "item", "measures", "flex_crop_category", "land_area", year_column)
   
   # Filter out the crops selected, remove NA and gather on year
-  data = data %>%
-    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
-    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
-    filter(item %in% crops) %>%
-    dplyr::select(selected_columns) %>%
-    gather(year, value, -country, -iso2_code, -item, -measures, -flex_crop_category) %>% 
+crop_data = data %>%
+#    dplyr::select(-land_area) %>% 
+  mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
+  mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
+  filter(item %in% crops) %>%
+  dplyr::select(selected_columns) %>%
+  gather(year, value, -country, -iso2c, -item, -measures, -land_area, -flex_crop_category) %>% 
     #mutate(value = value/1000000) %>%
     # Divide the different   
-    spread(measures, value) %>% 
+  spread(measures, value) %>% 
 #    clean_names() %>% 
-    mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
-    gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
-    filter(measures %in% measure) %>%
-    na.omit()
+  mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
+  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
+  filter(measures %in% measure) %>%
+  na.omit()
 
-  data$year = as.numeric(gsub("y", "", data$year))
+  crop_data$year = as.numeric(gsub("y", "", crop_data$year))
   
-  return(data)
+  return(crop_data)
 }
 
 make_crop_map_data = function(data){
   # Join the map data with the crop data
   map = left_join(world_filtered %>% 
-                    dplyr::select(iso_a2, geom), data, c("iso_a2"= "iso2_code"))# %>% 
+                    dplyr::select(iso_a2, geom), data, c("iso_a2"= "iso2c"))# %>% 
   #  filter(!is.na(country))
   
   map = map %>% 
@@ -258,7 +279,7 @@ time_series_category_plot = function(crop_data, index_plot, scale){
   
 }
 
-time_series_crop_comparison_plot = function(crop_data, category, measures, fraction){
+time_series_crop_comparison_plot = function(crop_data, category, measure, fraction){
 
   category
   crop_plot_data = crop_data %>% 
@@ -461,7 +482,7 @@ stacked_area_plot = function(crop_data, category, crop, measure = "Production",
            measures == measure) %>%  
     #         year %in% 1960:1970,
     #         country %in% unique(crop_data$country)[50:70]) %>% 
-    select(-iso2_code, -flex_crop_category, -measures, -item)
+    select(-iso2c, -flex_crop_category, -measures, -item)
   
   plot_order = plot_data %>% 
     mutate(country = as.character(country)) %>%

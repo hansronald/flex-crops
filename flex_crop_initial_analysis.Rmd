@@ -5,6 +5,7 @@ date: "04/10/2019"
 output:
   html_document:
     toc: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -21,13 +22,13 @@ library(gridExtra)
 library(sf) # For loading map data
 #library(tmap)
 library(plotly)
-
 source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
 ```
 
 
 ```{r echo = FALSE}
+setwd("~/Google Drive/SRC/Thesis/")
 theme_set(theme_light(base_size = 8))
 
 # Get names of different crop groups
@@ -35,13 +36,14 @@ all_crops = unique(crop_production_data_raw$item)
 flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
 emerging_flex_crops = c("Cassava", "Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts") # Have left out coconuts
 other_crops = setdiff(flex_crops, all_crops)
-measure = c("Production", "Area harvested", "Yield")
+used_measure = c("Production", "Area harvested", "Yield")
 
 # check decade before and after financial crash
 year = 1961:2017
 
 # Get the crop data from the raw data
-crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
+crop_production_data_raw = read_data(year)
+crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
 ```
 
 ## Some key findings
@@ -60,11 +62,11 @@ This first plot shows the production in terms of weight. This shows the top 6 pr
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 production_year = "2017"
-measure = "Production"
+used_measure = "Production"
 n_countries = 6
 
 point_plot(crop_data, category = "Flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
 
 ```
 
@@ -78,11 +80,11 @@ This first plot shows the production in terms of area harvested. This shows the 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 production_year = "2017"
-measure = "Area harvested"
+used_measure = "Area harvested"
 n_countries = 8
 
 point_plot(crop_data, category = "Flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
 
 ```
 
@@ -92,11 +94,11 @@ This first plot shows the production in terms of yield. This shows the top 6 pro
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 production_year = "2017"
-measure = "Yield"
+used_measure = "Yield"
 n_countries = 6
 
 point_plot(crop_data, category = "Flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes per hectare (thousands)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "tonnes per hectare (thousands)")
 
 ```
 
@@ -110,11 +112,11 @@ Here I have chosen 10 countries because that is when most curves change.
 # Make time series plot of flex crops
 
 production_year = "2017"
-measure = "Production"
+used_measure = "Production"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "tonnes (millions)")
 
 ```
 
@@ -128,11 +130,11 @@ The elbow of the curve happenes generally around the top 5 countries, but 10 cou
 # Make time series plot of flex crops
 
 production_year = "2017"
-measure = "Area harvested"
+used_measure = "Area harvested"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "hectares (thousands)")
 
 ```
 
@@ -143,11 +145,11 @@ point_plot(crop_data, category = "Emerging flex crop",
 # Make time series plot of flex crops
 
 production_year = "2017"
-measure = "Yield"
+used_measure = "Yield"
 n_countries = 10
 
 point_plot(crop_data, category = "Emerging flex crop",
-           measure = measure, production_year, n_countries, x_axis_text = "tonnes per hectares (thousands)")
+           measure = used_measure, production_year, n_countries, x_axis_text = "tonnes per hectares (thousands)")
 ```
 
 Again there is an example of rather dry countries in the top of yield. Especially Isreal stands out in Sunflower seed production. Are these examples of plants that grow well in dry conditions or are they heavily irrigated?
@@ -157,7 +159,37 @@ Again there is an example of rather dry countries in the top of yield. Especiall
 ## Flex crops.
 Absolute and proportional (1961 - 2017)
 
-How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". Top 5 are chosen mainly because the countries after that usually has a quite smaller area 
+How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". Top 5 are chosen mainly because the countries after that usually has a quite small area and does not add much more to the plot. The ordering is "Other" in the bottom and from the lowest producer to the highest producer.
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+#crop_data = get_crop_data(crop_production_data_raw, all_crops, used_measure, year)
+#map(flex_crops, function(x) {
+
+n_countries = 10
+  
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
+                       measure = "Production", n_countries = 10,
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Production", n_countries = 10,
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Production", n_countries = 10,
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
+                       measure = "Production", n_countries = 10,
+                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+
+#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
+  #                           measure = "Area harvested", n_countries = 5)
+  
+ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+  
+#})
+
+```
+
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
@@ -165,17 +197,17 @@ How has the distribution of production and area harvested of flex crops changed 
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
-                       measure = "Production", n_countries = 5,
-                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
-                       measure = "Production", n_countries = 5,
-                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
-                       measure = "Production", n_countries = 5,
-                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
-                       measure = "Production", n_countries = 5,
-                       y_axis_text = "tonnes (millions)", proportion = FALSE)
+                       measure = "Area harvested", n_countries = 5,
+                       y_axis_text = "hectares (thousands)", proportion = FALSE)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -193,34 +225,6 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
-                       measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "hectares (thousands)", proportion = FALSE)
-p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
-                       measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "hectares (thousands)", proportion = FALSE)
-p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
-                       measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "hectares (thousands)", proportion = FALSE)
-p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
-                       measure = "Area harvested", n_countries = 5,
-                       y_axis_text = "hectares (thousands)", proportion = FALSE)
-
-#p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
-  #                           measure = "Area harvested", n_countries = 5)
-  
-ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
-  
-#})
-
-```
-
-
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-
-#crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-#map(flex_crops, function(x) {
-  
-p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
                        measure = "Production", n_countries = 5)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
                        measure = "Production", n_countries = 5)
@@ -239,7 +243,7 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 ```
 
 
-```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
@@ -411,8 +415,8 @@ The Herfindahl–Hirschman Index (HHI) is a measure of market concentration (Inv
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 category = "Flex crop"
-measure = c("Production")
-plot_HH_index(crop_data, category, measure)
+used_measure = c("Production")
+plot_HH_index(crop_data, category, measure = used_measure)
 
 ```
 
@@ -425,8 +429,8 @@ Here we can see that in terms of production the market concentration went down o
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
 category = "Emerging flex crop"
-measure = c("Production")
-plot_HH_index(crop_data, category, measure)
+used_measure = c("Production")
+plot_HH_index(crop_data, category, measure = used_measure)
 
 ```
 
@@ -439,9 +443,9 @@ Plots time series of the aggregated total production of individual flex crops an
 The two vertical lines are the breakpoints (using segmented package in r specifying n = 2 breaks). Note that I have not actually had time to look into what the criterias for finding the breakpoints are, nor can I motivate why I have chosen 2 breakpoints. It is also possible to put in starting values (e.g. 1995 and 2012 for Soybean production where it seem to have breakpoints just eyballing it.)
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Production"
+used_measure = "Production"
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "tonnes (millions)")
+break_point_plot(crop_data, measure = used_measure, crops = flex_crops, y_axis_text = "tonnes (millions)")
 ```
 
 Looking at production (in million tonnes) only soybeans seem to have a breakpoint after the financial crisis. Maize seem to have a breakpoint some years before. Also soybeans seem to be the only one where the yield is steadily increasing.
@@ -451,9 +455,9 @@ At first glance, both Soybean and Maize seem to have increased in production aft
 ### Flex crops area harvested
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Area harvested"
+used_measure = "Area harvested"
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "hectares (thousands)")
+break_point_plot(crop_data, measure = used_measure, crops = flex_crops, y_axis_text = "hectares (thousands)")
 ```
 
 The area harvested for Oil palm fruit seem to be increasing exponentially in the last decades. Sugar cane could have reached a peak in its area harvested. Most of their breakpoints seem to come earlier that the financial crisis.
@@ -461,9 +465,9 @@ The area harvested for Oil palm fruit seem to be increasing exponentially in the
 ### Flex crops yield
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Yield"
+used_measure = "Yield"
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = flex_crops, y_axis_text = "tonnes per hectare (thousands)")
+break_point_plot(crop_data, measure = used_measure, crops = flex_crops, y_axis_text = "tonnes per hectare (thousands)")
 ```
 
 Only soybeans is steadily increasing over time, and well so in the last few years. The yield for maize has a breakpoint and could be peaking.
@@ -476,25 +480,25 @@ The data has to be "nearly countinous" and a sharp change in a time series could
 https://www.r-bloggers.com/r-for-ecologists-putting-together-a-piecewise-regression/
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Production"
+used_measure = "Production"
 #crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops, y_axis_text = "tonnes (millions)")
+break_point_plot(crop_data, measure = used_measure, crops = emerging_flex_crops, y_axis_text = "tonnes (millions)")
 ```
 
 ### Emerging flex crops area harvested
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Area harvested"
+used_measure = "Area harvested"
 #crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops,  y_axis_text = "hectares (thousands)")
+break_point_plot(crop_data, measure = used_measure, crops = emerging_flex_crops,  y_axis_text = "hectares (thousands)")
 ```
 
 ### Emerging flex crops yield
 
 ```{r, fig.height=6, include=TRUE, out.height="100%", out.width="100%"}
-measure = "Yield"
+used_measure = "Yield"
 #crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops, measure, year)
-break_point_plot(crop_data, measure = measure, crops = emerging_flex_crops, y_axis_text = "tonnes per hectare (thousands)")
+break_point_plot(crop_data, measure = used_measure, crops = emerging_flex_crops, y_axis_text = "tonnes per hectare (thousands)")
 ```
 
 
@@ -533,9 +537,9 @@ Time series (as a proportion of all flex crops)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-measure = c("Production", "Area harvested")
+used_measure = c("Production", "Area harvested")
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure, fraction = TRUE)
+time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure = used_measure, fraction = TRUE)
 
 ```
 
@@ -544,9 +548,9 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure, fra
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-measure = c("Production", "Area harvested")
+used_measure = c("Production", "Area harvested")
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", measure, fraction = TRUE)
+time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", measure = used_measure, fraction = TRUE)
 
 ```
 
@@ -591,5 +595,6 @@ time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", mea
 
 ```
 
+![](SRC_logo.png)
 
 

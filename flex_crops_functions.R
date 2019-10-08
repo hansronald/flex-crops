@@ -225,12 +225,17 @@ time_series_category_plot = function(crop_data, index_plot, scale){
       theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
     
   }else{
+    hospital_names <- c(
+      `Area harvested` = "Area harvested ('000 hectares)",
+      `Production` = "Production ('000 000 tonnes)",
+      `Yield` = "Yield ('000 tonnes/hectare)"
+      )
     ggplot(flex_crops_total_value_and_index) +
       geom_line(aes(x=year, y=total_value, colour = str_wrap(flex_crop_category, width = 10))) +
       scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
 #      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
-      labs(y = "value", x = "") +
-      facet_wrap(~harvest_measure, ncol = 2, scales = scale) +
+      labs(y = "ha (thousands), tonnes (millons) and ha/tonnes (thousands) respectively", x = "") +
+      facet_wrap(~harvest_measure, ncol = 2, scales = scale, labeller = as_labeller(hospital_names)) +
       scale_y_continuous(limits=c(0,NA)) +
       theme(axis.text.x = element_text(angle=60, hjust=1)) +
 #      guides(shape = guide_legend(override.aes = list(size = 0.5)))

@@ -540,6 +540,66 @@ plot_HH_index = function(crop_data, category, measure){
 
 }
 
+
+plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, year_var){
+  
+  # function that takes crop data, country, time period and measures and plots a stacked
+  # area graph of items for each measure over the time period defined. n_items is how many
+  # items should be shown in the graph, the rest is grouped into "other".
+  
+  plot_list = list()
+  
+  for(i in 1:length(measure_var)){
+    plot_data = crop_data %>% 
+      filter(country == country_var,
+             measures %in% measure_var[i], year %in% year_var) %>% 
+      select(-iso2c, -flex_crop_category) %>% 
+      ungroup()
+    
+    plot_order = plot_data %>% 
+      mutate(item = as.character(item)) %>%
+      filter(year == last(year)) %>%
+      arrange(desc(value)) %>% 
+      mutate(rank = row_number())
+    
+    final_plot <- plot_data %>% 
+      mutate(item = as.character(item)) %>%
+      mutate(plot_label = ifelse(item %in% plot_order$item[1:n_items], item, 'Other')) %>%
+      mutate(plot_label = factor(plot_label, levels = c((plot_order$item[1:n_items]), 'Other'))) %>%
+      group_by(plot_label, year) %>%
+      summarise(value = sum(value)) %>% 
+      group_by(year) %>% 
+      mutate(percentage = value / sum(value))
+    
+    theme_set(theme_classic(base_size = 10))
+    plot_list[[i]] = final_plot %>%
+      ggplot(aes(x=year, y=percentage, fill=plot_label)) + 
+      geom_area() +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+      labs(title = paste(country_var, measure_var[i], sep = ": "), fill = "", x = "", y = get_measure_scale(measure_var[i])) +
+      theme(legend.key.size = unit(0.2, "cm")) +
+      scale_fill_brewer(palette = "Set3")
+  }
+  ggarrange(plotlist=plot_list)
+}
+
+get_measure_scale = function(measure){
+
+  # Returns the scale of each measure, used for correct y-axis on graphs
+
+  if(measure == "Production"){
+    return("tonnes (millions)")
+    }
+  else if(measure == "Area harvested"){
+    return("hectares (thousands)")
+    }
+  else{
+    return("tonnes/ha (thousands)")
+    }
+  
+}
+
 #year = c("2004", "2006")
 #year_column = paste("y",year, sep = "")
 #crop_data = get_crop_data(crop_production_data_raw, "Maize", "Area harvested", year)

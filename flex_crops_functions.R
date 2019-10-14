@@ -12,7 +12,7 @@ library(ggpubr) # For ggarrange
 library(WDI)
 
 #library(sf) # For loading map data
-#library(tmap)    # for static and interactive maps
+library(tmap)    # for static and interactive maps
 
 #established_flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
 #emerging_flex_crops = c("Cassava", "Coconuts", "Rapeseed", "Sugar beet", "Sunflower seed")
@@ -84,9 +84,6 @@ read_data = function(){
   # Replace all NA values in yield/production/area harvested with 0
   #crop_production_data_raw[,8:121][is.na(crop_production_data_raw[,8:121])] = 0
   
-  
-  #world_filtered = world %>% 
-  #  filter(name_long != "Antarctica")
   return(crop_production_data_raw)
 }
 
@@ -143,6 +140,10 @@ crop_data = data %>%
 
 make_crop_map_data = function(data){
   # Join the map data with the crop data
+
+  world_filtered = world %>% 
+    filter(name_long != "Antarctica")
+  
   map = left_join(world_filtered %>% 
                     dplyr::select(iso_a2, geom), data, c("iso_a2"= "iso2c"))# %>% 
   #  filter(!is.na(country))
@@ -520,9 +521,15 @@ stacked_area_plot = function(crop_data, category, crop, measure = "Production",
 
 plot_HH_index = function(crop_data, category, measure){
   
+  # Plots the Herfindahl–Hirschman Index (HHI) for a crop category
+  
   HH_index_data = crop_data %>%
     filter(flex_crop_category == category, measures %in% measure) %>% 
     group_by(item, measures, year) %>% 
+    
+    # The value is calculated by:
+    # 1. Calculate the each crops share of production
+    # 2. Sum the squares of the percentages of each number calculated in step 1
     mutate(HH_index = value / sum(value)) %>% 
     arrange(desc(HH_index)) %>% 
     summarise_at(vars(HH_index), function(x){return(sum((x*100)^2))})
@@ -571,7 +578,6 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, 
       group_by(year) %>% 
       mutate(percentage = value / sum(value))
     
-    theme_set(theme_classic(base_size = 10))
     plot_list[[i]] = final_plot %>%
       ggplot(aes(x=year, y=percentage, fill=plot_label)) + 
       geom_area() +
@@ -583,6 +589,9 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, 
   }
   ggarrange(plotlist=plot_list)
 }
+
+
+  
 
 get_measure_scale = function(measure){
 

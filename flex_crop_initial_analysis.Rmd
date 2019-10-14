@@ -16,7 +16,7 @@ Sys.setlocale('LC_ALL','C')
 
 
 ```{r echo = FALSE, include = FALSE}
-setwd("~/Google Drive/SRC/Thesis/")
+#setwd(getwd())
 library(scales)
 library(gridExtra)
 library(sf) # For loading map data
@@ -28,8 +28,11 @@ source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
 
 ```{r echo = FALSE}
-setwd("~/Google Drive/SRC/Thesis/")
+#setwd("~/Google Drive/SRC/Thesis/")
 theme_set(theme_light(base_size = 8))
+
+# Get the crop data from the raw data
+crop_production_data_raw = read_data()
 
 # Get names of different crop groups
 all_crops = unique(crop_production_data_raw$item)
@@ -41,8 +44,7 @@ used_measure = c("Production", "Area harvested", "Yield")
 # check decade before and after financial crash
 year = 1961:2017
 
-# Get the crop data from the raw data
-crop_production_data_raw = read_data(year)
+
 crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
 ```
 
@@ -553,6 +555,22 @@ used_measure = c("Production", "Area harvested")
 time_series_crop_comparison_plot(crop_data, category = "Emerging flex crop", measure = used_measure, fraction = TRUE)
 
 ```
+
+
+```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
+
+theme_set(theme_classic(base_size = 8))
+
+measure_var = c("Production", "Area harvested", "Yield")
+country_var = "Sweden"
+n_items = 5
+year_var = 1961:2017
+
+plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var)
+
+```
+
+
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 20, echo = FALSE}
 

@@ -24,16 +24,18 @@ library(sf) # For loading map data
 library(plotly)
 source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
 
+#setwd("~/Google Drive/SRC/Thesis/")
+theme_set(theme_light(base_size = 8))
 ```
 
 
-```{r echo = FALSE}
-#setwd("~/Google Drive/SRC/Thesis/")
-theme_set(theme_light(base_size = 8))
-
+```{r echo = FALSE, include = FALSE}
 # Get the crop data from the raw data
 crop_production_data_raw = read_data()
+```
 
+
+```{r echo = FALSE, include = FALSE}
 # Get names of different crop groups
 all_crops = unique(crop_production_data_raw$item)
 flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")

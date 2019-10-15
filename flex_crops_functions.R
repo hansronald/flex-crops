@@ -126,10 +126,10 @@ crop_data = data %>%
   gather(year, value, -country, -iso2c, -item, -measures, -agri_land_area, -flex_crop_category) %>% 
     #mutate(value = value/1000000) %>%
     # Divide the different   
-  spread(measures, value) %>% 
+#  spread(measures, value) %>% 
 #    clean_names() %>% 
-  mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
-  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
+#  mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
+#  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
   filter(measures %in% measure) %>%
   na.omit()
 

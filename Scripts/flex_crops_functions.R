@@ -100,16 +100,37 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
   # Get land area from WDI, use the latest year because I am most interested in countries existing now.
   country_land_area_raw <- data.frame(
     WDI(country = "all",
-        indicator = c("AG.LND.TOTL.K2", "AG.LND.AGRI.K2"),
-        start = 1961,
-        end = 2017,
+        indicator = c("AG.LND.TOTL.K2", "AG.LND.AGRI.K2", "AG.LND.CROP.ZS"),
+        start = min(year),
+        end = max(year),
         extra = TRUE))
   
   # Filter only countries and convert to hectares
   land_area_data = country_land_area_raw %>%
+    
+    # Retrieve total land area, agricultural land area nad crop land area from the World Bank
     filter(region != "Aggregates") %>% 
-    rename("land_area" = "AG.LND.TOTL.K2", "agri_land_area" = "AG.LND.AGRI.K2") %>% 
-    dplyr::select(iso2c, land_area, agri_land_area, year)
+    rename("land_area" = "AG.LND.TOTL.K2", "agri_land_area" = "AG.LND.AGRI.K2", "crop_land_area_prop" = "AG.LND.CROP.ZS") %>%
+    mutate(crop_land_area = (crop_land_area_prop / 100) * land_area) %>% # crop land comes as a proportion of total land area, this is to get the sqkm
+    dplyr::select(iso2c, land_area, agri_land_area, crop_land_area, year, crop_land_area_prop)
+  
+  land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
+    clean_names()
+  
+  land_use_filtered = land_use_raw %>% 
+    filter(item == "Cropland",
+           element == "Share in Land area") %>% 
+    left_join(FAO_codes, by = c("area_code" = "country_code")) %>% 
+    mutate(value = value * 0.01) %>% 
+    rename(crop_area_share_of_land_area = value) %>% 
+    select(area, item, year, crop_area_share_of_land_area, iso2c) %>% 
+    arrange(desc(crop_area_share_of_land_area))
+
+    # TODO This is not working correctly    
+    # Values are missing in 2017, replace them with values from 2016
+#    group_by(iso2c)
+#    fill(crop_land_area, .direction = "down") %>%
+#    fill(agri_land_area, .direction = "down")
   
   # Filter out the crops selected, remove NA and gather on year
   crop_data_out = crop_data_raw %>%
@@ -550,6 +571,7 @@ stacked_area_plot_per_country = function(crop_data, category, crop, measure = "P
 }
 
 crop_proportion_plot_per_country = function(crop_data, category, min_land_area, min_proportion, stacked = FALSE){
+
   
   crop_data_proportion = crop_data %>% 
     filter(measures == "Area harvested",
@@ -558,24 +580,27 @@ crop_proportion_plot_per_country = function(crop_data, category, min_land_area, 
     # First calculate the total area for the crop group
     group_by(country, year) %>%
     mutate(crop_category_area = sum(value*0.01)) %>% 
-    mutate(crop_category_area_proportion = (crop_category_area) / agri_land_area) %>% 
+    mutate(crop_category_area_proportion = (crop_category_area) / crop_land_area) %>% 
     ungroup() %>% 
     
     # Then calculate total area per individual crop
     group_by(country, year, item) %>%
     mutate(crop_individual_area = sum(value*0.01)) %>%
-    mutate(crop_individual_area_proportion = (crop_individual_area) / agri_land_area) %>% 
-    select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, agri_land_area, land_area)
+    mutate(crop_individual_area_proportion = (crop_individual_area) / crop_land_area) %>% 
+    select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, crop_land_area, land_area)
+  
+  
   
   # Get the countries which has the largest share of area harvested in 2017
+  last_year = last(crop_data_proportion$year)
   top_countries = crop_data_proportion %>% 
-    filter(year == "2017") %>% 
+    filter(year == last_year) %>% 
     arrange(desc(crop_category_area_proportion)) %>% 
     ungroup() %>% 
     group_by(country) %>% 
     top_n(1, item) %>%
     filter(land_area > min_land_area) %>% 
-    filter(crop_category_area_proportion > min_proportion) %>% 
+    filter(crop_category_area_proportion > min_proportion) %>%
     pull(country)
   
   final_plot = crop_data_proportion %>% 

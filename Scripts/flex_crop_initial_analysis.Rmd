@@ -22,12 +22,11 @@ library(gridExtra)
 library(sf) # For loading map data
 #library(tmap)
 library(plotly)
-source("~/Google Drive/SRC/Thesis/x.Code/flex_crops_functions.R")
+source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
 
 #setwd("~/Google Drive/SRC/Thesis/")
 theme_set(theme_light(base_size = 8))
 ```
-
 
 ```{r echo = FALSE, include = FALSE}
 # Get the crop data from the raw data
@@ -49,6 +48,28 @@ year = 1961:2017
 
 crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
 ```
+
+
+Because some smaller countries, especially island nations, are dominated by one particular crop. Because of this they are excluded in the analysis. The limit is set somewhat arbitrarily to 5000 sqm. These are the countries excluded on that list.
+
+```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+# Extract countries with land area smaller than 5000, and print them
+countries_excluded = crop_data %>% 
+  filter(land_area < 5000) %>% 
+  mutate(row_n = row_number()) %>% 
+  group_by(country) %>% 
+  top_n(1, row_n) %>% 
+  select(country, land_area) %>% 
+  arrange(desc(land_area))
+
+#print(countries_excluded)
+
+crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 5000, min_proportion = 0.05)
+crop_proportion_plot_per_country(crop_data, category = "Emerging flex crop", min_land_area = 5000, min_proportion = 0.05)
+
+```
+
 
 ## Some key findings
 * **Global flex crop production as proportion of total crop production is increasing and could pass non flex crops in a near future**
@@ -615,6 +636,6 @@ plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var)
 
 ```
 
-![](SRC_logo.png)
+
 
 

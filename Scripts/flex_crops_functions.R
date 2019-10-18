@@ -27,6 +27,7 @@ read_data = function(){
     dplyr::select(flex_crop_category, item) %>%
     distinct()
   
+  # FAO data only has a country code, not the iso code. This is used to map with other data using iso2code
   FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
     clean_names() %>%
     dplyr::select(country_code, iso2_code) %>% 
@@ -97,34 +98,42 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
   # Which columns am I interested in
   selected_columns = c("country", "iso2c", "item", "measures", "flex_crop_category", year_column)
   
+  # FAO data only has a country code, not the iso code. This is used to map with other data using iso2code
+  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+    clean_names() %>%
+    dplyr::select(country_code, iso2_code) %>% 
+    rename("iso2c" = "iso2_code")
+  
   # Get land area from WDI, use the latest year because I am most interested in countries existing now.
   country_land_area_raw <- data.frame(
     WDI(country = "all",
-        indicator = c("AG.LND.TOTL.K2", "AG.LND.AGRI.K2", "AG.LND.CROP.ZS"),
+        indicator = c("AG.LND.TOTL.K2"),
         start = min(year),
         end = max(year),
         extra = TRUE))
   
-  # Filter only countries and convert to hectares
-  land_area_data = country_land_area_raw %>%
-    
-    # Retrieve total land area, agricultural land area nad crop land area from the World Bank
-    filter(region != "Aggregates") %>% 
-    rename("land_area" = "AG.LND.TOTL.K2", "agri_land_area" = "AG.LND.AGRI.K2", "crop_land_area_prop" = "AG.LND.CROP.ZS") %>%
-    mutate(crop_land_area = (crop_land_area_prop / 100) * land_area) %>% # crop land comes as a proportion of total land area, this is to get the sqkm
-    dplyr::select(iso2c, land_area, agri_land_area, crop_land_area, year, crop_land_area_prop)
-  
   land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
     clean_names()
   
-  land_use_filtered = land_use_raw %>% 
+  crop_area_share = land_use_raw %>% 
     filter(item == "Cropland",
            element == "Share in Land area") %>% 
     left_join(FAO_codes, by = c("area_code" = "country_code")) %>% 
     mutate(value = value * 0.01) %>% 
     rename(crop_area_share_of_land_area = value) %>% 
-    select(area, item, year, crop_area_share_of_land_area, iso2c) %>% 
-    arrange(desc(crop_area_share_of_land_area))
+    select(area, item, year, crop_area_share_of_land_area, iso2c) %>%
+    select(crop_area_share_of_land_area, iso2c, year)
+  
+  # Filter only countries and convert to hectares
+  land_use_data = country_land_area_raw %>%
+    
+    # Retrieve total land area, agricultural land area nad crop land area from the World Bank
+    filter(region != "Aggregates") %>% 
+    rename("land_area" = "AG.LND.TOTL.K2") %>%
+    left_join(crop_area_share, by = c("iso2c", "year")) %>% 
+    mutate(crop_land_area = (crop_area_share_of_land_area) * land_area) %>% # crop land comes as a proportion of total land area, this is to get the sqkm
+    dplyr::select(iso2c, land_area, crop_land_area, year)
+  
 
     # TODO This is not working correctly    
     # Values are missing in 2017, replace them with values from 2016
@@ -149,7 +158,7 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
 #  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
     na.omit() %>% 
     mutate(year = as.numeric(gsub("y", "", year))) %>% 
-    left_join(land_area_data, by = c("iso2c", "year"))
+    left_join(land_use_data, by = c("iso2c", "year"))
   
   return(crop_data_out)
 }
@@ -572,7 +581,6 @@ stacked_area_plot_per_country = function(crop_data, category, crop, measure = "P
 
 crop_proportion_plot_per_country = function(crop_data, category, min_land_area, min_proportion, stacked = FALSE){
 
-  
   crop_data_proportion = crop_data %>% 
     filter(measures == "Area harvested",
            flex_crop_category == category) %>%  
@@ -589,6 +597,30 @@ crop_proportion_plot_per_country = function(crop_data, category, min_land_area, 
     mutate(crop_individual_area_proportion = (crop_individual_area) / crop_land_area) %>% 
     select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, crop_land_area, land_area)
   
+  
+  crop_data_proportion %>% 
+    ungroup() %>% 
+    filter(year %in% c(2000, 2016)) %>% 
+    top_n(1, item) %>% 
+    select(country, year, crop_category_area_proportion) %>% 
+    mutate(year = paste("Y", year, sep = "")) %>% 
+    spread(year, crop_category_area_proportion) %>% 
+    mutate(crop_area_change_prop = Y2016 / Y2000,
+           crop_area_change_abs = Y2016 - Y2000) %>% 
+  #  arrange(desc(crop_area_change_prop))
+   arrange(desc(crop_area_change_abs))
+  
+  crop_data_proportion %>% 
+    ungroup() %>% 
+    filter(year %in% c(2000, 2016)) %>%  
+    select(country, year, crop_individual_area_proportion, item) %>% 
+    mutate(year = paste("Y", year, sep = "")) %>% 
+    spread(year, crop_individual_area_proportion) %>% 
+    mutate(crop_area_change_prop = Y2016 / Y2000,
+           crop_area_change_abs = Y2016 - Y2000) %>% 
+  #  arrange(desc(crop_area_change_prop))
+   arrange(desc(crop_area_change_abs))
+    
   
   
   # Get the countries which has the largest share of area harvested in 2017

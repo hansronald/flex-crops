@@ -43,17 +43,15 @@ other_crops = setdiff(flex_crops, all_crops)
 used_measure = c("Production", "Area harvested", "Yield")
 
 # check decade before and after financial crash
-year = 1961:2017
-
+year = 1961:2016
 
 crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
 ```
 
 
-Because some smaller countries, especially island nations, are dominated by one particular crop. Because of this they are excluded in the analysis. The limit is set somewhat arbitrarily to 5000 sqm. These are the countries excluded on that list.
+Because some smaller countries, especially island nations, are dominated by one particular crop (small island nations for example mainly have coconut crops). Because of this they are excluded in the analysis. The limit is set somewhat arbitrarily to 5000 sqm. These are the countries excluded on that list.
 
 ```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
-
 # Extract countries with land area smaller than 5000, and print them
 countries_excluded = crop_data %>% 
   filter(land_area < 5000) %>% 
@@ -64,9 +62,19 @@ countries_excluded = crop_data %>%
   arrange(desc(land_area))
 
 #print(countries_excluded)
+```
 
-crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 5000, min_proportion = 0.05)
-crop_proportion_plot_per_country(crop_data, category = "Emerging flex crop", min_land_area = 5000, min_proportion = 0.05)
+### Individual flex crop planted area proportion of total land area
+Large countries will naturally be among the top producers. Here we look how much area 
+```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 5000, min_proportion = 0.25, stacked = FALSE)
+```
+
+
+
+### Individual emerging flex crop planted proportion of total land area
+```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+crop_proportion_plot_per_country(crop_data, category = "Emerging flex crop", min_land_area = 5000, min_proportion = 0.15, stacked = TRUE)
 
 ```
 
@@ -78,15 +86,15 @@ crop_proportion_plot_per_country(crop_data, category = "Emerging flex crop", min
 * **On a global level yield of flex crops has fallen over time.**
 
 
-## largest producers and area harvested of flex crops in 2017
+## largest producers and area harvested of flex crops in 2016
 With these plots we can see the largest producing countries in terms of weight produced and area harvested. It is interesting to see where the largest share of each crop is produced today.
 
-### Production per country in in 2017.
+### Production per country in in 2016.
 This first plot shows the production in terms of weight. This shows the top 6 producing countries because most other countries are difficult to differentiate because they all are close to zero in relation to the other countries.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Production"
 n_countries = 6
 
@@ -99,12 +107,12 @@ As expected, the US, Brazil and Argentina have the greates production of Soybean
 
 Interesting is that in the top 20 there are some eastern european countries for both Soybeans and Maize, Ukraine especially but also Romania, Serbia and Hungary.
 
-## Area harvested per country in 2017
+## Area harvested per country in 2016
 This first plot shows the production in terms of area harvested. This shows the top 8 producing countries because most other countries are difficult to differentiate because they all are close to zero in relation to the other countries.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Area harvested"
 n_countries = 8
 
@@ -113,12 +121,12 @@ point_plot(crop_data, category = "Flex crop",
 
 ```
 
-## Yield per country in 2017
+## Yield per country in 2016
 This first plot shows the production in terms of yield. This shows the top 6 producing countries because most after that at very similar yields.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Yield"
 n_countries = 6
 
@@ -130,13 +138,13 @@ point_plot(crop_data, category = "Flex crop",
 ### Discussion
 An interesting question here would be why does Hungary have a yield four times greater than anyone else? Another one is why drier countries like the UAE and Isreal are at the top of yield of Maize?
 
-### Production per country in 2017
+### Production per country in 2016
 Here I have chosen 10 countries because that is when most curves change.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Production"
 n_countries = 10
 
@@ -148,13 +156,13 @@ point_plot(crop_data, category = "Emerging flex crop",
 One interesting observation here is that there are several countries from the former Sovietunion in the top of the production of Rapeseed, Sugarbeet and Sunflower seed. Why are these crops grown in such large volumes?
 
 
-### Area harvested per country in 2017
+### Area harvested per country in 2016
 The elbow of the curve happenes generally around the top 5 countries, but 10 countries are included to show that there are many former countries of the Soviet union in top producing countries.
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Area harvested"
 n_countries = 10
 
@@ -163,13 +171,13 @@ point_plot(crop_data, category = "Emerging flex crop",
 
 ```
 
-### Yield harvested per country in 2017
+### Yield harvested per country in 2016
 
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 # Make time series plot of flex crops
 
-production_year = "2017"
+production_year = "2016"
 used_measure = "Yield"
 n_countries = 10
 
@@ -182,7 +190,7 @@ Again there is an example of rather dry countries in the top of yield. Especiall
 ## Global share of production and area harvested.
 
 ## Flex crops.
-Absolute and proportional (1961 - 2017)
+Absolute and proportional (1961 - 2016)
 
 How has the distribution of production and area harvested of flex crops changed over time in absolute terms? Using a stacked area plot this is visualised below using absolute values. The top 5 countries are shown and the rest of the countries are aggregated into "Other". Top 5 are chosen mainly because the countries after that usually has a quite small area and does not add much more to the plot. The ordering is "Other" in the bottom and from the lowest producer to the highest producer.
 
@@ -293,7 +301,7 @@ ggarrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
 
 
 ## Emerging flex crops
-Absolute and proportional (1961 - 2017)
+Absolute and proportional (1961 - 2016)
 
 ```{r out.width = "100%", out.height = "100%", fig.height = 8, echo = FALSE}
 
@@ -587,7 +595,7 @@ theme_set(theme_classic(base_size = 8))
 measure_var = c("Production", "Area harvested", "Yield")
 country_var = "Sweden"
 n_items = 5
-year_var = 1961:2017
+year_var = 1961:2016
 
 plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var)
 
@@ -605,7 +613,7 @@ plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var)
 
 ```{r eval=FALSE, include=FALSE}
 #theme_set(theme_light(base_size = 12))
-#production_year = c(1975, 1990, 2000, 2017)
+#production_year = c(1975, 1990, 2000, 2016)
 #crop_data = get_crop_data(crop_production_data_raw, flex_crops,
 #                          "Production", production_year)
 #crop_map_data = make_crop_map_data(crop_data)
@@ -629,7 +637,7 @@ plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var)
 
 
 ```{r eval=FALSE, include=FALSE}
-#production_year = c(2002, 2007, 2012, 2017)
+#production_year = c(2002, 2007, 2012, 2016)
 #emerging_flex_crop_data = get_crop_data(crop_production_data_raw, emerging_flex_crops,
 #                          "Production", production_year)
 #emering_flex_crop_map_data = make_crop_map_data(emerging_flex_crop_data)

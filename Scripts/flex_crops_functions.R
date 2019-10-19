@@ -54,6 +54,9 @@ read_data = function(){
     mutate(country = replace(country, country == "Bosnia and Herzegovina", "Bosnia")) %>%
     mutate(country = replace(country, country == "United Republic of Tanzania", "Tanzania")) %>%
     mutate(country = replace(country, country == "The former Yugoslav Republic of Macedonia", "North macedonia")) %>%
+    mutate(country = replace(country, country == "C\xf4te d'Ivoire", "Cote d'Ivore")) %>%
+    mutate(country = replace(country, country == "R\xe9union", "Reunion")) %>%
+    mutate_if(is.numeric, ~replace(., is.na(.), 0)) %>% 
     left_join(FAO_codes) %>% 
     left_join(crop_production_categories) %>% 
     filter(iso2c != "") %>% 
@@ -147,8 +150,8 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
     filter(item %in% crops) %>%
     filter(measures %in% measure) %>%
     dplyr::select(selected_columns) %>%
-    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
-    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
+#    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
+#    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
     gather(year, value, -country, -iso2c, -item, -measures, -flex_crop_category) %>% 
     #mutate(value = value/1000000) %>%
     # Divide the different   
@@ -181,7 +184,7 @@ make_crop_map_data = function(data){
 
 make_crop_map = function(crop_map){
   tm_shape(crop_map) +
-    tm_polygons(col = "weight", palette = "BuPu", style = "jenks", title = "Weight (tonnes)")
+    tm_polygons(col = "value", palette = "BuPu", style = "jenks", title = "Weight (tonnes)")
 #    tm_layout(panel.labels = paste(crop, " (", production_year, ")", sep = ""))
 }
 
@@ -751,24 +754,139 @@ get_measure_scale = function(measure){
   
 }
 
-#year = c("2004", "2006")
-#year_column = paste("y",year, sep = "")
-#crop_data = get_crop_data(crop_production_data_raw, "Maize", "Area harvested", year)
+get_break_points_per_country = function(crop_data, crop, measure){
+  
+  crop_time_data_filtered = crop_data %>% 
+    filter(item %in% crop, measures == measure)
+  
+  countries = unique(crop_time_data_filtered$country)
+  n_countries = length(countries)
+  #temp = as.data.frame(matrix(0, n_countries, 2))
+  
+  country_data = NULL
+  break_year_data = NULL
+  
+  for(i in 1:n_countries){
+    crop_time_series_data = crop_time_data_filtered %>% 
+      filter(country == countries[i]) %>% 
+      select(year, value)
+    
+    # Don't add if the values sum up to 0, becuse as.ts wont work
+    if(sum(crop_time_series_data$value) != 0){
+      
+      # TODO, why do some as.ts create 
+      crop_time_series = as.ts(read.zoo(crop_time_series_data, FUN = as.yearmon))
+      
+      # If there are NA values for some reasons the as.ts won't work
+      if(!any(is.na(crop_time_series))){
+        
+        # F statistics to indicate breakpoints, added from/to to get a 
+        # largers range of years in output
+        fs_crops <- Fstats(crop_time_series ~ 1, from = 0, to = 1)
+        
+        bp_crops = breakpoints(fs_crops)
+        break_year = breakdates(bp_crops)
+        #lines(breakpoints(fs_crops))
+        #print(break_year)
+        #dt = rbind(dt, c(countries[i], break_year))
+        country_data = append(country_data, countries[i])
+        break_year_data = append(break_year_data, break_year)
+      }else
+        print(paste("NA in ", crop, ": ", countries[i],sep = ""))
+    }
+  }
+  
+  # Join the countries and their corresponding breakpoints
+  df = data.frame(country_data, break_year_data)
+  
+  # Create a histogram of the breakpoints
+  break_year_histogram = ggplot(df, aes(x=break_year_data)) +
+    geom_histogram(bins = 15) +
+    labs(title = "") +
+    theme_classic()
+  
+  # Join the break map data with map data
+  break_year_map_data = df %>% 
+    rename("country" = "country_data") %>%
+    
+    # Join it with my other data to get country_codes
+    left_join(crop_production_data_raw %>%
+                select(country, country_code) %>% 
+                group_by(country) %>% 
+                slice(1)) %>%
+    
+    # Join with FAO codes
+    left_join(FAO_codes) %>% 
+    select(-country, -country_code) %>% 
+    rename("value" = "break_year_data") %>% 
+    
+    # Join with maps
+    left_join(maps::iso3166 %>% select(a2, mapname), by = c(iso2c = "a2")) %>% 
+    right_join(world, by = c(mapname = "region"))
+  
+  # Plot the map data, color corresponds to a range of years
+  break_year_map = break_year_map_data %>% 
+    mutate(
+      break_year = cut(value, breaks = c(1961, 1980, 1990, 2000, 2010, 2016), 
+                       labels = c("1961-1980", "1980-1990", "1990-2000", "2000-2010", "2010-2016"))
+    ) %>% 
+    ggplot(aes(long, lat, group = group, fill = break_year)) +
+    geom_polygon() +
+    #    scale_fill_discrete(labels = comma) +
+    coord_map(xlim=c(-180,180)) +
+    theme_void() +
+    labs(title = paste("Distribution of break points", crop, ":", measure),
+         fill = "Break year")
+  
+  # An option for automatic labels for the breaks
+  #a = breakss[1:(length(breakss)-1)]
+  #b = breakss[2:(length(breakss))]
+  #paste(a,"-", b, sep = "")
+  
+  # Setup the design of the grid.arrange
+  lay <- rbind(c(1,1,1),
+               c(1,1,1),
+               c(1,1,1),
+               c(2,2,2))
+  
+  grid.arrange(break_year_map, break_year_histogram, layout_matrix = lay)
+  return(df)
+}
 
-#crop_map = make_crop_data_map(crop_data)
-
-#tm_shape(crop_map) +
-#  tm_polygons(col = "weight", palette = "Set3", style = "jenks", title = "Weight (tonnes)")
-
-#tm_shape(crop_map) +
-#  tm_polygons(col = "weight", palette = "Set3", style = "jenks", title = "Weight (tonnes)") +
-#  tm_facets(by = "year")
-
-#  tm_layout("Concentration of maize production",
-#            inner.margins=c(0,.1,.1,.1), title.size=1)
-
-
-#tm_shape(b) + tm_polygons("weight", palette = "Set3", style = "jenks", title = "Weight (tonnes)") +
-#  tm_facets(by = "year")
-#  tm_facets(nrow = 1, sync = TRUE)
+get_ts_plot_crop_per_country = function(crop_data, crop, measure, country_var){
+  
+  ### A function that plots a time series of the production measure of a 
+  ### specific crop in a specific country with its specific breakpoint
+  
+  crop_time_series_data = crop_data %>% 
+    filter(item %in% crop, measures == measure) %>% 
+    filter(country == country_var) %>% 
+    select(year, value)
+  
+  # If the data is empty then there is no production and we cant plot the data
+  if(dim(crop_time_series_data)[1] == 0){
+    
+    print(paste("No data/no production on", crop, "for", measure, "in", country_var))
+    
+  }else{
+    
+    # Make into time series and plot it
+    crop_time_series = as.ts(read.zoo(crop_time_series_data, FUN = as.yearmon))
+    
+    # F statistics to indicate breakpoints, added from/to to get a 
+    # largers range of years in output
+    fs_crops <- Fstats(crop_time_series ~ 1, from = 0, to = 1)
+    
+    # Plot the time series and plot the breakpoint as a line
+    plot(crop_time_series_data, type = "l", ylab = measure, xlab = "",
+         main = paste(crop, measure, "in", country_var))
+    lines(breakpoints(fs_crops))
+    text(x=breakdates(breakpoints(fs_crops)), y=min(crop_time_series_data$value),
+         pos=4, labels = paste("Break point (", breakdates(breakpoints(fs_crops)), ")", sep = ""))
+    
+    
+    print(crop_time_series_data)
+  }
+  
+}
 

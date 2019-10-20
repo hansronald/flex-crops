@@ -10,6 +10,8 @@ library(scales)
 library(segmented)
 library(ggpubr) # For ggarrange
 library(WDI)
+library(zoo) # For read.zoo function
+library(strucchange)
 
 #library(sf) # For loading map data
 library(tmap)    # for static and interactive maps
@@ -344,10 +346,11 @@ time_series_crop_comparison_plot = function(crop_data, category, measure, fracti
   }
 }
 
-time_series_crop_comparison_plot_proportion = function(crop_data){
+time_series_crop_comparison_plot_proportion = function(crop_data, measure){
   
   flex_crops_total_value_and_index = crop_data %>% 
     dplyr::select(year, value, measures, flex_crop_category) %>%
+    filter(measures %in% measure)
     group_by(year, measures, flex_crop_category) %>% 
     summarize(total_value = sum(value)) %>% 
     group_by(measures) %>% 
@@ -693,7 +696,7 @@ plot_HH_index = function(crop_data, category, measure){
 }
 
 
-plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, year_var){
+plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, year_var, stacked = TRUE){
   
   # function that takes crop data, country, time period and measures and plots a stacked
   # area graph of items for each measure over the time period defined. n_items is how many
@@ -723,14 +726,25 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, 
       group_by(year) %>% 
       mutate(percentage = value / sum(value))
     
-    plot_list[[i]] = final_plot %>%
-      ggplot(aes(x=year, y=percentage, fill=plot_label)) + 
-      geom_area() +
-      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
-      theme(axis.text.x = element_text(angle=60, hjust=1)) +
-      labs(title = paste(country_var, measure_var[i], sep = ": "), fill = "", x = "", y = get_measure_scale(measure_var[i])) +
-      theme(legend.key.size = unit(0.2, "cm")) +
-      scale_fill_brewer(palette = "Set3")
+    if(stacked == TRUE){
+      plot_list[[i]] = final_plot %>%
+        ggplot(aes(x=year, y=percentage, fill=plot_label)) + 
+        geom_area() +
+        scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+        theme(axis.text.x = element_text(angle=60, hjust=1)) +
+        labs(title = paste(country_var, measure_var[i], sep = ": "), fill = "", x = "", y = get_measure_scale(measure_var[i])) +
+        theme(legend.key.size = unit(0.2, "cm")) +
+        scale_fill_brewer(palette = "Set3")
+    }else{
+      plot_list[[i]] = final_plot %>%
+        ggplot(aes(x=year, y=percentage, color=plot_label)) + 
+        geom_line() +
+        scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+        theme(axis.text.x = element_text(angle=60, hjust=1)) +
+        labs(title = paste(country_var, measure_var[i], sep = ": "), line = "", x = "", y = get_measure_scale(measure_var[i])) +
+        theme(legend.key.size = unit(0.2, "cm")) +
+        scale_fill_brewer(palette = "Set3")
+    }
   }
   ggarrange(plotlist=plot_list)
 }
@@ -805,6 +819,12 @@ get_break_points_per_country = function(crop_data, crop, measure){
     labs(title = "") +
     theme_classic()
   
+  # Get FAO_codes
+  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+    clean_names() %>%
+    dplyr::select(country_code, iso2_code) %>% 
+    rename("iso2c" = "iso2_code")
+  
   # Join the break map data with map data
   break_year_map_data = df %>% 
     rename("country" = "country_data") %>%
@@ -814,7 +834,7 @@ get_break_points_per_country = function(crop_data, crop, measure){
                 select(country, country_code) %>% 
                 group_by(country) %>% 
                 slice(1)) %>%
-    
+
     # Join with FAO codes
     left_join(FAO_codes) %>% 
     select(-country, -country_code) %>% 
@@ -850,7 +870,7 @@ get_break_points_per_country = function(crop_data, crop, measure){
                c(2,2,2))
   
   grid.arrange(break_year_map, break_year_histogram, layout_matrix = lay)
-  return(df)
+  #return(df)
 }
 
 get_ts_plot_crop_per_country = function(crop_data, crop, measure, country_var){
@@ -890,3 +910,55 @@ get_ts_plot_crop_per_country = function(crop_data, crop, measure, country_var){
   
 }
 
+land_use_plot = function(country, stacked = TRUE){
+  land_use_all = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_all.csv")) %>% 
+    clean_names()
+  
+  land_use_filtered = land_use_all %>% 
+    filter(element == "Share in Land area") %>% 
+    select(area_code, area, element, item, year, value) %>% 
+    filter(area == country) %>%
+    select(item, year, value)
+  
+  if(stacked == TRUE){
+    plot = land_use_filtered %>% 
+      ggplot(aes(x=year, y=value, fill=str_wrap(item, width = 15))) + 
+      geom_area() +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+      labs(title = paste("Land use over time in", country), fill = "", x = "", y = "percent") +
+      theme(legend.key.size = unit(0.2, "cm")) +
+      scale_fill_brewer(palette = "Set3")
+  }else{
+    plot = land_use_filtered %>% 
+      ggplot(aes(x=year, y=value, color=str_wrap(item, width = 15))) + 
+      geom_line() +
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+      theme(axis.text.x = element_text(angle=60, hjust=1)) +
+      labs(title = paste("Land use over time in", country), color = "", x = "", y = "percent") +
+      theme(legend.key.size = unit(0.2, "cm")) +
+      scale_fill_brewer(palette = "Set3")
+  }
+  return(plot)
+}
+
+land_cover_plot = function(country){
+  
+  land_cover_all_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_cover_all.csv")) %>% 
+    clean_names()
+  
+  land_cover_all_filtered = land_cover_all_raw %>% 
+    select(area_code, area, element, item, year, value) %>% 
+    filter(area == country, element == "Area from MODIS") %>% 
+    filter(!item %in% c("Permanent snow and glaciers")) %>% 
+    na.omit()
+  
+  land_cover_all_filtered %>% 
+    ggplot(aes(x=year, y=value, color=str_wrap(item, width = 15))) + 
+    geom_line() +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+    theme(axis.text.x = element_text(angle=60, hjust=1)) +
+    labs(title = paste("Land cover over time in", country), color = "", x = "", y = "Hectares") +
+    theme(legend.key.size = unit(0.5, "cm")) +
+    scale_fill_brewer(palette = "Set3")
+}

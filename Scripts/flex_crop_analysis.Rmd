@@ -1,0 +1,96 @@
+---
+title: "Flex crop analysis"
+author: "Robin Lindström"
+date: "20/10/2019"
+output:
+  html_document:
+      number_sections: true
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
+Sys.setlocale('LC_ALL','C')
+```
+
+
+```{r initiate, echo = FALSE, include = FALSE}
+setwd(getwd())
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+#library(tmap)
+library(plotly)
+source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
+
+#setwd("~/Google Drive/SRC/Thesis/")
+theme_set(theme_light(base_size = 8))
+```
+
+```{r read_data, echo = FALSE, include = FALSE}
+# Get the crop data from the raw data
+crop_production_data_raw = read_data()
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+# Get names of different crop groups
+all_crops = unique(crop_production_data_raw$item)
+flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
+emerging_flex_crops = c("Cassava", "Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts") # Have left out coconuts
+other_crops = setdiff(flex_crops, all_crops)
+used_measure = c("Production", "Area harvested", "Yield")
+
+world = map_data("world") %>%
+  filter(region != "Antarctica")
+
+# check decade before and after financial crash
+year = 1961:2016
+
+crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
+```
+
+# Flex crop analysis
+
+## Some key findings
+* **Global flex crop production as proportion of total crop production is increasing and could pass non flex crops in a near future**
+* **Several countries from the former Sovietunion are dominating of the production of rapeseed, sugarbeet and sunflower seed**
+* **Market concentration is in general lower for the emerging flex crops than of flex crops.**
+* **On a global level yield of flex crops has fallen over time.**
+
+### Individual flex crop planted area proportion of total land area
+Large countries will naturally be the ones with the largest area planted. Here we look what proportion of the total crop production is flex crop production and how has it changed over time. With this information we can see if the flex crop production is actually displacing other production.
+
+Countries with very small land areas (< 5000 sqkm) are generally dominated by one crop and therefor excluded. Here a threshold is set that a country has at minimum 25% of the total area planted are flex crops in 2017. The reason why 2017 is chosen as a baseline is because it is interesting to focus on the where the production is dominant today, and how that have developed for those countries historically.
+```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 5000, min_proportion = 0.30, stacked = TRUE)
+```
+
+Some interesting points from these graphs
+* The first interesting observation is that even though we have set the threshold to a 25% and excluded smaller nations we still have 37 countries that have more than (setting it to 10% gives us 78 countries, or 99 countries at 5%). This is a lot more countries than I thought would have their cropland use so dominated by flex crops.
+
+* Both Indonesia and Malaysia are two giants when it comes to production of Palm oil. Here it becomes very clear that Malaysia differs very much from Indonesia in the sense that Malaysia has had an remarkable increase of proportion of oil palm produced. From a almost nothing up until the 70s to more than 50% in 2015.
+
+* Besides the ususal suspects of Brazil and Argentina, in latin america Bolivia, Paraguay and Uruguay has had a growth which deserves more attention. Especially looking at Paraguay and Uruguay who grown from a proportion of area that soybeans are grown on from almost 0 in the 70s to around 60% in 2015 and from close to 0 in 2000 to over 50% in 2015. In the speed this has happened maybe Uruguay is the most remarkable. The question I ask myself is where this land has come from?
+
+* Maize is somewhat fluctuating in area harvested over time, but its proportion generally does not increase much, with a few exeptions (Tanzania, Guatemala and DR Congo).
+
+An interesting question overall here would be on what expense is this expansion of flex crops? In many tropical countries it is known that important biomes, like rainforest in Latin America or South-east Asia or the cerrado in Brazil is cleared for production of for example soy, oil palm and sugar cane plantations. The questions is if flex crops also are expanding into other food production, e.g. if other crops are replaced by the flex crops? If this is true, given that these crops tend to a greater extent (source???) be used for other uses than directly for food, how does that affect food security in a region where this transition has happened? What are the effects on livelihoods of the people who used to live on growing other crops? Are corporations behind this expansion? Where does the demand come from? Have people been displaced from their lands because of this expansion? Have some benefitted and others not? Are these benefits gendered? What sort of governing institutions has made this possible? Where does the financing come from for this expansion? How much are the financial institutions interacting with the governing institutions?
+
+A reflection I have when I write this is that flex crops is bit of a problematic word. The way I use and think of the word is that they are problematic crops, since they have been shown in some cases to have been used to other things that aren't food related (e.g. biofuels, industrial materials etc.) and things that could be argued are not very effective use of calories (e.g. feed). This is true in some cases of course, but in many countries these are staple goods and a very important part of food security. I think it is important to sometimes reflect over that the producton of Maize in the US is very different from Maize production in Malawi, and that should be taken into account when doing this type of analysis.
+
+### Land use in Uruguay
+Using data from FAO we plot the land use and land cover over time to see if it can help explain the effects of the rapid increase of soy in the total crop planting.
+
+```{r uruguay_land_use, out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+land_use_plot("Uruguay", stacked = FALSE)
+#p2 = land_cover_plot("Uruguay")
+#ggarrange(p1, p2)
+```
+
+From this graph we see that there has been an increase in cropland area as a share of the total land area, which does correspond to an increase in soybean area increase. This has happened at the expense of Land under perm. meadows and pastures. According to the FAO this is:
+
+"land used permanently (five years or more) to grow herbaceous forage crops through cultivation or naturally (wild prairie or grazing land). Permanent meadows and pastures on which trees and shrubs are grown should be recorded under this heading only if the growing of forage crops is the most important use of the area. Measures may be taken to keep or increase productivity of the land (i.e., use of fertilizers, mowing or systematic grazing by domestic animals.) This class includes:
+* Grazing in wooded areas (agroforestry areas, for example)
+* Grazing in shrubby zones (heath, maquis, garigue)
+* Grassland in the plain or low mountain areas used for grazing: land crossed during transhumance where the animals spend a part of the year (approximately 100 days) without returning to the holding in the evening: mountain and subalpine meadows and similar; and steppes and dry meadows used for pasture."

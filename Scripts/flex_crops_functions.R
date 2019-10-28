@@ -20,7 +20,7 @@ library(tmap)    # for static and interactive maps
 #emerging_flex_crops = c("Cassava", "Coconuts", "Rapeseed", "Sugar beet", "Sunflower seed")
 #all_flex_crops = c(established_flex_crops, emerging_flex_crops)
 
-read_data = function(){
+read_data = function(data_path){
   
   crop_production_categories = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/crop-livestock-categories.csv")) %>% 
     clean_names() %>%
@@ -36,7 +36,7 @@ read_data = function(){
     rename("iso2c" = "iso2_code")
   
   # Read the production file. Rename countries with long names to shorter names.
-  crop_production_data_raw = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Crop production/Production_Crops_E_All_Data.csv")) %>% 
+  crop_production_data_raw = as_tibble(fread(data_path)) %>% 
     clean_names() %>%
     filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>% # This is just a temporary work-around
     rename("country" = "area", "country_code" = "area_code", "measures" = "element") %>% 
@@ -95,8 +95,9 @@ read_data = function(){
 #world_iso3code = left_join(world, codelist %>%
 #                             select(iso2c, iso3c), by = c("iso_a2" = "iso2c"))
 
-get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), measure, year){
+get_crop_data = function(crop_production_data_raw, crops = unique(crop_production_data_raw$item), measure, year){
   
+  crop_production_data_raw
   # Need y before year since it is in the columns
   year_column = paste("y",year, sep = "")
   
@@ -109,13 +110,15 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
     dplyr::select(country_code, iso2_code) %>% 
     rename("iso2c" = "iso2_code")
   
-  # Get land area from WDI, use the latest year because I am most interested in countries existing now.
-  country_land_area_raw <- data.frame(
+  # Get land area from WDI, all years
+  country_land_area_raw <- as_tibble(data.frame(
     WDI(country = "all",
+        # Land area come as sqkm
         indicator = c("AG.LND.TOTL.K2"),
         start = min(year),
         end = max(year),
-        extra = TRUE))
+        extra = TRUE)))
+    
   
   land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
     clean_names()
@@ -124,7 +127,9 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
     filter(item == "Cropland",
            element == "Share in Land area") %>% 
     left_join(FAO_codes, by = c("area_code" = "country_code")) %>% 
-    mutate(value = value * 0.01) %>% 
+    
+    # Values are in %, make them into fractions for calculations, and rename them to crop_area_share
+    mutate(value = value * 0.01) %>%
     rename(crop_area_share_of_land_area = value) %>% 
     select(area, item, year, crop_area_share_of_land_area, iso2c) %>%
     select(crop_area_share_of_land_area, iso2c, year)
@@ -134,11 +139,11 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
     
     # Retrieve total land area, agricultural land area nad crop land area from the World Bank
     filter(region != "Aggregates") %>% 
-    rename("land_area" = "AG.LND.TOTL.K2") %>%
     left_join(crop_area_share, by = c("iso2c", "year")) %>% 
-    mutate(crop_land_area = (crop_area_share_of_land_area) * land_area) %>% # crop land comes as a proportion of total land area, this is to get the sqkm
+    mutate(land_area = AG.LND.TOTL.K2 * 100) %>% 
+    # crop land comes as a proportion of total land area, this is to get the sqkm
+    mutate(crop_land_area = crop_area_share_of_land_area * land_area) %>% 
     dplyr::select(iso2c, land_area, crop_land_area, year)
-  
 
     # TODO This is not working correctly    
     # Values are missing in 2017, replace them with values from 2016
@@ -147,7 +152,7 @@ get_crop_data = function(crop_data_raw, crops = unique(crop_data_raw$item), meas
 #    fill(agri_land_area, .direction = "down")
   
   # Filter out the crops selected, remove NA and gather on year
-  crop_data_out = crop_data_raw %>%
+  crop_data_out = crop_production_data_raw %>%
   #    dplyr::select(-land_area) %>% 
     filter(item %in% crops) %>%
     filter(measures %in% measure) %>%
@@ -264,12 +269,17 @@ time_series_plot = function(crop_data, category, measure, scale){
 
 time_series_category_plot = function(crop_data, index_plot, scale){
   
+  # flex_crops_total_value_and_index = crop_data %>% 
+  #   dplyr::select(year, value, measures, flex_crop_category) %>%
+  #   group_by(year, measures, flex_crop_category) %>% 
+  #   summarize(total_value = sum(value)) %>% 
+  #   group_by(measures) %>%
+  #   mutate(value_index = total_value/total_value[year == min(year)])
+  
   flex_crops_total_value_and_index = crop_data %>% 
     dplyr::select(year, value, measures, flex_crop_category) %>%
     group_by(year, measures, flex_crop_category) %>% 
-    summarize(total_value = sum(value)) %>% 
-    group_by(measures) %>%
-    mutate(value_index = total_value/total_value[year == min(year)])
+    mutate(total_value = ifelse(measures == "Yield", mean(value), sum(value)))
   
   if(index_plot == TRUE){
     ggplot(flex_crops_total_value_and_index) +
@@ -350,7 +360,7 @@ time_series_crop_comparison_plot_proportion = function(crop_data, measure){
   
   flex_crops_total_value_and_index = crop_data %>% 
     dplyr::select(year, value, measures, flex_crop_category) %>%
-    filter(measures %in% measure)
+    filter(measures %in% measure) %>% 
     group_by(year, measures, flex_crop_category) %>% 
     summarize(total_value = sum(value)) %>% 
     group_by(measures) %>% 
@@ -585,47 +595,47 @@ stacked_area_plot_per_country = function(crop_data, category, crop, measure = "P
 
 }
 
-crop_proportion_plot_per_country = function(crop_data, category, min_land_area, min_proportion, stacked = FALSE){
+crop_proportion_plot_per_country = function(crop_data, category, min_land_area, min_proportion, max_proportion, stacked = FALSE){
 
   crop_data_proportion = crop_data %>% 
     filter(measures == "Area harvested",
            flex_crop_category == category) %>%  
     
-    # First calculate the total area for the crop group
+    # First calculate the total area for all crops group
     group_by(country, year) %>%
-    mutate(crop_category_area = sum(value*0.01)) %>% 
+    mutate(crop_category_area = sum(value)) %>% 
     mutate(crop_category_area_proportion = (crop_category_area) / crop_land_area) %>% 
     ungroup() %>% 
     
     # Then calculate total area per individual crop
     group_by(country, year, item) %>%
-    mutate(crop_individual_area = sum(value*0.01)) %>%
+    mutate(crop_individual_area = sum(value)) %>%
     mutate(crop_individual_area_proportion = (crop_individual_area) / crop_land_area) %>% 
     select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, crop_land_area, land_area)
   
   
-  crop_data_proportion %>% 
-    ungroup() %>% 
-    filter(year %in% c(2000, 2016)) %>% 
-    top_n(1, item) %>% 
-    select(country, year, crop_category_area_proportion) %>% 
-    mutate(year = paste("Y", year, sep = "")) %>% 
-    spread(year, crop_category_area_proportion) %>% 
-    mutate(crop_area_change_prop = Y2016 / Y2000,
-           crop_area_change_abs = Y2016 - Y2000) %>% 
-  #  arrange(desc(crop_area_change_prop))
-   arrange(desc(crop_area_change_abs))
-  
-  crop_data_proportion %>% 
-    ungroup() %>% 
-    filter(year %in% c(2000, 2016)) %>%  
-    select(country, year, crop_individual_area_proportion, item) %>% 
-    mutate(year = paste("Y", year, sep = "")) %>% 
-    spread(year, crop_individual_area_proportion) %>% 
-    mutate(crop_area_change_prop = Y2016 / Y2000,
-           crop_area_change_abs = Y2016 - Y2000) %>% 
-  #  arrange(desc(crop_area_change_prop))
-   arrange(desc(crop_area_change_abs))
+  # crop_data_proportion %>% 
+  #   ungroup() %>% 
+  #   filter(year %in% c(2000, 2016)) %>% 
+  #   top_n(1, item) %>% 
+  #   select(country, year, crop_category_area_proportion) %>% 
+  #   mutate(year = paste("Y", year, sep = "")) %>% 
+  #   spread(year, crop_category_area_proportion) %>% 
+  #   mutate(crop_area_change_prop = Y2016 / Y2000,
+  #          crop_area_change_abs = Y2016 - Y2000) %>% 
+  # #  arrange(desc(crop_area_change_prop))
+  #  arrange(desc(crop_area_change_abs))
+  # 
+  # crop_data_proportion %>% 
+  #   ungroup() %>% 
+  #   filter(year %in% c(2000, 2016)) %>%  
+  #   select(country, year, crop_individual_area_proportion, item) %>% 
+  #   mutate(year = paste("Y", year, sep = "")) %>% 
+  #   spread(year, crop_individual_area_proportion) %>% 
+  #   mutate(crop_area_change_prop = Y2016 / Y2000,
+  #          crop_area_change_abs = Y2016 - Y2000) %>% 
+  # #  arrange(desc(crop_area_change_prop))
+  #  arrange(desc(crop_area_change_abs))
     
   
   
@@ -638,7 +648,7 @@ crop_proportion_plot_per_country = function(crop_data, category, min_land_area, 
     group_by(country) %>% 
     top_n(1, item) %>%
     filter(land_area > min_land_area) %>% 
-    filter(crop_category_area_proportion > min_proportion) %>%
+    filter(crop_category_area_proportion > min_proportion && crop_category_area_proportion < max_proportion) %>%
     pull(country)
   
   final_plot = crop_data_proportion %>% 
@@ -728,7 +738,7 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, 
     
     if(stacked == TRUE){
       plot_list[[i]] = final_plot %>%
-        ggplot(aes(x=year, y=percentage, fill=plot_label)) + 
+        ggplot(aes(x=year, y=value, fill=plot_label)) + 
         geom_area() +
         scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
         theme(axis.text.x = element_text(angle=60, hjust=1)) +
@@ -737,11 +747,11 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, n_items, 
         scale_fill_brewer(palette = "Set3")
     }else{
       plot_list[[i]] = final_plot %>%
-        ggplot(aes(x=year, y=percentage, color=plot_label)) + 
+        ggplot(aes(x=year, y=value, color=plot_label)) + 
         geom_line() +
         scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
         theme(axis.text.x = element_text(angle=60, hjust=1)) +
-        labs(title = paste(country_var, measure_var[i], sep = ": "), line = "", x = "", y = get_measure_scale(measure_var[i])) +
+        labs(title = paste(country_var, measure_var[i], sep = ": "), color = "", x = "", y = get_measure_scale(measure_var[i])) +
         theme(legend.key.size = unit(0.2, "cm")) +
         scale_fill_brewer(palette = "Set3")
     }
@@ -796,8 +806,9 @@ get_break_points_per_country = function(crop_data, crop, measure){
         
         # F statistics to indicate breakpoints, added from/to to get a 
         # largers range of years in output
-        fs_crops <- Fstats(crop_time_series ~ 1, from = 0, to = 1)
-        
+        # TODO sort this one out, makes a lot of error messages when I use custom from/to
+        #fs_crops <- Fstats(crop_time_series ~ 1, from = 0, to = 1)
+        fs_crops <- Fstats(crop_time_series ~ 1)
         bp_crops = breakpoints(fs_crops)
         break_year = breakdates(bp_crops)
         #lines(breakpoints(fs_crops))
@@ -811,8 +822,9 @@ get_break_points_per_country = function(crop_data, crop, measure){
   }
   
   # Join the countries and their corresponding breakpoints
-  df = data.frame(country_data, break_year_data)
-  
+  df = as.tbl(data.frame(country_data, break_year_data)) %>% 
+    mutate(country_data = as.character(country_data))
+
   # Create a histogram of the breakpoints
   break_year_histogram = ggplot(df, aes(x=break_year_data)) +
     geom_histogram(bins = 15) +
@@ -833,22 +845,22 @@ get_break_points_per_country = function(crop_data, crop, measure){
     left_join(crop_production_data_raw %>%
                 select(country, country_code) %>% 
                 group_by(country) %>% 
-                slice(1)) %>%
+                slice(1), by = "country") %>%
 
     # Join with FAO codes
-    left_join(FAO_codes) %>% 
+    left_join(FAO_codes, by = "country_code") %>% 
     select(-country, -country_code) %>% 
     rename("value" = "break_year_data") %>% 
     
     # Join with maps
-    left_join(maps::iso3166 %>% select(a2, mapname), by = c(iso2c = "a2")) %>% 
+    left_join(maps::iso3166 %>% select(a2, mapname), by = c(iso2c = "a2")) %>%  
     right_join(world, by = c(mapname = "region"))
   
   # Plot the map data, color corresponds to a range of years
   break_year_map = break_year_map_data %>% 
     mutate(
-      break_year = cut(value, breaks = c(1961, 1980, 1990, 2000, 2010, 2016), 
-                       labels = c("1961-1980", "1980-1990", "1990-2000", "2000-2010", "2010-2016"))
+      break_year = cut(value, breaks = c(1961, 1989, 2016), 
+                       labels = c("1961-1989", "1990-2016"))
     ) %>% 
     ggplot(aes(long, lat, group = group, fill = break_year)) +
     geom_polygon() +
@@ -927,7 +939,7 @@ land_use_plot = function(country, stacked = TRUE){
       scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
       theme(axis.text.x = element_text(angle=60, hjust=1)) +
       labs(title = paste("Land use over time in", country), fill = "", x = "", y = "percent") +
-      theme(legend.key.size = unit(0.2, "cm")) +
+      theme(legend.key.size = unit(0.5, "cm")) +
       scale_fill_brewer(palette = "Set3")
   }else{
     plot = land_use_filtered %>% 
@@ -936,7 +948,7 @@ land_use_plot = function(country, stacked = TRUE){
       scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
       theme(axis.text.x = element_text(angle=60, hjust=1)) +
       labs(title = paste("Land use over time in", country), color = "", x = "", y = "percent") +
-      theme(legend.key.size = unit(0.2, "cm")) +
+      theme(legend.key.size = unit(0.5, "cm")) +
       scale_fill_brewer(palette = "Set3")
   }
   return(plot)

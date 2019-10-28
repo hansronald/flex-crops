@@ -4,12 +4,12 @@ library(data.table) # For fread to read large data tables
 library(janitor) # Fot clean names
 
 
-deals = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Land matrix/deals.csv"))
-investors = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Land matrix/investors.csv"))
-involvements = as_tibble(fread("~/Google Drive/SRC/Thesis/5.Data/Land matrix/involvements.csv"))
+deals = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Land matrix/deals.csv"))
+investors = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Land matrix/investors.csv"))
+involvements = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Land matrix/involvements.csv"))
 
 
-deals_raw = read_tsv("~/Google Drive/SRC/Thesis/5.Data/Land matrix/deals.txt") %>%
+deals_raw = read_tsv("~/Google Drive/SRC/Thesis/x.Code/Data/Land matrix/deals.txt") %>%
   clean_names()
 
 exclude_columns = c(paste("location_", 3:21, sep = ""),
@@ -54,7 +54,11 @@ deals_crop_separate %>%
   View()
 
 
-
+deals_crop_separate %>%
+  filter(crops_area == "Soya Beans", location_1_target_country == "Paraguay") %>% 
+  View()
+  count(top_parent_companies)  
+  arrange(desc(n))
 
 
 

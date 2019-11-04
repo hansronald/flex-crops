@@ -22,18 +22,29 @@ deals_filtered = deals_raw %>%
   dplyr::select(deal_id, deal_scope, deal_size, top_parent_companies, location_1_location, location_1_target_country,
                 contract_farming_crops, comment_on_contract_farming_crops, comment_on_in_country_processing_of_produce, crops_area)
 
-
 deals_cleaned = deals_filtered %>% 
   # Remove everything after "#" and "Unknown" in column "top_parent_companies"
   # Remove "###" from crops_area
-  mutate(top_parent_companies = gsub("#.*", "\\1", top_parent_companies)) %>% 
-  mutate(top_parent_companies = gsub("(Unknown).*", "\\1", top_parent_companies)) %>% 
+  # mutate(top_parent_companies = gsub("#.*", "\\1", top_parent_companies)) %>%
+  # mutate(top_parent_companies = gsub("(Unknown).*", "\\1", top_parent_companies)) %>% 
+  separate(top_parent_companies, into = c("top_parent_companies", "some_number", "company_location"), sep = "([\\#])") %>% 
   mutate(crops_area = str_remove(crops_area, "###"))
 
 # Count occurence of deal per company
 deals_cleaned %>% 
   count(top_parent_companies) %>% 
   arrange(desc(n))
+
+# Count occurence of deal per country of company
+deals_cleaned %>% 
+  count(company_location) %>% 
+  arrange(desc(n)) %>% 
+  View()
+
+deals_cleaned %>% 
+  filter(company_location == "Sweden") %>% 
+  View()
+
 
 # Count occurence of deal per target country
 deals_cleaned %>% 
@@ -55,7 +66,7 @@ deals_crop_separate %>%
 
 
 deals_crop_separate %>%
-  filter(crops_area == "Soya Beans", location_1_target_country == "Paraguay") %>% 
+  filter(location_1_target_country == "Ukraine") %>% 
   View()
   count(top_parent_companies)  
   arrange(desc(n))

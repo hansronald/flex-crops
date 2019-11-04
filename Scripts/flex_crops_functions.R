@@ -26,8 +26,8 @@ read_data = function(data_path){
     clean_names() %>%
   #  filter(item_group == "Crops Primary") %>% 
   #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
-    dplyr::select(flex_crop_category, item) %>%
-    distinct()
+    dplyr::select(flex_crop_category, item_group, item) %>%
+    filter(item_group == "Crops Primary")
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso2code
   FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
@@ -38,7 +38,7 @@ read_data = function(data_path){
   # Read the production file. Rename countries with long names to shorter names.
   crop_production_data_raw = as_tibble(fread(data_path)) %>% 
     clean_names() %>%
-    filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>% # This is just a temporary work-around
+#    filter(!item %in% c("Cassava leaves", "Palm kernels", "Oil, palm" )) %>% # This is just a temporary work-around
     rename("country" = "area", "country_code" = "area_code", "measures" = "element") %>% 
     mutate(country = replace(country, country == "United States of America", "USA")) %>%  
     mutate(country = replace(country, country == "Venezuela (Bolivarian Republic of)", "Venezuela")) %>%  
@@ -97,7 +97,6 @@ read_data = function(data_path){
 
 get_crop_data = function(crop_production_data_raw, crops = unique(crop_production_data_raw$item), measure, year){
   
-  crop_production_data_raw
   # Need y before year since it is in the columns
   year_column = paste("y",year, sep = "")
   
@@ -118,7 +117,6 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
         start = min(year),
         end = max(year),
         extra = TRUE)))
-    
   
   land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
     clean_names()
@@ -157,6 +155,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
     filter(item %in% crops) %>%
     filter(measures %in% measure) %>%
     dplyr::select(selected_columns) %>%
+    View()
 #    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
 #    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
     gather(year, value, -country, -iso2c, -item, -measures, -flex_crop_category) %>% 
@@ -167,7 +166,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
 #  mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
 #  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
     na.omit() %>% 
-    mutate(year = as.numeric(gsub("y", "", year))) %>% 
+    mutate(year = as.numeric(gsub("y", "", year)))
     left_join(land_use_data, by = c("iso2c", "year"))
   
   return(crop_data_out)
@@ -276,10 +275,14 @@ time_series_category_plot = function(crop_data, index_plot, scale){
   #   group_by(measures) %>%
   #   mutate(value_index = total_value/total_value[year == min(year)])
   
-  flex_crops_total_value_and_index = crop_data %>% 
-    dplyr::select(year, value, measures, flex_crop_category) %>%
+  # TODO: this can be optimised, gets 5 duplicates
+  flex_crops_total_value_and_index = crop_data %>%
+    dplyr::select(year, value, measures, item, flex_crop_category) %>%
     group_by(year, measures, flex_crop_category) %>% 
-    mutate(total_value = ifelse(measures == "Yield", mean(value), sum(value)))
+    mutate(total_value = ifelse(measures == "Yield", mean(value), sum(value))) %>% 
+    ungroup() %>% 
+    distinct(year, measures, flex_crop_category, .keep_all = TRUE) %>% 
+    select(-item, -value)
   
   if(index_plot == TRUE){
     ggplot(flex_crops_total_value_and_index) +

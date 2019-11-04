@@ -155,7 +155,6 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
     filter(item %in% crops) %>%
     filter(measures %in% measure) %>%
     dplyr::select(selected_columns) %>%
-    View()
 #    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
 #    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
     gather(year, value, -country, -iso2c, -item, -measures, -flex_crop_category) %>% 
@@ -166,7 +165,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
 #  mutate(`Area harvested` = `Area harvested` / 1000, `Production` = `Production` / 1000000, `Yield` = `Yield` / 1000) %>% 
 #  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
     na.omit() %>% 
-    mutate(year = as.numeric(gsub("y", "", year)))
+    mutate(year = as.numeric(gsub("y", "", year))) %>% 
     left_join(land_use_data, by = c("iso2c", "year"))
   
   return(crop_data_out)

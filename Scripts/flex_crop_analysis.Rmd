@@ -118,7 +118,7 @@ Here we see that even though maize is increasing in area harvested in absolute n
 ### Concentration of the worlds production of flex crop
 This plot shows us, in terms om tonnes produced, which countries are producing the greatest share.
 
-```{r flex_crop_production_concentration, fig.height = 8, fig.width = 10 echo = FALSE}
+```{r flex_crop_production_concentration, fig.height = 8, fig.width = 10, echo = FALSE}
 
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
@@ -173,10 +173,8 @@ Here a threshold is set that a country has at minimum 40% of the total area plan
 
 ```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_data_temp = crop_data %>% 
-  filter(country == "Ukraine")
+crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
 
-crop_proportion_plot_per_country(crop_data_temp, category = "Flex crop", min_land_area = 500000, min_proportion = 0.1, max_proportion = 0.2, stacked = TRUE)
 ```
 
 Some interesting points from these graphs
@@ -218,7 +216,7 @@ Using data from FAO we plot the land use and land cover over time to see if it c
 
 ```{r uruguay_land_use, fig.height = 3, fig.width = 5, echo = FALSE}
 land_use_plot("Uruguay", stacked = FALSE)
-#p2 = land_cover_plot("Uruguay")
+land_cover_plot("Uruguay")
 #ggarrange(p1, p2)
 ```
 
@@ -265,7 +263,7 @@ Here we see that Indonesia has likely lost forest land while the crop land has i
 ```{r paraguay_crop_production, fig.height = 6, fig.width = 9, echo = FALSE}
 
 measure_var = c("Production", "Area harvested")
-country = "Ukraine"
+country = "Uruguay"
 n_items = 8
 year_var = 1992:2016
 

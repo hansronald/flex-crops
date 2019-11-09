@@ -29,11 +29,26 @@ read_data = function(data_path){
     dplyr::select(flex_crop_category, item_group, item) %>%
     filter(item_group == "Crops Primary")
   
+  # Add regions and income level
+  wits = as_tibble(fread("~/Downloads/WITS.csv")) %>% 
+    clean_names()
+  
+  wits_filtered = wits %>% 
+    filter(region != "") %>% 
+    select(country_name, country_iso3, income_group, region, wto_member) %>% 
+    mutate(iso2c = countrycode(country_name, 'country.name', 'iso2c')) %>% 
+    mutate(iso2c=replace(iso2c, country_name=="Ethiopia(excludes Eritrea)", "ET")) %>%
+    filter(!is.na(iso2c)) %>% 
+    select(-country_name, -country_iso3)
+  
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso2code
   FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
     clean_names() %>%
     dplyr::select(country_code, iso2_code) %>% 
-    rename("iso2c" = "iso2_code")
+    rename("iso2c" = "iso2_code") %>% 
+    left_join(wits_filtered, by = "iso2c")
+  
+
   
   # Read the production file. Rename countries with long names to shorter names.
   crop_production_data_raw = as_tibble(fread(data_path)) %>% 
@@ -101,7 +116,8 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
   year_column = paste("y",year, sep = "")
   
   # Which columns am I interested in
-  selected_columns = c("country", "iso2c", "item", "measures", "flex_crop_category", year_column)
+  selected_columns = c("country", "iso2c", "item", "measures",
+                       "flex_crop_category", "income_group", "region", year_column)
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso2code
   FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
@@ -157,7 +173,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
     dplyr::select(selected_columns) %>%
 #    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
 #    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
-    gather(year, value, -country, -iso2c, -item, -measures, -flex_crop_category) %>% 
+    gather(year, value, -country, -iso2c, -item, -measures, -flex_crop_category, -income_group, -region) %>% 
     #mutate(value = value/1000000) %>%
     # Divide the different   
 #  spread(measures, value) %>% 
@@ -512,20 +528,26 @@ break_point_plot2 = function(crop_data, measure, crops){
 }
 
 stacked_area_plot = function(crop_data, category, crop, measure = "Production",
-                             n_countries = 5, y_axis_text = "", proportion = TRUE){
+                             cut_off = 0.8, y_axis_text = "", proportion = TRUE){
   
   plot_data = crop_data %>% 
-    filter(flex_crop_category == category, item == crop,
-           measures == measure) %>%  
+    filter(flex_crop_category == category) %>% 
+    filter(item == crop) %>% 
+    filter(measures == measure) %>%  
     #         year %in% 1960:1970,
     #         country %in% unique(crop_data$country)[50:70]) %>% 
-    select(-iso2c, -flex_crop_category, -measures, -item)
+    dplyr::select(country, year, value)
   
   plot_order = plot_data %>% 
     mutate(country = as.character(country)) %>%
     filter(year == last(year)) %>% 
     arrange(desc(value)) %>% 
-    mutate(rank = row_number())
+    mutate(rank = row_number()) %>% 
+    mutate(total_value = sum(value)) %>% 
+    mutate(country_proportion = value/total_value)
+  
+  # This finds the number of countries that together account for at least 80% of the value
+  n_countries = sum(as.numeric(cumsum(plot_order$country_proportion) < cut_off)) + 1
   
   final_plot <- plot_data %>% 
     mutate(country = as.character(country)) %>%

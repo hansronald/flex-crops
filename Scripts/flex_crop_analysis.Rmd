@@ -116,7 +116,7 @@ time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure = us
 Here we see that even though maize is increasing in area harvested in absolute numbers, soybean is increasingly taking over shares as a flex crop. This makes me wonder if there are numbers on what maize and soybeans are used for?
 
 ### Concentration of the worlds production of flex crop
-This plot shows us, in terms om tonnes produced, which countries are producing the greatest share.
+This plot shows us, in terms om tonnes produced, which countries are producing the greatest share of each crop globally. The cut-off point is set to 80%, which means that the countries that together accountfor at least 80% of the production (in 2017) is shown, the rest is lumped together as others.
 
 ```{r flex_crop_production_concentration, fig.height = 8, fig.width = 10, echo = FALSE}
 
@@ -124,13 +124,13 @@ This plot shows us, in terms om tonnes produced, which countries are producing t
 #map(flex_crops, function(x) {
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
-                       measure = "Production", n_countries = 5)
+                       measure = "Production", cut_off = 0.8)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
-                       measure = "Production", n_countries = 5)
+                       measure = "Production", cut_off = 0.8)
 p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
-                       measure = "Production", n_countries = 5)
+                       measure = "Production", cut_off = 0.8)
 p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
-                       measure = "Production", n_countries = 5)
+                       measure = "Production", cut_off = 0.8)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -144,6 +144,22 @@ grid.arrange(p1, p2, p3, p4)
 ```
 
 The patterns here are not surprising. Indonesia and Malaysia dominates the world production of Oil palm, Brazil and Argentina has emerged as a greater share of the soybean production where the US has been historically dominating. Interesting might be that Maize production share seem to stay more constant compared to the others. Is this because maize is to a greater extent produced where it can be produced, while for example Oil palm has been introduced in countries like Malaysia and Indonesia fairly recently and has changed the concentration. To get a slightly different angle we will check the market concentration of these products.
+
+### Other cut off points
+For palm oil and sugar cane ther others group has historically been quite large. To see which producers that where big then we can increase the cut-off point.
+
+```{r historical_producers, fig.height = 8, fig.width = 10, echo = FALSE}
+
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
+                       measure = "Production", cut_off = 0.90)
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
+                       measure = "Production", cut_off = 0.98)
+
+grid.arrange(p1, p2)
+
+```
+
+Here we can see that for sugar cane Vietnam used to be significant producers up unitil the 90s. In the 60s and 70s Nigeria used to be a major producer of the oil palm fruit.
 
 **Market concentration**
 The Herfindahl–Hirschman Index (HHI) is a measure of market concentration (Investopedia 2019, Herfindahl-Hirschman Index) and to determine the competativeness of a market. According to the Department of Justice and the Federal Trade Commission of the United States of America (Department of Justice 2010) the concentration of a specific market can be measured by the following ranges

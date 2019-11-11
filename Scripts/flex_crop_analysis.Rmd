@@ -217,11 +217,20 @@ To see what other crops that potentially could be displaced, the most produced c
 #theme_set(theme_classic(base_size = 8))
 
 measure_var = c("Production", "Area harvested")
-country_var = "Uruguay"
-n_items = 5
+country_var = "Paraguay"
 year_var = 1961:2016
 
-plot_country_crop_data(crop_data, country_var, measure_var, n_items, year_var, stacked = FALSE)
+#p1 = plot_country_crop_data(crop_data, country_var,
+#                            measure_var = "Production", cut_off = 0.9, year_var, stacked = TRUE)
+p1 = plot_country_crop_data(crop_data, country_var,
+                            measure_var = "Area harvested", cut_off = 0.9, year_var, stacked = TRUE)
+
+p2 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var)
+  
+lay <- rbind(c(1,1,1,1,2,2),
+             c(1,1,1,1,2,2))
+  
+grid.arrange(p1, p2, layout_matrix = lay)
 
 ```
 

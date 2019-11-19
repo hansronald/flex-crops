@@ -14,7 +14,7 @@ Sys.setlocale('LC_ALL','C')
 ```
 
 
-```{r initiate, echo = FALSE, include = FALSE}
+```{r read_functions, echo = FALSE, include = FALSE}
 setwd(getwd())
 library(scales)
 library(gridExtra)
@@ -27,7 +27,7 @@ source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
 theme_set(theme_light(base_size = 8))
 ```
 
-```{r read_data, echo = FALSE, include = FALSE}
+```{r get_raw_data, echo = FALSE, include = FALSE}
 # Get the crop data from the raw data
 data_path = "~/Google Drive/SRC/Thesis/x.Code/Data/Crop production/Production_Crops_E_All_Data.csv"
 crop_production_data_raw = read_data(data_path)
@@ -46,7 +46,7 @@ world = map_data("world") %>%
   filter(region != "Antarctica")
 
 # check decade before and after financial crash
-year = 1961:2016
+year = 1961:2017
 
 crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
 ```
@@ -122,15 +122,17 @@ This plot shows us, in terms om tonnes produced, which countries are producing t
 
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
 #map(flex_crops, function(x) {
+
+used_measure = "Area harvested"
   
 p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
-                       measure = "Production", cut_off = 0.8)
+                       measure = used_measure, cut_off = 0.7)
 p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
-                       measure = "Production", cut_off = 0.8)
+                       measure = used_measure, cut_off = 0.7)
 p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
-                       measure = "Production", cut_off = 0.8)
+                       measure = used_measure, cut_off = 0.7)
 p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
-                       measure = "Production", cut_off = 0.8)
+                       measure = used_measure, cut_off = 0.7)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
   #                           measure = "Area harvested", n_countries = 5)
@@ -170,10 +172,10 @@ The Herfindahl–Hirschman Index (HHI) is a measure of market concentration (Inv
 
 ### Market concentration of global production of flex crops
 
-```{r fig.height = 3, fig.width = 5, echo = FALSE}
+```{r fig.height = 3, fig.width = 9, echo = FALSE}
 
 category = "Flex crop"
-used_measure = c("Production")
+used_measure = c("Area harvested")
 plot_HH_index(crop_data, category, measure = used_measure)
 
 ```
@@ -212,7 +214,7 @@ Example of what social-ecological effects of increased flex crop production.
 ### General crop production in Uruguay
 To see what other crops that potentially could be displaced, the most produced crops are plotted here.
 
-```{r uruguay_crop_production, fig.height = 3, fig.width = 9, echo = FALSE}
+```{r paraguay_crop_production, fig.height = 3, fig.width = 9, echo = FALSE}
 
 #theme_set(theme_classic(base_size = 8))
 
@@ -235,6 +237,45 @@ grid.arrange(p1, p2, layout_matrix = lay)
 ```
 
 Here we can see that not only is soybeans increasing both in production and area harvested, others staple crops like wheat, barley, rice are declining. It would be interesting to pair this with trade data to see how imports and exports have evolved for these staple crops in Uruguay. To see the ecological effects of this we can see how the land use has changed during this time period.
+
+### HH-index global
+```{r global_hh_index, fig.height = 3, fig.width = 9, echo = FALSE}
+crop_diversity_HH_index(crop_data, spatial_extension = "global")
+```
+
+### HH-index regional
+```{r regional_hh_index, fig.height = 6, fig.width = 9, echo = FALSE}
+#region_filter1 = c("South Asia", "Sub-Saharan Africa", "Latin America & Caribbean", "Middle East & North Africa")
+#region_filter2 = c("Europe & Central Asia", "East Asia & Pacific", "North America")
+
+region1 = unique(crop_data$country_group)[str_detect(unique(crop_data$country_group), "Europe")]
+region2 = unique(crop_data$country_group)[str_detect(unique(crop_data$country_group), "Africa")]
+region3 = unique(crop_data$country_group)[str_detect(unique(crop_data$country_group), "Asia")]
+region4 = unique(crop_data$country_group)[str_detect(unique(crop_data$country_group), "America")]
+
+p1 = crop_diversity_HH_index(crop_data %>% 
+                          filter(country_group %in% region1), spatial_extension = "regional")
+p2 = crop_diversity_HH_index(crop_data %>% 
+                          filter(country_group %in% region2), spatial_extension = "regional")
+p3 = crop_diversity_HH_index(crop_data %>% 
+                          filter(country_group %in% region3), spatial_extension = "regional")
+p4 = crop_diversity_HH_index(crop_data %>% 
+                          filter(country_group %in% region4), spatial_extension = "regional")
+
+ggarrange(p1, p2, p3, p4)
+```
+
+### HH-index global
+```{r crop_diversity_all_countries, fig.height = 6, fig.width = 9, echo = FALSE}
+countries = crop_data %>% distinct(country) %>% pull(country)
+country_chunks = split(countries, ceiling(seq_along(countries)/16))
+
+for(i in 1:length(country_chunks)){
+  plot_this = crop_diversity_HH_index(crop_data, spatial_extension = "country",
+                                      country_var = unlist(country_chunks[i]))
+  print(plot_this)
+}
+```
 
 ### Land use change in Uruguay
 Using data from FAO we plot the land use and land cover over time to see if it can help explain the effects of the rapid increase of soy in the total crop planting.
@@ -261,14 +302,23 @@ Since both Malaysia and Indonesia are similar in terms that they both have had a
 
 #theme_set(theme_classic(base_size = 8))
 
-measure_var = c("Production", "Area harvested")
+#measure_var = c("Production", "Area harvested")
 n_items = 5
 year_var = 1961:2016
+measure_var = c("Area harvested")
 
-p1 = plot_country_crop_data(crop_data, country_var = "Malaysia", measure_var, n_items, year_var, stacked = FALSE)
-p2 = plot_country_crop_data(crop_data, country_var = "Indonesia", measure_var, n_items, year_var, stacked = FALSE)
+p1 = plot_country_crop_data(crop_data, country_var = "Malaysia",
+                            measure_var = "Area harvested", cut_off = 0.98, year_var, stacked = TRUE)
+p2 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var = "Malaysia")
 
-grid.arrange(p1, p2)
+p3 = plot_country_crop_data(crop_data, country_var = "Indonesia",
+                            measure_var = "Area harvested", cut_off = 0.85, year_var, stacked = TRUE)
+p4 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var = "Indonesia")
+
+lay <- rbind(c(1,1,1,1,2,2),
+             c(3,3,3,3,4,4))
+
+grid.arrange(p1, p2, p3, p4, layout_matrix = lay)
 
 ```
 
@@ -285,14 +335,16 @@ Here we see that Indonesia has likely lost forest land while the crop land has i
 
 ### Paraguay
 
-```{r paraguay_crop_production, fig.height = 6, fig.width = 9, echo = FALSE}
+```{r uruguay_crop_production, fig.height = 6, fig.width = 9, echo = FALSE}
 
 measure_var = c("Production", "Area harvested")
 country = "Uruguay"
 n_items = 8
 year_var = 1992:2016
 
-p1 = plot_country_crop_data(crop_data, country_var = country, measure_var, n_items, year_var, stacked = FALSE)
+p1 = plot_country_crop_data(crop_data, country_var = "Uruguay",
+                            measure_var = "Area harvested", cut_off = 0.85, year_var, stacked = TRUE)
+
 p2 = land_use_plot(country = country, stacked = FALSE)
 
 # Setup the design of the grid.arrange
@@ -314,14 +366,18 @@ country = "Brazil"
 n_items = 5
 year_var = 1961:2016
 
-p1 = plot_country_crop_data(crop_data, country_var = country, measure_var, n_items, year_var, stacked = FALSE)
+p1 = plot_country_crop_data(crop_data, country_var = "Brazil",
+                            measure_var = "Area harvested", cut_off = 0.85, year_var, stacked = TRUE)
+
 p2 = land_use_plot(country = country, stacked = FALSE)
 
-# Setup the design of the grid.arrange
-lay <- rbind(c(1,1,1),
-             c(2,2,2))
+p3 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var = "Brazil")
 
-grid.arrange(p1, p2, layout_matrix = lay)
+# Setup the design of the grid.arrange
+lay <- rbind(c(1,1,1,3,3),
+             c(2,2,2,3,3))
+
+grid.arrange(p1, p2, p3, layout_matrix = lay)
 
 ```
 
@@ -336,14 +392,19 @@ country = "Argentina"
 n_items = 5
 year_var = 1961:2016
 
-p1 = plot_country_crop_data(crop_data, country_var = country, measure_var, n_items, year_var, stacked = FALSE)
+p1 = plot_country_crop_data(crop_data, country_var = "Argentina",
+                            measure_var = "Area harvested", cut_off = 0.85, year_var, stacked = TRUE)
+
 p2 = land_use_plot(country = country, stacked = FALSE)
 
-# Setup the design of the grid.arrange
-lay <- rbind(c(1,1,1),
-             c(2,2,2))
+p3 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var = "Argentina")
 
-grid.arrange(p1, p2, layout_matrix = lay)
+
+# Setup the design of the grid.arrange
+lay <- rbind(c(1,1,1,3,3),
+             c(2,2,2,3,3))
+
+grid.arrange(p1, p2, p3, layout_matrix = lay)
 
 ```
 
@@ -356,26 +417,12 @@ Second food regime: 1950-1970s
 Third food regime:  late 1980s-Present
 
 ```{r, fig.height = 6, echo = FALSE}
+#crop_data = crop_data %>% select(-income_group)
 get_break_points_per_country(crop_data, crop = "Oil palm fruit", measure = "Area harvested")
 ```
 
 Most of the oil palm producing countries has had the break point after 1990s. The exepctions are Paraguay, Benin, Tanzania and Madagascar.
 
-```{r, fig.height = 6, echo = FALSE}
-get_break_points_per_country(crop_data, crop = "Soybeans", measure = "Area harvested")
-```
-
-
-```{r, fig.height = 6, echo = FALSE}
-get_break_points_per_country(crop_data, crop = "Sugar cane", measure = "Area harvested")
-```
-
-Here it seems like that significantly greater number of countries have had their break point during the second food regime, than for exampel soybean and oil palm.
-
-```{r, fig.height = 6, echo = FALSE}
-get_break_points_per_country(crop_data, crop = "Maize", measure = "Area harvested")
-```
-Like soybean and oil palm, maize seem to have most of the breakpoints during the third food regime.
 
 Sources:
 

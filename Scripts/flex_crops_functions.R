@@ -1,5 +1,5 @@
 # Read data ---------------------------------------
-#setwd("~/Google Drive/SRC/Thesis/")
+#setwd("~/Google DriveSkola/SRC/Thesis/")
 
 library(tidyverse) # For tidyr and dplyr
 library(data.table) # For fread to read large data tables
@@ -23,7 +23,7 @@ library(tmap)    # for static and interactive maps
 
 read_production_data = function(data_path){
   
-  crop_production_categories = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/crop_production_categories.csv")) %>% 
+  crop_production_categories = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/crop_production_categories.csv")) %>% 
     clean_names() %>%
   #  filter(item_group == "Crops Primary") %>% 
   #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
@@ -44,7 +44,7 @@ read_production_data = function(data_path){
   #  select(-country_name, -country_iso3)
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  #FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
 #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code)
@@ -52,7 +52,7 @@ read_production_data = function(data_path){
 #    left_join(wits_filtered, by = "iso3")
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_group, country_code, iso3_code_new) %>% 
@@ -100,7 +100,7 @@ read_production_data = function(data_path){
 
 get_fao_codes = function(){
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_group, country_code, iso3_code_new) %>% 
@@ -111,7 +111,7 @@ get_fao_codes = function(){
 
 read_trade_data = function(data_path){
   
-  crop_trade_categories = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/crop_trade_categories.csv")) %>% 
+  crop_trade_categories = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/crop_trade_categories.csv")) %>% 
     clean_names() %>%
     #  filter(item_group == "Crops Primary") %>% 
     #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
@@ -134,7 +134,7 @@ read_trade_data = function(data_path){
   #  select(-country_name, -country_iso3)
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  #FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
   #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code)
@@ -313,7 +313,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
                        "crop_category", "country_group", year_column)
   
     
-  #FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
 #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code) %>% 
@@ -328,7 +328,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
   #       end = max(year),
   #       extra = TRUE)))
   # 
-  # land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
+  # land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google DriveSkola/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
   #   clean_names()
   # 
   # crop_area_share = land_use_raw %>% 
@@ -389,7 +389,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
 
 get_land_use_data = function(){
   
-  setwd("~/Google Drive/SRC/Thesis/x.Code/Data/Land use")
+  setwd("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Land use")
   path_name = "FAO_land_use.csv.zip"
   fread_path = paste("unzip -p", path_name)
   land_use_raw = as_tibble(fread(fread_path)) %>% 
@@ -409,7 +409,7 @@ get_land_use_data = function(){
 
 add_iso_fao_data = function(data){
 
-  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_code, iso3_code_new) %>% 
@@ -1208,7 +1208,7 @@ get_break_points_per_country = function(crop_data, crop, measure){
     theme_classic(base_size = 6)
     
   # Get FAO_codes
-  FAO_codes = as_tibble(fread("~/Google Drive/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  FAO_codes = as_tibble(fread("~/Google DriveSkola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
     clean_names() %>%
     dplyr::select(country_code, iso3_code)
   
@@ -1318,7 +1318,7 @@ get_ts_plot_crop_per_country = function(crop_data, crop, measure, country_var){
 }
 
 land_use_plot = function(country, stacked = TRUE){
-  land_use_all = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_use_all.csv")) %>% 
+  land_use_all = as_tibble(fread("/Users/robinlindstrom/Google DriveSkola/SRC/Thesis/x.Code/Data/Land use/land_use_all.csv")) %>% 
     clean_names()
   
   land_use_filtered = land_use_all %>% 
@@ -1351,7 +1351,7 @@ land_use_plot = function(country, stacked = TRUE){
 
 land_cover_plot = function(country){
   
-  land_cover_all_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/SRC/Thesis/x.Code/Data/Land use/land_cover_all.csv")) %>% 
+  land_cover_all_raw = as_tibble(fread("/Users/robinlindstrom/Google DriveSkola/SRC/Thesis/x.Code/Data/Land use/land_cover_all.csv")) %>% 
     clean_names()
   
   land_cover_all_filtered = land_cover_all_raw %>% 

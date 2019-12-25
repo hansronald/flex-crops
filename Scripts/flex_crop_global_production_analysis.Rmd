@@ -9,7 +9,7 @@ output:
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
+knitr::opts_chunk$set(root.dir = "~/Google Drive/Skola/SRC/Thesis/")
 Sys.setlocale('LC_ALL','C')
 
 library(scales)
@@ -24,14 +24,14 @@ setwd(getwd())
 
 ```{r read_functions, echo = FALSE, include = FALSE}
 
-source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
 #setwd("~/Google Drive/SRC/Thesis/")
 ```
 
 
 ```{r get_raw_data, echo = FALSE, include = FALSE}
 # Get the crop data from the raw data
-data_path = "~/Google Drive/SRC/Thesis/x.Code/Data/Crop production/Production_Crops_E_All_Data.csv"
+data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/Production_Crops_E_All_Data.csv"
 crop_production_data_raw = read_production_data(data_path)
 ```
 

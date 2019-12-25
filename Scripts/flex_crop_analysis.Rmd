@@ -11,20 +11,20 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
 Sys.setlocale('LC_ALL','C')
-```
-
-
-```{r read_functions, echo = FALSE, include = FALSE}
-setwd(getwd())
+theme_set(theme_light(base_size = 8))
 library(scales)
 library(gridExtra)
 library(sf) # For loading map data
 #library(tmap)
 library(plotly)
-source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
+setwd(getwd())
+```
 
+
+```{r read_functions, echo = FALSE, include = FALSE}
+
+source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
 #setwd("~/Google Drive/SRC/Thesis/")
-theme_set(theme_light(base_size = 8))
 ```
 
 ```{r get_raw_data, echo = FALSE, include = FALSE}
@@ -71,7 +71,8 @@ Time series of total production, area harvested and yield of flex crops and non 
 ```{r flex_crop_total_production, fig.height = 4, fig.width = 8, echo = FALSE}
 
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-time_series_category_plot(crop_data, index_plot = FALSE, scale = "free_y")
+used_measure = c("Production", "Area harvested")
+time_series_category_plot(crop_data, measure = used_measure, index_plot = FALSE, scale = "free_y")
 
 ```
 
@@ -219,11 +220,13 @@ To see what other crops that potentially could be displaced, the most produced c
 #theme_set(theme_classic(base_size = 8))
 
 measure_var = c("Production", "Area harvested")
-country_var = "Paraguay"
+country_var = "Norway"
 year_var = 1961:2016
 
 #p1 = plot_country_crop_data(crop_data, country_var,
 #                            measure_var = "Production", cut_off = 0.9, year_var, stacked = TRUE)
+
+theme_set(theme_light(base_size = 8))
 p1 = plot_country_crop_data(crop_data, country_var,
                             measure_var = "Area harvested", cut_off = 0.9, year_var, stacked = TRUE)
 
@@ -261,8 +264,15 @@ p3 = crop_diversity_HH_index(crop_data %>%
                           filter(country_group %in% region3), spatial_extension = "regional")
 p4 = crop_diversity_HH_index(crop_data %>% 
                           filter(country_group %in% region4), spatial_extension = "regional")
+p5 = crop_diversity_HH_index(crop_data, spatial_extension = "global")
 
-ggarrange(p1, p2, p3, p4)
+lay <- rbind(c(1,2),
+             c(3,4),
+             c(5,5))
+  
+grid.arrange(p1, p2, p3, p4, p5, layout_matrix = lay)
+
+#ggarrange(p1, p2, p3, p4, p5)
 ```
 
 ### HH-index global
@@ -308,7 +318,7 @@ year_var = 1961:2016
 measure_var = c("Area harvested")
 
 p1 = plot_country_crop_data(crop_data, country_var = "Malaysia",
-                            measure_var = "Area harvested", cut_off = 0.98, year_var, stacked = TRUE)
+                            measure_var = "Area harvested", cut_off = 0.85, year_var, stacked = TRUE)
 p2 = crop_diversity_HH_index(crop_data, spatial_extension = "country", country_var = "Malaysia")
 
 p3 = plot_country_crop_data(crop_data, country_var = "Indonesia",
@@ -418,6 +428,7 @@ Third food regime:  late 1980s-Present
 
 ```{r, fig.height = 6, echo = FALSE}
 #crop_data = crop_data %>% select(-income_group)
+theme_set(theme_light(base_size = 2))
 get_break_points_per_country(crop_data, crop = "Oil palm fruit", measure = "Area harvested")
 ```
 

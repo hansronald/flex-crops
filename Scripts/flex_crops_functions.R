@@ -967,7 +967,7 @@ plot_HH_index = function(crop_data, category, measure){
     arrange(desc(HH_index)) %>% 
     summarise_at(vars(HH_index), function(x){return(sum((x*100)^2))})
 
-  colors <- c("Maize" = "#D9717D", "6" = "#4DB6D0", "8" = "#BECA55")
+  # colors <- c("Maize" = "#D9717D", "6" = "#4DB6D0", "8" = "#BECA55")
     
   HH_index_data %>%
     ggplot(aes(x = year, y = HH_index, color = item)) +
@@ -978,9 +978,8 @@ plot_HH_index = function(crop_data, category, measure){
     facet_wrap(~measures, ncol = 2, scale = "free_y") +
     labs(y = "Herfindahl-Hirschman Index") +
     scale_x_continuous(breaks = scales::pretty_breaks(n = 9)) +
-    scale_color_manual(values = colors) %>% 
+  #  scale_color_manual(values = colors) +
     theme(axis.text.x = element_text(angle=60, hjust=1))
-
 }
 
 

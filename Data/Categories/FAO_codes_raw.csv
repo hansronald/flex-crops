@@ -1,0 +1,1854 @@
+Country Group Code,Country Group,Country Code,Country,M49 Code,ISO2 Code,ISO3 Code,Country new,ISO3 Code New,Country group new
+5100,Africa,4,Algeria,12,DZ,DZA,Algeria,DZA,Continents
+5100,Africa,7,Angola,24,AO,AGO,Angola,AGO,Continents
+5100,Africa,53,Benin,204,BJ,BEN,Benin,BEN,Continents
+5100,Africa,20,Botswana,72,BW,BWA,Botswana,BWA,Continents
+5100,Africa,24,British Indian Ocean Territory,86,IO,IOT,British Indian Ocean Territory,IOT,Continents
+5100,Africa,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Continents
+5100,Africa,29,Burundi,108,BI,BDI,Burundi,BDI,Continents
+5100,Africa,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,Continents
+5100,Africa,32,Cameroon,120,CM,CMR,Cameroon,CMR,Continents
+5100,Africa,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Continents
+5100,Africa,39,Chad,148,TD,TCD,Chad,TCD,Continents
+5100,Africa,45,Comoros,174,KM,COM,Comoros,COM,Continents
+5100,Africa,46,Congo,178,CG,COG,Congo,COG,Continents
+5100,Africa,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Continents
+5100,Africa,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Continents
+5100,Africa,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Continents
+5100,Africa,59,Egypt,818,EG,EGY,Egypt,EGY,Continents
+5100,Africa,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,Continents
+5100,Africa,178,Eritrea,232,ER,ERI,Eritrea,ERI,Continents
+5100,Africa,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Continents
+5100,Africa,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Continents
+5100,Africa,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Continents
+5100,Africa,74,Gabon,266,GA,GAB,Gabon,GAB,Continents
+5100,Africa,75,Gambia,270,GM,GMB,Gambia,GMB,Continents
+5100,Africa,81,Ghana,288,GH,GHA,Ghana,GHA,Continents
+5100,Africa,90,Guinea,324,GN,GIN,Guinea,GIN,Continents
+5100,Africa,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Continents
+5100,Africa,114,Kenya,404,KE,KEN,Kenya,KEN,Continents
+5100,Africa,122,Lesotho,426,LS,LSO,Lesotho,LSO,Continents
+5100,Africa,123,Liberia,430,LR,LBR,Liberia,LBR,Continents
+5100,Africa,124,Libya,434,LY,LBY,Libya,LBY,Continents
+5100,Africa,129,Madagascar,450,MG,MDG,Madagascar,MDG,Continents
+5100,Africa,130,Malawi,454,MW,MWI,Malawi,MWI,Continents
+5100,Africa,133,Mali,466,ML,MLI,Mali,MLI,Continents
+5100,Africa,136,Mauritania,478,MR,MRT,Mauritania,MRT,Continents
+5100,Africa,137,Mauritius,480,MU,MUS,Mauritius,MUS,Continents
+5100,Africa,270,Mayotte,175,YT,MYT,Mayotte,MYT,Continents
+5100,Africa,143,Morocco,504,MA,MAR,Morocco,MAR,Continents
+5100,Africa,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Continents
+5100,Africa,147,Namibia,516,NA,NAM,Namibia,NAM,Continents
+5100,Africa,158,Niger,562,NE,NER,Niger,NER,Continents
+5100,Africa,159,Nigeria,566,NG,NGA,Nigeria,NGA,Continents
+5100,Africa,182,Réunion,638,RE,REU,Réunion,REU,Continents
+5100,Africa,184,Rwanda,646,RW,RWA,Rwanda,RWA,Continents
+5100,Africa,187,"Saint Helena, Ascension and Tristan da Cunha",654,SH,SHN,"Saint Helena, Ascension and Tristan da Cunha",SHN,Continents
+5100,Africa,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Continents
+5100,Africa,195,Senegal,686,SN,SEN,Senegal,SEN,Continents
+5100,Africa,196,Seychelles,690,SC,SYC,Seychelles,SYC,Continents
+5100,Africa,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Continents
+5100,Africa,201,Somalia,706,SO,SOM,Somalia,SOM,Continents
+5100,Africa,202,South Africa,710,ZA,ZAF,South Africa,ZAF,Continents
+5100,Africa,277,South Sudan,728,SS,SSD,Sudan,SDN,Continents
+5100,Africa,276,Sudan,729,SD,SDN,Sudan,SDN,Continents
+5100,Africa,206,Sudan (former),736,SD,,Sudan,SDN,Continents
+5100,Africa,217,Togo,768,TG,TGO,Togo,TGO,Continents
+5100,Africa,222,Tunisia,788,TN,TUN,Tunisia,TUN,Continents
+5100,Africa,226,Uganda,800,UG,UGA,Uganda,UGA,Continents
+5100,Africa,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Continents
+5100,Africa,3698,"United Republic of Tanzania, Zanzibar",,,,"United Republic of Tanzania, Zanzibar",,Continents
+5100,Africa,616,"Western Africa, unspecified",,,,"Western Africa, unspecified",,Continents
+5100,Africa,205,Western Sahara,732,EH,ESH,Western Sahara,ESH,Continents
+5100,Africa,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Continents
+5100,Africa,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Continents
+5200,Americas,258,Anguilla,660,AI,AIA,Anguilla,AIA,
+5200,Americas,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,
+5200,Americas,9,Argentina,32,AR,ARG,Argentina,ARG,
+5200,Americas,22,Aruba,533,AW,ABW,Aruba,ABW,
+5200,Americas,12,Bahamas,44,BS,BHS,Bahamas,BHS,
+5200,Americas,14,Barbados,52,BB,BRB,Barbados,BRB,
+5200,Americas,23,Belize,84,BZ,BLZ,Belize,BLZ,
+5200,Americas,17,Bermuda,60,BM,BMU,Bermuda,BMU,
+5200,Americas,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,
+5200,Americas,278,"Bonaire, Sint Eustatius and Saba",535,,BES,"Bonaire, Sint Eustatius and Saba",BES,
+5200,Americas,21,Brazil,76,BR,BRA,Brazil,BRA,
+5200,Americas,239,British Virgin Islands,92,VG,VGB,British Virgin Islands,VGB,
+5200,Americas,33,Canada,124,CA,CAN,Canada,CAN,
+5200,Americas,609,"Caribbean, unspecified",,,,"Caribbean, unspecified",,
+5200,Americas,36,Cayman Islands,136,KY,CYM,Cayman Islands,CYM,
+5200,Americas,40,Chile,152,CL,CHL,Chile,CHL,
+5200,Americas,44,Colombia,170,CO,COL,Colombia,COL,
+5200,Americas,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,
+5200,Americas,49,Cuba,192,CU,CUB,Cuba,CUB,
+5200,Americas,279,Curaçao,531,,CUW,Curaçao,CUW,
+5200,Americas,55,Dominica,212,DM,DMA,Dominica,DMA,
+5200,Americas,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,
+5200,Americas,58,Ecuador,218,EC,ECU,Ecuador,ECU,
+5200,Americas,60,El Salvador,222,SV,SLV,El Salvador,SLV,
+5200,Americas,65,Falkland Islands (Malvinas),238,FK,FLK,Falkland Islands (Malvinas),FLK,
+5200,Americas,69,French Guiana,254,GF,GUF,French Guiana,GUF,
+5200,Americas,85,Greenland,304,GL,GRL,Greenland,GRL,
+5200,Americas,86,Grenada,308,GD,GRD,Grenada,GRD,
+5200,Americas,87,Guadeloupe,312,GP,GLP,Guadeloupe,GLP,
+5200,Americas,89,Guatemala,320,GT,GTM,Guatemala,GTM,
+5200,Americas,91,Guyana,328,GY,GUY,Guyana,GUY,
+5200,Americas,93,Haiti,332,HT,HTI,Haiti,HTI,
+5200,Americas,95,Honduras,340,HN,HND,Honduras,HND,
+5200,Americas,109,Jamaica,388,JM,JAM,Jamaica,JAM,
+5200,Americas,135,Martinique,474,MQ,MTQ,Martinique,MTQ,
+5200,Americas,138,Mexico,484,MX,MEX,Mexico,MEX,
+5200,Americas,142,Montserrat,500,MS,MSR,Montserrat,MSR,
+5200,Americas,151,Netherlands Antilles (former),530,AN,ANT,Netherlands Antilles (former),ANT,
+5200,Americas,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,
+5200,Americas,622,"Northern America, unspecified",,,,"Northern America, unspecified",,
+5200,Americas,166,Panama,591,PA,PAN,Panama,PAN,
+5200,Americas,169,Paraguay,600,PY,PRY,Paraguay,PRY,
+5200,Americas,170,Peru,604,PE,PER,Peru,PER,
+5200,Americas,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,
+5200,Americas,282,Saint Barthélemy,652,,BLM,Saint Barthélemy,BLM,
+5200,Americas,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,
+5200,Americas,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,
+5200,Americas,190,Saint Pierre and Miquelon,666,PM,SPM,Saint Pierre and Miquelon,SPM,
+5200,Americas,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,
+5200,Americas,281,Saint-Martin (French Part),663,,MAF,Saint-Martin (French Part),MAF,
+5200,Americas,280,Sint Maarten (Dutch Part),534,,SXM,Sint Maarten (Dutch Part),SXM,
+5200,Americas,614,"South America, unspecified",,,,"South America, unspecified",,
+5200,Americas,207,Suriname,740,SR,SUR,Suriname,SUR,
+5200,Americas,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,
+5200,Americas,224,Turks and Caicos Islands,796,TC,TCA,Turks and Caicos Islands,TCA,
+5200,Americas,231,United States of America,840,US,USA,United States of America,USA,
+5200,Americas,240,United States Virgin Islands,850,VI,VIR,United States Virgin Islands,VIR,
+5200,Americas,234,Uruguay,858,UY,URY,Uruguay,URY,
+5200,Americas,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,
+5848,Annex I countries,5,American Samoa,16,AS,ASM,American Samoa,ASM,Annex I countries
+5848,Annex I countries,258,Anguilla,660,AI,AIA,Anguilla,AIA,Annex I countries
+5848,Annex I countries,22,Aruba,533,AW,ABW,Aruba,ABW,Annex I countries
+5848,Annex I countries,10,Australia,36,AU,AUS,Australia,AUS,Annex I countries
+5848,Annex I countries,11,Austria,40,AT,AUT,Austria,AUT,Annex I countries
+5848,Annex I countries,57,Belarus,112,BY,BLR,Belarus,BLR,Annex I countries
+5848,Annex I countries,255,Belgium,56,BE,BEL,Belgium,BEL,Annex I countries
+5848,Annex I countries,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,Annex I countries
+5848,Annex I countries,17,Bermuda,60,BM,BMU,Bermuda,BMU,Annex I countries
+5848,Annex I countries,239,British Virgin Islands,92,VG,VGB,British Virgin Islands,VGB,Annex I countries
+5848,Annex I countries,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,Annex I countries
+5848,Annex I countries,33,Canada,124,CA,CAN,Canada,CAN,Annex I countries
+5848,Annex I countries,36,Cayman Islands,136,KY,CYM,Cayman Islands,CYM,Annex I countries
+5848,Annex I countries,259,Channel Islands,830,,CHA,Channel Islands,CHA,Annex I countries
+5848,Annex I countries,98,Croatia,191,HR,HRV,Croatia,HRV,Annex I countries
+5848,Annex I countries,50,Cyprus,196,CY,CYP,Cyprus,CYP,Annex I countries
+5848,Annex I countries,167,Czechia,203,CZ,CZE,Czechia,CZE,Annex I countries
+5848,Annex I countries,51,Czechoslovakia,200,,,Czechoslovakia,CSK,Annex I countries
+5848,Annex I countries,54,Denmark,208,DK,DNK,Denmark,DNK,Annex I countries
+5848,Annex I countries,63,Estonia,233,EE,EST,Estonia,EST,Annex I countries
+5848,Annex I countries,65,Falkland Islands (Malvinas),238,FK,FLK,Falkland Islands (Malvinas),FLK,Annex I countries
+5848,Annex I countries,64,Faroe Islands,234,FO,FRO,Faroe Islands,FRO,Annex I countries
+5848,Annex I countries,67,Finland,246,FI,FIN,Finland,FIN,Annex I countries
+5848,Annex I countries,68,France,250,FR,FRA,France,FRA,Annex I countries
+5848,Annex I countries,69,French Guiana,254,GF,GUF,French Guiana,GUF,Annex I countries
+5848,Annex I countries,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,Annex I countries
+5848,Annex I countries,79,Germany,276,DE,DEU,Germany,DEU,Annex I countries
+5848,Annex I countries,82,Gibraltar,292,GI,GIB,Gibraltar,GIB,Annex I countries
+5848,Annex I countries,84,Greece,300,GR,GRC,Greece,GRC,Annex I countries
+5848,Annex I countries,85,Greenland,304,GL,GRL,Greenland,GRL,Annex I countries
+5848,Annex I countries,87,Guadeloupe,312,GP,GLP,Guadeloupe,GLP,Annex I countries
+5848,Annex I countries,88,Guam,316,GU,GUM,Guam,GUM,Annex I countries
+5848,Annex I countries,97,Hungary,348,HU,HUN,Hungary,HUN,Annex I countries
+5848,Annex I countries,99,Iceland,352,IS,ISL,Iceland,ISL,Annex I countries
+5848,Annex I countries,104,Ireland,372,IE,IRL,Ireland,IRL,Annex I countries
+5848,Annex I countries,264,Isle of Man,833,IM,IMN,Isle of Man,IMN,Annex I countries
+5848,Annex I countries,106,Italy,380,IT,ITA,Italy,ITA,Annex I countries
+5848,Annex I countries,110,Japan,392,JP,JPN,Japan,JPN,Annex I countries
+5848,Annex I countries,119,Latvia,428,LV,LVA,Latvia,LVA,Annex I countries
+5848,Annex I countries,125,Liechtenstein,438,LI,LIE,Liechtenstein,LIE,Annex I countries
+5848,Annex I countries,126,Lithuania,440,LT,LTU,Lithuania,LTU,Annex I countries
+5848,Annex I countries,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,Annex I countries
+5848,Annex I countries,134,Malta,470,MT,MLT,Malta,MLT,Annex I countries
+5848,Annex I countries,135,Martinique,474,MQ,MTQ,Martinique,MTQ,Annex I countries
+5848,Annex I countries,270,Mayotte,175,YT,MYT,Mayotte,MYT,Annex I countries
+5848,Annex I countries,140,Monaco,492,MC,MCO,Monaco,MCO,Annex I countries
+5848,Annex I countries,142,Montserrat,500,MS,MSR,Montserrat,MSR,Annex I countries
+5848,Annex I countries,150,Netherlands,528,NL,NLD,Netherlands,NLD,Annex I countries
+5848,Annex I countries,151,Netherlands Antilles (former),530,AN,ANT,Netherlands Antilles (former),ANT,Annex I countries
+5848,Annex I countries,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,Annex I countries
+5848,Annex I countries,156,New Zealand,554,NZ,NZL,New Zealand,NZL,Annex I countries
+5848,Annex I countries,161,Norfolk Island,574,NF,NFK,Norfolk Island,NFK,Annex I countries
+5848,Annex I countries,163,Northern Mariana Islands,580,MP,MNP,Northern Mariana Islands,MNP,Annex I countries
+5848,Annex I countries,162,Norway,578,NO,NOR,Norway,NOR,Annex I countries
+5848,Annex I countries,172,Pitcairn Islands,612,PN,PCN,Pitcairn Islands,PCN,Annex I countries
+5848,Annex I countries,173,Poland,616,PL,POL,Poland,POL,Annex I countries
+5848,Annex I countries,174,Portugal,620,PT,PRT,Portugal,PRT,Annex I countries
+5848,Annex I countries,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,Annex I countries
+5848,Annex I countries,182,Réunion,638,RE,REU,Réunion,REU,Annex I countries
+5848,Annex I countries,183,Romania,642,RO,ROU,Romania,ROU,Annex I countries
+5848,Annex I countries,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,Annex I countries
+5848,Annex I countries,187,"Saint Helena, Ascension and Tristan da Cunha",654,SH,SHN,"Saint Helena, Ascension and Tristan da Cunha",SHN,Annex I countries
+5848,Annex I countries,190,Saint Pierre and Miquelon,666,PM,SPM,Saint Pierre and Miquelon,SPM,Annex I countries
+5848,Annex I countries,199,Slovakia,703,SK,SVK,Slovakia,SVK,Annex I countries
+5848,Annex I countries,198,Slovenia,705,SI,SVN,Slovenia,SVN,Annex I countries
+5848,Annex I countries,203,Spain,724,ES,ESP,Spain,ESP,Annex I countries
+5848,Annex I countries,260,Svalbard and Jan Mayen Islands,744,SJ,SJM,Svalbard and Jan Mayen Islands,SJM,Annex I countries
+5848,Annex I countries,210,Sweden,752,SE,SWE,Sweden,SWE,Annex I countries
+5848,Annex I countries,211,Switzerland,756,CH,CHE,Switzerland,CHE,Annex I countries
+5848,Annex I countries,218,Tokelau,772,TK,TKL,Tokelau,TKL,Annex I countries
+5848,Annex I countries,223,Turkey,792,TR,TUR,Turkey,TUR,Annex I countries
+5848,Annex I countries,224,Turks and Caicos Islands,796,TC,TCA,Turks and Caicos Islands,TCA,Annex I countries
+5848,Annex I countries,230,Ukraine,804,UA,UKR,Ukraine,UKR,Annex I countries
+5848,Annex I countries,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,Annex I countries
+5848,Annex I countries,231,United States of America,840,US,USA,United States of America,USA,Annex I countries
+5848,Annex I countries,240,United States Virgin Islands,850,VI,VIR,United States Virgin Islands,VIR,Annex I countries
+5848,Annex I countries,228,USSR,810,,,USSR,SUN,Annex I countries
+5848,Annex I countries,243,Wallis and Futuna Islands,876,WF,WLF,Wallis and Futuna Islands,WLF,Annex I countries
+5600,Antarctic Region,30,Antarctica,10,AQ,ATA,Antarctica,ATA,Antarctic Region
+5600,Antarctic Region,71,French Southern and Antarctic Territories,260,TF,ATF,French Southern and Antarctic Territories,ATF,Antarctic Region
+5300,Asia,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Continents
+5300,Asia,1,Armenia,51,AM,ARM,Armenia,ARM,Continents
+5300,Asia,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,Continents
+5300,Asia,13,Bahrain,48,BH,BHR,Bahrain,BHR,Continents
+5300,Asia,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Continents
+5300,Asia,18,Bhutan,64,BT,BTN,Bhutan,BTN,Continents
+5300,Asia,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,Continents
+5300,Asia,115,Cambodia,116,KH,KHM,Cambodia,KHM,Continents
+5300,Asia,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,Continents
+5300,Asia,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,Continents
+5300,Asia,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,Continents
+5300,Asia,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,Continents
+5300,Asia,50,Cyprus,196,CY,CYP,Cyprus,CYP,Continents
+5300,Asia,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,Continents
+5300,Asia,73,Georgia,268,GE,GEO,Georgia,GEO,Continents
+5300,Asia,100,India,356,IN,IND,India,IND,Continents
+5300,Asia,101,Indonesia,360,ID,IDN,Indonesia,IDN,Continents
+5300,Asia,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,Continents
+5300,Asia,103,Iraq,368,IQ,IRQ,Iraq,IRQ,Continents
+5300,Asia,105,Israel,376,IL,ISR,Israel,ISR,Continents
+5300,Asia,110,Japan,392,JP,JPN,Japan,JPN,Continents
+5300,Asia,112,Jordan,400,JO,JOR,Jordan,JOR,Continents
+5300,Asia,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,Continents
+5300,Asia,118,Kuwait,414,KW,KWT,Kuwait,KWT,Continents
+5300,Asia,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Continents
+5300,Asia,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Continents
+5300,Asia,121,Lebanon,422,LB,LBN,Lebanon,LBN,Continents
+5300,Asia,131,Malaysia,458,MY,MYS,Malaysia,MYS,Continents
+5300,Asia,132,Maldives,462,MV,MDV,Maldives,MDV,Continents
+5300,Asia,141,Mongolia,496,MN,MNG,Mongolia,MNG,Continents
+5300,Asia,28,Myanmar,104,MM,MMR,Myanmar,MMR,Continents
+5300,Asia,149,Nepal,524,NP,NPL,Nepal,NPL,Continents
+5300,Asia,221,Oman,512,OM,OMN,Oman,OMN,Continents
+5300,Asia,165,Pakistan,586,PK,PAK,Pakistan,PAK,Continents
+5300,Asia,299,Palestine,275,,PSE,Palestine,PSE,Continents
+5300,Asia,171,Philippines,608,PH,PHL,Philippines,PHL,Continents
+5300,Asia,179,Qatar,634,QA,QAT,Qatar,QAT,Continents
+5300,Asia,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,Continents
+5300,Asia,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,Continents
+5300,Asia,200,Singapore,702,SG,SGP,Singapore,SGP,Continents
+5300,Asia,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,Continents
+5300,Asia,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,Continents
+5300,Asia,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Continents
+5300,Asia,216,Thailand,764,TH,THA,Thailand,THA,Continents
+5300,Asia,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Continents
+5300,Asia,223,Turkey,792,TR,TUR,Turkey,TUR,Continents
+5300,Asia,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,Continents
+5300,Asia,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,Continents
+5300,Asia,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Continents
+5300,Asia,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,Continents
+5300,Asia,249,Yemen,887,YE,YEM,Yemen,YEM,Continents
+5300,Asia,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,Continents
+5300,Asia,247,Yemen Dem,720,,,Yemen Dem,,Continents
+5501,Australia and New Zealand,10,Australia,36,AU,AUS,Australia,AUS,Small region
+5501,Australia and New Zealand,42,Christmas Island,162,CX,CXR,Christmas Island,CXR,Small region
+5501,Australia and New Zealand,43,Cocos (Keeling) Islands,166,CC,CCK,Cocos (Keeling) Islands,CCK,Small region
+5501,Australia and New Zealand,156,New Zealand,554,NZ,NZL,New Zealand,NZL,Small region
+5501,Australia and New Zealand,161,Norfolk Island,574,NF,NFK,Norfolk Island,NFK,Small region
+5206,Caribbean,258,Anguilla,660,AI,AIA,Anguilla,AIA,Small region
+5206,Caribbean,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,Small region
+5206,Caribbean,22,Aruba,533,AW,ABW,Aruba,ABW,Small region
+5206,Caribbean,12,Bahamas,44,BS,BHS,Bahamas,BHS,Small region
+5206,Caribbean,14,Barbados,52,BB,BRB,Barbados,BRB,Small region
+5206,Caribbean,278,"Bonaire, Sint Eustatius and Saba",535,,BES,"Bonaire, Sint Eustatius and Saba",BES,Small region
+5206,Caribbean,239,British Virgin Islands,92,VG,VGB,British Virgin Islands,VGB,Small region
+5206,Caribbean,36,Cayman Islands,136,KY,CYM,Cayman Islands,CYM,Small region
+5206,Caribbean,49,Cuba,192,CU,CUB,Cuba,CUB,Small region
+5206,Caribbean,279,Curaçao,531,,CUW,Curaçao,CUW,Small region
+5206,Caribbean,55,Dominica,212,DM,DMA,Dominica,DMA,Small region
+5206,Caribbean,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,Small region
+5206,Caribbean,86,Grenada,308,GD,GRD,Grenada,GRD,Small region
+5206,Caribbean,87,Guadeloupe,312,GP,GLP,Guadeloupe,GLP,Small region
+5206,Caribbean,93,Haiti,332,HT,HTI,Haiti,HTI,Small region
+5206,Caribbean,109,Jamaica,388,JM,JAM,Jamaica,JAM,Small region
+5206,Caribbean,135,Martinique,474,MQ,MTQ,Martinique,MTQ,Small region
+5206,Caribbean,142,Montserrat,500,MS,MSR,Montserrat,MSR,Small region
+5206,Caribbean,151,Netherlands Antilles (former),530,AN,ANT,Netherlands Antilles (former),ANT,Small region
+5206,Caribbean,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,Small region
+5206,Caribbean,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,Small region
+5206,Caribbean,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,Small region
+5206,Caribbean,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,Small region
+5206,Caribbean,281,Saint-Martin (French Part),663,,MAF,Saint-Martin (French Part),MAF,Small region
+5206,Caribbean,280,Sint Maarten (Dutch Part),534,,SXM,Sint Maarten (Dutch Part),SXM,Small region
+5206,Caribbean,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,Small region
+5206,Caribbean,224,Turks and Caicos Islands,796,TC,TCA,Turks and Caicos Islands,TCA,Small region
+5206,Caribbean,240,United States Virgin Islands,850,VI,VIR,United States Virgin Islands,VIR,Small region
+5204,Central America,23,Belize,84,BZ,BLZ,Belize,BLZ,Small region
+5204,Central America,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,Small region
+5204,Central America,60,El Salvador,222,SV,SLV,El Salvador,SLV,Small region
+5204,Central America,89,Guatemala,320,GT,GTM,Guatemala,GTM,Small region
+5204,Central America,95,Honduras,340,HN,HND,Honduras,HND,Small region
+5204,Central America,138,Mexico,484,MX,MEX,Mexico,MEX,Small region
+5204,Central America,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,Small region
+5204,Central America,166,Panama,591,PA,PAN,Panama,PAN,Small region
+5301,Central Asia,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,Small region
+5301,Central Asia,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Small region
+5301,Central Asia,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Small region
+5301,Central Asia,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,Small region
+5301,Central Asia,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Small region
+5306,Central Asia and Southern Asia,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,
+5306,Central Asia and Southern Asia,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,
+5306,Central Asia and Southern Asia,18,Bhutan,64,BT,BTN,Bhutan,BTN,
+5306,Central Asia and Southern Asia,100,India,356,IN,IND,India,IND,
+5306,Central Asia and Southern Asia,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,
+5306,Central Asia and Southern Asia,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,
+5306,Central Asia and Southern Asia,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,
+5306,Central Asia and Southern Asia,132,Maldives,462,MV,MDV,Maldives,MDV,
+5306,Central Asia and Southern Asia,149,Nepal,524,NP,NPL,Nepal,NPL,
+5306,Central Asia and Southern Asia,165,Pakistan,586,PK,PAK,Pakistan,PAK,
+5306,Central Asia and Southern Asia,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,
+5306,Central Asia and Southern Asia,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,
+5306,Central Asia and Southern Asia,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,
+5306,Central Asia and Southern Asia,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,
+5854,East Asia (exc China),116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,
+5854,East Asia (exc China),141,Mongolia,496,MN,MNG,Mongolia,MNG,
+5854,East Asia (exc China),117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,
+5101,Eastern Africa,24,British Indian Ocean Territory,86,IO,IOT,British Indian Ocean Territory,IOT,Small region
+5101,Eastern Africa,29,Burundi,108,BI,BDI,Burundi,BDI,Small region
+5101,Eastern Africa,45,Comoros,174,KM,COM,Comoros,COM,Small region
+5101,Eastern Africa,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Small region
+5101,Eastern Africa,178,Eritrea,232,ER,ERI,Eritrea,ERI,Small region
+5101,Eastern Africa,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Small region
+5101,Eastern Africa,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Small region
+5101,Eastern Africa,114,Kenya,404,KE,KEN,Kenya,KEN,Small region
+5101,Eastern Africa,129,Madagascar,450,MG,MDG,Madagascar,MDG,Small region
+5101,Eastern Africa,130,Malawi,454,MW,MWI,Malawi,MWI,Small region
+5101,Eastern Africa,137,Mauritius,480,MU,MUS,Mauritius,MUS,Small region
+5101,Eastern Africa,270,Mayotte,175,YT,MYT,Mayotte,MYT,Small region
+5101,Eastern Africa,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Small region
+5101,Eastern Africa,182,Réunion,638,RE,REU,Réunion,REU,Small region
+5101,Eastern Africa,184,Rwanda,646,RW,RWA,Rwanda,RWA,Small region
+5101,Eastern Africa,196,Seychelles,690,SC,SYC,Seychelles,SYC,Small region
+5101,Eastern Africa,201,Somalia,706,SO,SOM,Somalia,SOM,Small region
+5101,Eastern Africa,277,South Sudan,728,SS,SSD,Sudan,SDN,Small region
+5101,Eastern Africa,226,Uganda,800,UG,UGA,Uganda,UGA,Small region
+5101,Eastern Africa,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Small region
+5101,Eastern Africa,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Small region
+5101,Eastern Africa,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Small region
+5302,Eastern Asia,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,Small region
+5302,Eastern Asia,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,Small region
+5302,Eastern Asia,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,Small region
+5302,Eastern Asia,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,Small region
+5302,Eastern Asia,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,Small region
+5302,Eastern Asia,110,Japan,392,JP,JPN,Japan,JPN,Small region
+5302,Eastern Asia,141,Mongolia,496,MN,MNG,Mongolia,MNG,Small region
+5302,Eastern Asia,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,Small region
+5307,Eastern Asia and South-eastern Asia,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,
+5307,Eastern Asia and South-eastern Asia,115,Cambodia,116,KH,KHM,Cambodia,KHM,
+5307,Eastern Asia and South-eastern Asia,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,
+5307,Eastern Asia and South-eastern Asia,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,
+5307,Eastern Asia and South-eastern Asia,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,
+5307,Eastern Asia and South-eastern Asia,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,
+5307,Eastern Asia and South-eastern Asia,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,
+5307,Eastern Asia and South-eastern Asia,101,Indonesia,360,ID,IDN,Indonesia,IDN,
+5307,Eastern Asia and South-eastern Asia,110,Japan,392,JP,JPN,Japan,JPN,
+5307,Eastern Asia and South-eastern Asia,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,
+5307,Eastern Asia and South-eastern Asia,131,Malaysia,458,MY,MYS,Malaysia,MYS,
+5307,Eastern Asia and South-eastern Asia,141,Mongolia,496,MN,MNG,Mongolia,MNG,
+5307,Eastern Asia and South-eastern Asia,28,Myanmar,104,MM,MMR,Myanmar,MMR,
+5307,Eastern Asia and South-eastern Asia,171,Philippines,608,PH,PHL,Philippines,PHL,
+5307,Eastern Asia and South-eastern Asia,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,
+5307,Eastern Asia and South-eastern Asia,200,Singapore,702,SG,SGP,Singapore,SGP,
+5307,Eastern Asia and South-eastern Asia,216,Thailand,764,TH,THA,Thailand,THA,
+5307,Eastern Asia and South-eastern Asia,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,
+5307,Eastern Asia and South-eastern Asia,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,
+5401,Eastern Europe,57,Belarus,112,BY,BLR,Belarus,BLR,Small region
+5401,Eastern Europe,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,Small region
+5401,Eastern Europe,167,Czechia,203,CZ,CZE,Czechia,CZE,Small region
+5401,Eastern Europe,51,Czechoslovakia,200,,,Czechoslovakia,CSK,Small region
+5401,Eastern Europe,97,Hungary,348,HU,HUN,Hungary,HUN,Small region
+5401,Eastern Europe,173,Poland,616,PL,POL,Poland,POL,Small region
+5401,Eastern Europe,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,Small region
+5401,Eastern Europe,183,Romania,642,RO,ROU,Romania,ROU,Small region
+5401,Eastern Europe,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,Small region
+5401,Eastern Europe,199,Slovakia,703,SK,SVK,Slovakia,SVK,Small region
+5401,Eastern Europe,230,Ukraine,804,UA,UKR,Ukraine,UKR,Small region
+5401,Eastern Europe,228,USSR,810,,,USSR,SUN,Small region
+5400,Europe,284,Åland Islands,248,,ALA,Åland Islands,ALA,Continents
+5400,Europe,3,Albania,8,AL,ALB,Albania,ALB,Continents
+5400,Europe,6,Andorra,20,AD,AND,Andorra,AND,Continents
+5400,Europe,11,Austria,40,AT,AUT,Austria,AUT,Continents
+5400,Europe,57,Belarus,112,BY,BLR,Belarus,BLR,Continents
+5400,Europe,255,Belgium,56,BE,BEL,Belgium,BEL,Continents
+5400,Europe,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,Continents
+5400,Europe,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,Continents
+5400,Europe,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,Continents
+5400,Europe,259,Channel Islands,830,,CHA,Channel Islands,CHA,Continents
+5400,Europe,98,Croatia,191,HR,HRV,Croatia,HRV,Continents
+5400,Europe,167,Czechia,203,CZ,CZE,Czechia,CZE,Continents
+5400,Europe,51,Czechoslovakia,200,,,Czechoslovakia,CSK,Continents
+5400,Europe,54,Denmark,208,DK,DNK,Denmark,DNK,Continents
+5400,Europe,63,Estonia,233,EE,EST,Estonia,EST,Continents
+5400,Europe,64,Faroe Islands,234,FO,FRO,Faroe Islands,FRO,Continents
+5400,Europe,67,Finland,246,FI,FIN,Finland,FIN,Continents
+5400,Europe,68,France,250,FR,FRA,France,FRA,Continents
+5400,Europe,79,Germany,276,DE,DEU,Germany,DEU,Continents
+5400,Europe,78,Germany Fr,280,,,Germany Fr,,Continents
+5400,Europe,77,Germany Nl,278,,,Germany Nl,,Continents
+5400,Europe,82,Gibraltar,292,GI,GIB,Gibraltar,GIB,Continents
+5400,Europe,84,Greece,300,GR,GRC,Greece,GRC,Continents
+5400,Europe,94,Holy See,336,VA,VAT,Holy See,VAT,Continents
+5400,Europe,97,Hungary,348,HU,HUN,Hungary,HUN,Continents
+5400,Europe,99,Iceland,352,IS,ISL,Iceland,ISL,Continents
+5400,Europe,104,Ireland,372,IE,IRL,Ireland,IRL,Continents
+5400,Europe,264,Isle of Man,833,IM,IMN,Isle of Man,IMN,Continents
+5400,Europe,106,Italy,380,IT,ITA,Italy,ITA,Continents
+5400,Europe,283,Jersey,832,,JEY,Jersey,JEY,Continents
+5400,Europe,275,Kosovo,,,,Kosovo,,Continents
+5400,Europe,119,Latvia,428,LV,LVA,Latvia,LVA,Continents
+5400,Europe,125,Liechtenstein,438,LI,LIE,Liechtenstein,LIE,Continents
+5400,Europe,126,Lithuania,440,LT,LTU,Lithuania,LTU,Continents
+5400,Europe,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,Continents
+5400,Europe,134,Malta,470,MT,MLT,Malta,MLT,Continents
+5400,Europe,140,Monaco,492,MC,MCO,Monaco,MCO,Continents
+5400,Europe,273,Montenegro,499,ME,MNE,Montenegro,MNE,Continents
+5400,Europe,150,Netherlands,528,NL,NLD,Netherlands,NLD,Continents
+5400,Europe,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,Continents
+5400,Europe,619,"Northern Europe, unspecified",,,,"Northern Europe, unspecified",,Continents
+5400,Europe,162,Norway,578,NO,NOR,Norway,NOR,Continents
+5400,Europe,173,Poland,616,PL,POL,Poland,POL,Continents
+5400,Europe,174,Portugal,620,PT,PRT,Portugal,PRT,Continents
+5400,Europe,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,Continents
+5400,Europe,183,Romania,642,RO,ROU,Romania,ROU,Continents
+5400,Europe,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,Continents
+5400,Europe,192,San Marino,674,SM,SMR,San Marino,SMR,Continents
+5400,Europe,272,Serbia,688,RS,SRB,Serbia,SRB,Continents
+5400,Europe,286,Serbia (exc Kosovo),,,,Serbia (exc Kosovo),,Continents
+5400,Europe,186,Serbia and Montenegro,891,CS,SCG,Serbia and Montenegro,SCG,Continents
+5400,Europe,199,Slovakia,703,SK,SVK,Slovakia,SVK,Continents
+5400,Europe,198,Slovenia,705,SI,SVN,Slovenia,SVN,Continents
+5400,Europe,620,"Southern Europe, unspecified",,,,"Southern Europe, unspecified",,Continents
+5400,Europe,203,Spain,724,ES,ESP,Spain,ESP,Continents
+5400,Europe,260,Svalbard and Jan Mayen Islands,744,SJ,SJM,Svalbard and Jan Mayen Islands,SJM,Continents
+5400,Europe,210,Sweden,752,SE,SWE,Sweden,SWE,Continents
+5400,Europe,211,Switzerland,756,CH,CHE,Switzerland,CHE,Continents
+5400,Europe,230,Ukraine,804,UA,UKR,Ukraine,UKR,Continents
+5400,Europe,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,Continents
+5400,Europe,228,USSR,810,,,USSR,SUN,Continents
+5400,Europe,621,"Western Europe, unspecified",,,,"Western Europe, unspecified",,Continents
+5400,Europe,248,Yugoslav SFR,890,,,Yugoslav SFR,YUG,Continents
+5706,European Union,11,Austria,40,AT,AUT,Austria,AUT,European Union
+5706,European Union,255,Belgium,56,BE,BEL,Belgium,BEL,European Union
+5706,European Union,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,European Union
+5706,European Union,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,European Union
+5706,European Union,98,Croatia,191,HR,HRV,Croatia,HRV,European Union
+5706,European Union,50,Cyprus,196,CY,CYP,Cyprus,CYP,European Union
+5706,European Union,167,Czechia,203,CZ,CZE,Czechia,CZE,European Union
+5706,European Union,54,Denmark,208,DK,DNK,Denmark,DNK,European Union
+5706,European Union,63,Estonia,233,EE,EST,Estonia,EST,European Union
+5706,European Union,67,Finland,246,FI,FIN,Finland,FIN,European Union
+5706,European Union,68,France,250,FR,FRA,France,FRA,European Union
+5706,European Union,79,Germany,276,DE,DEU,Germany,DEU,European Union
+5706,European Union,84,Greece,300,GR,GRC,Greece,GRC,European Union
+5706,European Union,97,Hungary,348,HU,HUN,Hungary,HUN,European Union
+5706,European Union,104,Ireland,372,IE,IRL,Ireland,IRL,European Union
+5706,European Union,106,Italy,380,IT,ITA,Italy,ITA,European Union
+5706,European Union,119,Latvia,428,LV,LVA,Latvia,LVA,European Union
+5706,European Union,126,Lithuania,440,LT,LTU,Lithuania,LTU,European Union
+5706,European Union,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,European Union
+5706,European Union,134,Malta,470,MT,MLT,Malta,MLT,European Union
+5706,European Union,150,Netherlands,528,NL,NLD,Netherlands,NLD,European Union
+5706,European Union,173,Poland,616,PL,POL,Poland,POL,European Union
+5706,European Union,174,Portugal,620,PT,PRT,Portugal,PRT,European Union
+5706,European Union,183,Romania,642,RO,ROU,Romania,ROU,European Union
+5706,European Union,199,Slovakia,703,SK,SVK,Slovakia,SVK,European Union
+5706,European Union,198,Slovenia,705,SI,SVN,Slovenia,SVN,European Union
+5706,European Union,203,Spain,724,ES,ESP,Spain,ESP,European Union
+5706,European Union,210,Sweden,752,SE,SWE,Sweden,SWE,European Union
+5706,European Union,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,European Union
+9010,High-income economies,6,Andorra,20,AD,AND,Andorra,AND,Income
+9010,High-income economies,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,Income
+9010,High-income economies,9,Argentina,32,AR,ARG,Argentina,ARG,Income
+9010,High-income economies,10,Australia,36,AU,AUS,Australia,AUS,Income
+9010,High-income economies,11,Austria,40,AT,AUT,Austria,AUT,Income
+9010,High-income economies,12,Bahamas,44,BS,BHS,Bahamas,BHS,Income
+9010,High-income economies,13,Bahrain,48,BH,BHR,Bahrain,BHR,Income
+9010,High-income economies,14,Barbados,52,BB,BRB,Barbados,BRB,Income
+9010,High-income economies,255,Belgium,56,BE,BEL,Belgium,BEL,Income
+9010,High-income economies,17,Bermuda,60,BM,BMU,Bermuda,BMU,Income
+9010,High-income economies,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,Income
+9010,High-income economies,33,Canada,124,CA,CAN,Canada,CAN,Income
+9010,High-income economies,40,Chile,152,CL,CHL,Chile,CHL,Income
+9010,High-income economies,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,Income
+9010,High-income economies,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,Income
+9010,High-income economies,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,Income
+9010,High-income economies,98,Croatia,191,HR,HRV,Croatia,HRV,Income
+9010,High-income economies,50,Cyprus,196,CY,CYP,Cyprus,CYP,Income
+9010,High-income economies,167,Czechia,203,CZ,CZE,Czechia,CZE,Income
+9010,High-income economies,54,Denmark,208,DK,DNK,Denmark,DNK,Income
+9010,High-income economies,63,Estonia,233,EE,EST,Estonia,EST,Income
+9010,High-income economies,67,Finland,246,FI,FIN,Finland,FIN,Income
+9010,High-income economies,68,France,250,FR,FRA,France,FRA,Income
+9010,High-income economies,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,Income
+9010,High-income economies,79,Germany,276,DE,DEU,Germany,DEU,Income
+9010,High-income economies,84,Greece,300,GR,GRC,Greece,GRC,Income
+9010,High-income economies,85,Greenland,304,GL,GRL,Greenland,GRL,Income
+9010,High-income economies,97,Hungary,348,HU,HUN,Hungary,HUN,Income
+9010,High-income economies,99,Iceland,352,IS,ISL,Iceland,ISL,Income
+9010,High-income economies,104,Ireland,372,IE,IRL,Ireland,IRL,Income
+9010,High-income economies,105,Israel,376,IL,ISR,Israel,ISR,Income
+9010,High-income economies,106,Italy,380,IT,ITA,Italy,ITA,Income
+9010,High-income economies,110,Japan,392,JP,JPN,Japan,JPN,Income
+9010,High-income economies,118,Kuwait,414,KW,KWT,Kuwait,KWT,Income
+9010,High-income economies,119,Latvia,428,LV,LVA,Latvia,LVA,Income
+9010,High-income economies,126,Lithuania,440,LT,LTU,Lithuania,LTU,Income
+9010,High-income economies,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,Income
+9010,High-income economies,134,Malta,470,MT,MLT,Malta,MLT,Income
+9010,High-income economies,150,Netherlands,528,NL,NLD,Netherlands,NLD,Income
+9010,High-income economies,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,Income
+9010,High-income economies,156,New Zealand,554,NZ,NZL,New Zealand,NZL,Income
+9010,High-income economies,162,Norway,578,NO,NOR,Norway,NOR,Income
+9010,High-income economies,221,Oman,512,OM,OMN,Oman,OMN,Income
+9010,High-income economies,180,Palau,585,PW,PLW,Palau,PLW,Income
+9010,High-income economies,166,Panama,591,PA,PAN,Panama,PAN,Income
+9010,High-income economies,173,Poland,616,PL,POL,Poland,POL,Income
+9010,High-income economies,174,Portugal,620,PT,PRT,Portugal,PRT,Income
+9010,High-income economies,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,Income
+9010,High-income economies,179,Qatar,634,QA,QAT,Qatar,QAT,Income
+9010,High-income economies,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,Income
+9010,High-income economies,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,Income
+9010,High-income economies,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,Income
+9010,High-income economies,196,Seychelles,690,SC,SYC,Seychelles,SYC,Income
+9010,High-income economies,200,Singapore,702,SG,SGP,Singapore,SGP,Income
+9010,High-income economies,199,Slovakia,703,SK,SVK,Slovakia,SVK,Income
+9010,High-income economies,198,Slovenia,705,SI,SVN,Slovenia,SVN,Income
+9010,High-income economies,203,Spain,724,ES,ESP,Spain,ESP,Income
+9010,High-income economies,210,Sweden,752,SE,SWE,Sweden,SWE,Income
+9010,High-income economies,211,Switzerland,756,CH,CHE,Switzerland,CHE,Income
+9010,High-income economies,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,Income
+9010,High-income economies,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,Income
+9010,High-income economies,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,Income
+9010,High-income economies,231,United States of America,840,US,USA,United States of America,USA,Income
+9010,High-income economies,234,Uruguay,858,UY,URY,Uruguay,URY,Income
+5802,Land Locked Developing Countries,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Land Locked Developing Countries
+5802,Land Locked Developing Countries,1,Armenia,51,AM,ARM,Armenia,ARM,Land Locked Developing Countries
+5802,Land Locked Developing Countries,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,Land Locked Developing Countries
+5802,Land Locked Developing Countries,18,Bhutan,64,BT,BTN,Bhutan,BTN,Land Locked Developing Countries
+5802,Land Locked Developing Countries,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,Land Locked Developing Countries
+5802,Land Locked Developing Countries,20,Botswana,72,BW,BWA,Botswana,BWA,Land Locked Developing Countries
+5802,Land Locked Developing Countries,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Land Locked Developing Countries
+5802,Land Locked Developing Countries,29,Burundi,108,BI,BDI,Burundi,BDI,Land Locked Developing Countries
+5802,Land Locked Developing Countries,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Land Locked Developing Countries
+5802,Land Locked Developing Countries,39,Chad,148,TD,TCD,Chad,TCD,Land Locked Developing Countries
+5802,Land Locked Developing Countries,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Land Locked Developing Countries
+5802,Land Locked Developing Countries,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Land Locked Developing Countries
+5802,Land Locked Developing Countries,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,Land Locked Developing Countries
+5802,Land Locked Developing Countries,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Land Locked Developing Countries
+5802,Land Locked Developing Countries,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Land Locked Developing Countries
+5802,Land Locked Developing Countries,122,Lesotho,426,LS,LSO,Lesotho,LSO,Land Locked Developing Countries
+5802,Land Locked Developing Countries,130,Malawi,454,MW,MWI,Malawi,MWI,Land Locked Developing Countries
+5802,Land Locked Developing Countries,133,Mali,466,ML,MLI,Mali,MLI,Land Locked Developing Countries
+5802,Land Locked Developing Countries,141,Mongolia,496,MN,MNG,Mongolia,MNG,Land Locked Developing Countries
+5802,Land Locked Developing Countries,149,Nepal,524,NP,NPL,Nepal,NPL,Land Locked Developing Countries
+5802,Land Locked Developing Countries,158,Niger,562,NE,NER,Niger,NER,Land Locked Developing Countries
+5802,Land Locked Developing Countries,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,Land Locked Developing Countries
+5802,Land Locked Developing Countries,169,Paraguay,600,PY,PRY,Paraguay,PRY,Land Locked Developing Countries
+5802,Land Locked Developing Countries,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,Land Locked Developing Countries
+5802,Land Locked Developing Countries,184,Rwanda,646,RW,RWA,Rwanda,RWA,Land Locked Developing Countries
+5802,Land Locked Developing Countries,277,South Sudan,728,SS,SSD,Sudan,SDN,Land Locked Developing Countries
+5802,Land Locked Developing Countries,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Land Locked Developing Countries
+5802,Land Locked Developing Countries,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,Land Locked Developing Countries
+5802,Land Locked Developing Countries,226,Uganda,800,UG,UGA,Uganda,UGA,Land Locked Developing Countries
+5802,Land Locked Developing Countries,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Land Locked Developing Countries
+5802,Land Locked Developing Countries,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Land Locked Developing Countries
+5802,Land Locked Developing Countries,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Land Locked Developing Countries
+5205,Latin America and the Caribbean,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,
+5205,Latin America and the Caribbean,9,Argentina,32,AR,ARG,Argentina,ARG,
+5205,Latin America and the Caribbean,12,Bahamas,44,BS,BHS,Bahamas,BHS,
+5205,Latin America and the Caribbean,14,Barbados,52,BB,BRB,Barbados,BRB,
+5205,Latin America and the Caribbean,23,Belize,84,BZ,BLZ,Belize,BLZ,
+5205,Latin America and the Caribbean,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,
+5205,Latin America and the Caribbean,21,Brazil,76,BR,BRA,Brazil,BRA,
+5205,Latin America and the Caribbean,40,Chile,152,CL,CHL,Chile,CHL,
+5205,Latin America and the Caribbean,44,Colombia,170,CO,COL,Colombia,COL,
+5205,Latin America and the Caribbean,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,
+5205,Latin America and the Caribbean,49,Cuba,192,CU,CUB,Cuba,CUB,
+5205,Latin America and the Caribbean,55,Dominica,212,DM,DMA,Dominica,DMA,
+5205,Latin America and the Caribbean,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,
+5205,Latin America and the Caribbean,58,Ecuador,218,EC,ECU,Ecuador,ECU,
+5205,Latin America and the Caribbean,60,El Salvador,222,SV,SLV,El Salvador,SLV,
+5205,Latin America and the Caribbean,86,Grenada,308,GD,GRD,Grenada,GRD,
+5205,Latin America and the Caribbean,89,Guatemala,320,GT,GTM,Guatemala,GTM,
+5205,Latin America and the Caribbean,91,Guyana,328,GY,GUY,Guyana,GUY,
+5205,Latin America and the Caribbean,93,Haiti,332,HT,HTI,Haiti,HTI,
+5205,Latin America and the Caribbean,95,Honduras,340,HN,HND,Honduras,HND,
+5205,Latin America and the Caribbean,109,Jamaica,388,JM,JAM,Jamaica,JAM,
+5205,Latin America and the Caribbean,138,Mexico,484,MX,MEX,Mexico,MEX,
+5205,Latin America and the Caribbean,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,
+5205,Latin America and the Caribbean,166,Panama,591,PA,PAN,Panama,PAN,
+5205,Latin America and the Caribbean,169,Paraguay,600,PY,PRY,Paraguay,PRY,
+5205,Latin America and the Caribbean,170,Peru,604,PE,PER,Peru,PER,
+5205,Latin America and the Caribbean,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,
+5205,Latin America and the Caribbean,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,
+5205,Latin America and the Caribbean,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,
+5205,Latin America and the Caribbean,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,
+5205,Latin America and the Caribbean,207,Suriname,740,SR,SUR,Suriname,SUR,
+5205,Latin America and the Caribbean,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,
+5205,Latin America and the Caribbean,234,Uruguay,858,UY,URY,Uruguay,URY,
+5205,Latin America and the Caribbean,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,
+5801,Least Developed Countries,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Least Developed Countries
+5801,Least Developed Countries,7,Angola,24,AO,AGO,Angola,AGO,Least Developed Countries
+5801,Least Developed Countries,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Least Developed Countries
+5801,Least Developed Countries,53,Benin,204,BJ,BEN,Benin,BEN,Least Developed Countries
+5801,Least Developed Countries,18,Bhutan,64,BT,BTN,Bhutan,BTN,Least Developed Countries
+5801,Least Developed Countries,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Least Developed Countries
+5801,Least Developed Countries,29,Burundi,108,BI,BDI,Burundi,BDI,Least Developed Countries
+5801,Least Developed Countries,115,Cambodia,116,KH,KHM,Cambodia,KHM,Least Developed Countries
+5801,Least Developed Countries,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Least Developed Countries
+5801,Least Developed Countries,39,Chad,148,TD,TCD,Chad,TCD,Least Developed Countries
+5801,Least Developed Countries,45,Comoros,174,KM,COM,Comoros,COM,Least Developed Countries
+5801,Least Developed Countries,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Least Developed Countries
+5801,Least Developed Countries,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Least Developed Countries
+5801,Least Developed Countries,178,Eritrea,232,ER,ERI,Eritrea,ERI,Least Developed Countries
+5801,Least Developed Countries,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Least Developed Countries
+5801,Least Developed Countries,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Least Developed Countries
+5801,Least Developed Countries,75,Gambia,270,GM,GMB,Gambia,GMB,Least Developed Countries
+5801,Least Developed Countries,90,Guinea,324,GN,GIN,Guinea,GIN,Least Developed Countries
+5801,Least Developed Countries,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Least Developed Countries
+5801,Least Developed Countries,93,Haiti,332,HT,HTI,Haiti,HTI,Least Developed Countries
+5801,Least Developed Countries,83,Kiribati,296,KI,KIR,Kiribati,KIR,Least Developed Countries
+5801,Least Developed Countries,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Least Developed Countries
+5801,Least Developed Countries,122,Lesotho,426,LS,LSO,Lesotho,LSO,Least Developed Countries
+5801,Least Developed Countries,123,Liberia,430,LR,LBR,Liberia,LBR,Least Developed Countries
+5801,Least Developed Countries,129,Madagascar,450,MG,MDG,Madagascar,MDG,Least Developed Countries
+5801,Least Developed Countries,130,Malawi,454,MW,MWI,Malawi,MWI,Least Developed Countries
+5801,Least Developed Countries,133,Mali,466,ML,MLI,Mali,MLI,Least Developed Countries
+5801,Least Developed Countries,136,Mauritania,478,MR,MRT,Mauritania,MRT,Least Developed Countries
+5801,Least Developed Countries,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Least Developed Countries
+5801,Least Developed Countries,28,Myanmar,104,MM,MMR,Myanmar,MMR,Least Developed Countries
+5801,Least Developed Countries,149,Nepal,524,NP,NPL,Nepal,NPL,Least Developed Countries
+5801,Least Developed Countries,158,Niger,562,NE,NER,Niger,NER,Least Developed Countries
+5801,Least Developed Countries,184,Rwanda,646,RW,RWA,Rwanda,RWA,Least Developed Countries
+5801,Least Developed Countries,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Least Developed Countries
+5801,Least Developed Countries,195,Senegal,686,SN,SEN,Senegal,SEN,Least Developed Countries
+5801,Least Developed Countries,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Least Developed Countries
+5801,Least Developed Countries,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Least Developed Countries
+5801,Least Developed Countries,201,Somalia,706,SO,SOM,Somalia,SOM,Least Developed Countries
+5801,Least Developed Countries,277,South Sudan,728,SS,SSD,Sudan,SDN,Least Developed Countries
+5801,Least Developed Countries,276,Sudan,729,SD,SDN,Sudan,SDN,Least Developed Countries
+5801,Least Developed Countries,206,Sudan (former),736,SD,,Sudan,SDN,Least Developed Countries
+5801,Least Developed Countries,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Least Developed Countries
+5801,Least Developed Countries,217,Togo,768,TG,TGO,Togo,TGO,Least Developed Countries
+5801,Least Developed Countries,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Least Developed Countries
+5801,Least Developed Countries,226,Uganda,800,UG,UGA,Uganda,UGA,Least Developed Countries
+5801,Least Developed Countries,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Least Developed Countries
+5801,Least Developed Countries,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Least Developed Countries
+5801,Least Developed Countries,249,Yemen,887,YE,YEM,Yemen,YEM,Least Developed Countries
+5801,Least Developed Countries,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,Least Developed Countries
+5801,Least Developed Countries,247,Yemen Dem,720,,,Yemen Dem,,Least Developed Countries
+5801,Least Developed Countries,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Least Developed Countries
+5858,Low income economies,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Income
+5858,Low income economies,53,Benin,204,BJ,BEN,Benin,BEN,Income
+5858,Low income economies,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Income
+5858,Low income economies,29,Burundi,108,BI,BDI,Burundi,BDI,Income
+5858,Low income economies,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Income
+5858,Low income economies,39,Chad,148,TD,TCD,Chad,TCD,Income
+5858,Low income economies,45,Comoros,174,KM,COM,Comoros,COM,Income
+5858,Low income economies,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,Income
+5858,Low income economies,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Income
+5858,Low income economies,178,Eritrea,232,ER,ERI,Eritrea,ERI,Income
+5858,Low income economies,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Income
+5858,Low income economies,75,Gambia,270,GM,GMB,Gambia,GMB,Income
+5858,Low income economies,90,Guinea,324,GN,GIN,Guinea,GIN,Income
+5858,Low income economies,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Income
+5858,Low income economies,93,Haiti,332,HT,HTI,Haiti,HTI,Income
+5858,Low income economies,123,Liberia,430,LR,LBR,Liberia,LBR,Income
+5858,Low income economies,129,Madagascar,450,MG,MDG,Madagascar,MDG,Income
+5858,Low income economies,130,Malawi,454,MW,MWI,Malawi,MWI,Income
+5858,Low income economies,133,Mali,466,ML,MLI,Mali,MLI,Income
+5858,Low income economies,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Income
+5858,Low income economies,149,Nepal,524,NP,NPL,Nepal,NPL,Income
+5858,Low income economies,158,Niger,562,NE,NER,Niger,NER,Income
+5858,Low income economies,184,Rwanda,646,RW,RWA,Rwanda,RWA,Income
+5858,Low income economies,195,Senegal,686,SN,SEN,Senegal,SEN,Income
+5858,Low income economies,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Income
+5858,Low income economies,201,Somalia,706,SO,SOM,Somalia,SOM,Income
+5858,Low income economies,277,South Sudan,728,SS,SSD,Sudan,SDN,Income
+5858,Low income economies,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,Income
+5858,Low income economies,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Income
+5858,Low income economies,217,Togo,768,TG,TGO,Togo,TGO,Income
+5858,Low income economies,226,Uganda,800,UG,UGA,Uganda,UGA,Income
+5858,Low income economies,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Income
+5858,Low income economies,249,Yemen,887,YE,YEM,Yemen,YEM,Income
+5858,Low income economies,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Income
+5815,Low Income Food Deficit Countries,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Income
+5815,Low Income Food Deficit Countries,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Income
+5815,Low Income Food Deficit Countries,53,Benin,204,BJ,BEN,Benin,BEN,Income
+5815,Low Income Food Deficit Countries,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Income
+5815,Low Income Food Deficit Countries,29,Burundi,108,BI,BDI,Burundi,BDI,Income
+5815,Low Income Food Deficit Countries,32,Cameroon,120,CM,CMR,Cameroon,CMR,Income
+5815,Low Income Food Deficit Countries,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Income
+5815,Low Income Food Deficit Countries,39,Chad,148,TD,TCD,Chad,TCD,Income
+5815,Low Income Food Deficit Countries,45,Comoros,174,KM,COM,Comoros,COM,Income
+5815,Low Income Food Deficit Countries,46,Congo,178,CG,COG,Congo,COG,Income
+5815,Low Income Food Deficit Countries,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Income
+5815,Low Income Food Deficit Countries,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,Income
+5815,Low Income Food Deficit Countries,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Income
+5815,Low Income Food Deficit Countries,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Income
+5815,Low Income Food Deficit Countries,178,Eritrea,232,ER,ERI,Eritrea,ERI,Income
+5815,Low Income Food Deficit Countries,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Income
+5815,Low Income Food Deficit Countries,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Income
+5815,Low Income Food Deficit Countries,75,Gambia,270,GM,GMB,Gambia,GMB,Income
+5815,Low Income Food Deficit Countries,81,Ghana,288,GH,GHA,Ghana,GHA,Income
+5815,Low Income Food Deficit Countries,90,Guinea,324,GN,GIN,Guinea,GIN,Income
+5815,Low Income Food Deficit Countries,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Income
+5815,Low Income Food Deficit Countries,93,Haiti,332,HT,HTI,Haiti,HTI,Income
+5815,Low Income Food Deficit Countries,100,India,356,IN,IND,India,IND,Income
+5815,Low Income Food Deficit Countries,114,Kenya,404,KE,KEN,Kenya,KEN,Income
+5815,Low Income Food Deficit Countries,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Income
+5815,Low Income Food Deficit Countries,122,Lesotho,426,LS,LSO,Lesotho,LSO,Income
+5815,Low Income Food Deficit Countries,123,Liberia,430,LR,LBR,Liberia,LBR,Income
+5815,Low Income Food Deficit Countries,129,Madagascar,450,MG,MDG,Madagascar,MDG,Income
+5815,Low Income Food Deficit Countries,130,Malawi,454,MW,MWI,Malawi,MWI,Income
+5815,Low Income Food Deficit Countries,133,Mali,466,ML,MLI,Mali,MLI,Income
+5815,Low Income Food Deficit Countries,136,Mauritania,478,MR,MRT,Mauritania,MRT,Income
+5815,Low Income Food Deficit Countries,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Income
+5815,Low Income Food Deficit Countries,149,Nepal,524,NP,NPL,Nepal,NPL,Income
+5815,Low Income Food Deficit Countries,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,Income
+5815,Low Income Food Deficit Countries,158,Niger,562,NE,NER,Niger,NER,Income
+5815,Low Income Food Deficit Countries,184,Rwanda,646,RW,RWA,Rwanda,RWA,Income
+5815,Low Income Food Deficit Countries,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Income
+5815,Low Income Food Deficit Countries,195,Senegal,686,SN,SEN,Senegal,SEN,Income
+5815,Low Income Food Deficit Countries,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Income
+5815,Low Income Food Deficit Countries,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Income
+5815,Low Income Food Deficit Countries,201,Somalia,706,SO,SOM,Somalia,SOM,Income
+5815,Low Income Food Deficit Countries,277,South Sudan,728,SS,SSD,Sudan,SDN,Income
+5815,Low Income Food Deficit Countries,276,Sudan,729,SD,SDN,Sudan,SDN,Income
+5815,Low Income Food Deficit Countries,206,Sudan (former),736,SD,,Sudan,SDN,Income
+5815,Low Income Food Deficit Countries,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,Income
+5815,Low Income Food Deficit Countries,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Income
+5815,Low Income Food Deficit Countries,217,Togo,768,TG,TGO,Togo,TGO,Income
+5815,Low Income Food Deficit Countries,226,Uganda,800,UG,UGA,Uganda,UGA,Income
+5815,Low Income Food Deficit Countries,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Income
+5815,Low Income Food Deficit Countries,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Income
+5815,Low Income Food Deficit Countries,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,Income
+5815,Low Income Food Deficit Countries,249,Yemen,887,YE,YEM,Yemen,YEM,Income
+5815,Low Income Food Deficit Countries,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,Income
+5815,Low Income Food Deficit Countries,247,Yemen Dem,720,,,Yemen Dem,,Income
+5815,Low Income Food Deficit Countries,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Income
+5859,Lower-middle-income economies,7,Angola,24,AO,AGO,Angola,AGO,Income
+5859,Lower-middle-income economies,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Income
+5859,Lower-middle-income economies,18,Bhutan,64,BT,BTN,Bhutan,BTN,Income
+5859,Lower-middle-income economies,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,Income
+5859,Lower-middle-income economies,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,Income
+5859,Lower-middle-income economies,115,Cambodia,116,KH,KHM,Cambodia,KHM,Income
+5859,Lower-middle-income economies,32,Cameroon,120,CM,CMR,Cameroon,CMR,Income
+5859,Lower-middle-income economies,46,Congo,178,CG,COG,Congo,COG,Income
+5859,Lower-middle-income economies,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Income
+5859,Lower-middle-income economies,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Income
+5859,Lower-middle-income economies,59,Egypt,818,EG,EGY,Egypt,EGY,Income
+5859,Lower-middle-income economies,60,El Salvador,222,SV,SLV,El Salvador,SLV,Income
+5859,Lower-middle-income economies,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Income
+5859,Lower-middle-income economies,73,Georgia,268,GE,GEO,Georgia,GEO,Income
+5859,Lower-middle-income economies,81,Ghana,288,GH,GHA,Ghana,GHA,Income
+5859,Lower-middle-income economies,95,Honduras,340,HN,HND,Honduras,HND,Income
+5859,Lower-middle-income economies,100,India,356,IN,IND,India,IND,Income
+5859,Lower-middle-income economies,101,Indonesia,360,ID,IDN,Indonesia,IDN,Income
+5859,Lower-middle-income economies,114,Kenya,404,KE,KEN,Kenya,KEN,Income
+5859,Lower-middle-income economies,83,Kiribati,296,KI,KIR,Kiribati,KIR,Income
+5859,Lower-middle-income economies,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Income
+5859,Lower-middle-income economies,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Income
+5859,Lower-middle-income economies,122,Lesotho,426,LS,LSO,Lesotho,LSO,Income
+5859,Lower-middle-income economies,136,Mauritania,478,MR,MRT,Mauritania,MRT,Income
+5859,Lower-middle-income economies,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,Income
+5859,Lower-middle-income economies,141,Mongolia,496,MN,MNG,Mongolia,MNG,Income
+5859,Lower-middle-income economies,143,Morocco,504,MA,MAR,Morocco,MAR,Income
+5859,Lower-middle-income economies,28,Myanmar,104,MM,MMR,Myanmar,MMR,Income
+5859,Lower-middle-income economies,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,Income
+5859,Lower-middle-income economies,159,Nigeria,566,NG,NGA,Nigeria,NGA,Income
+5859,Lower-middle-income economies,165,Pakistan,586,PK,PAK,Pakistan,PAK,Income
+5859,Lower-middle-income economies,299,Palestine,275,,PSE,Palestine,PSE,Income
+5859,Lower-middle-income economies,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,Income
+5859,Lower-middle-income economies,171,Philippines,608,PH,PHL,Philippines,PHL,Income
+5859,Lower-middle-income economies,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,Income
+5859,Lower-middle-income economies,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Income
+5859,Lower-middle-income economies,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Income
+5859,Lower-middle-income economies,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,Income
+5859,Lower-middle-income economies,276,Sudan,729,SD,SDN,Sudan,SDN,Income
+5859,Lower-middle-income economies,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Income
+5859,Lower-middle-income economies,222,Tunisia,788,TN,TUN,Tunisia,TUN,Income
+5859,Lower-middle-income economies,230,Ukraine,804,UA,UKR,Ukraine,UKR,Income
+5859,Lower-middle-income economies,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Income
+5859,Lower-middle-income economies,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Income
+5859,Lower-middle-income economies,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,Income
+5859,Lower-middle-income economies,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Income
+5502,Melanesia,66,Fiji,242,FJ,FJI,Fiji,FJI,Small region
+5502,Melanesia,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,Small region
+5502,Melanesia,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,Small region
+5502,Melanesia,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Small region
+5502,Melanesia,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Small region
+5503,Micronesia,88,Guam,316,GU,GUM,Guam,GUM,Small region
+5503,Micronesia,83,Kiribati,296,KI,KIR,Kiribati,KIR,Small region
+5503,Micronesia,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,Small region
+5503,Micronesia,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,Small region
+5503,Micronesia,617,"Micronesia, unspecified",,,,"Micronesia, unspecified",,Small region
+5503,Micronesia,148,Nauru,520,NR,NRU,Nauru,NRU,Small region
+5503,Micronesia,163,Northern Mariana Islands,580,MP,MNP,Northern Mariana Islands,MNP,Small region
+5503,Micronesia,164,Pacific Islands Trust Territory,582,,164,Pacific Islands Trust Territory,164,Small region
+5503,Micronesia,180,Palau,585,PW,PLW,Palau,PLW,Small region
+5102,Middle Africa,7,Angola,24,AO,AGO,Angola,AGO,Small region
+5102,Middle Africa,32,Cameroon,120,CM,CMR,Cameroon,CMR,Small region
+5102,Middle Africa,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Small region
+5102,Middle Africa,39,Chad,148,TD,TCD,Chad,TCD,Small region
+5102,Middle Africa,46,Congo,178,CG,COG,Congo,COG,Small region
+5102,Middle Africa,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Small region
+5102,Middle Africa,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,Small region
+5102,Middle Africa,74,Gabon,266,GA,GAB,Gabon,GAB,Small region
+5102,Middle Africa,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Small region
+5817,Net Food Importing Developing Countries,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,7,Angola,24,AO,AGO,Angola,AGO,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,14,Barbados,52,BB,BRB,Barbados,BRB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,53,Benin,204,BJ,BEN,Benin,BEN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,18,Bhutan,64,BT,BTN,Bhutan,BTN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,20,Botswana,72,BW,BWA,Botswana,BWA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,29,Burundi,108,BI,BDI,Burundi,BDI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,115,Cambodia,116,KH,KHM,Cambodia,KHM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,39,Chad,148,TD,TCD,Chad,TCD,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,45,Comoros,174,KM,COM,Comoros,COM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,49,Cuba,192,CU,CUB,Cuba,CUB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,55,Dominica,212,DM,DMA,Dominica,DMA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,59,Egypt,818,EG,EGY,Egypt,EGY,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,60,El Salvador,222,SV,SLV,El Salvador,SLV,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,178,Eritrea,232,ER,ERI,Eritrea,ERI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,74,Gabon,266,GA,GAB,Gabon,GAB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,75,Gambia,270,GM,GMB,Gambia,GMB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,86,Grenada,308,GD,GRD,Grenada,GRD,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,90,Guinea,324,GN,GIN,Guinea,GIN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,93,Haiti,332,HT,HTI,Haiti,HTI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,95,Honduras,340,HN,HND,Honduras,HND,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,109,Jamaica,388,JM,JAM,Jamaica,JAM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,112,Jordan,400,JO,JOR,Jordan,JOR,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,114,Kenya,404,KE,KEN,Kenya,KEN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,83,Kiribati,296,KI,KIR,Kiribati,KIR,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,122,Lesotho,426,LS,LSO,Lesotho,LSO,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,123,Liberia,430,LR,LBR,Liberia,LBR,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,129,Madagascar,450,MG,MDG,Madagascar,MDG,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,130,Malawi,454,MW,MWI,Malawi,MWI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,132,Maldives,462,MV,MDV,Maldives,MDV,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,133,Mali,466,ML,MLI,Mali,MLI,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,136,Mauritania,478,MR,MRT,Mauritania,MRT,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,137,Mauritius,480,MU,MUS,Mauritius,MUS,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,141,Mongolia,496,MN,MNG,Mongolia,MNG,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,143,Morocco,504,MA,MAR,Morocco,MAR,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,28,Myanmar,104,MM,MMR,Myanmar,MMR,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,147,Namibia,516,NA,NAM,Namibia,NAM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,149,Nepal,524,NP,NPL,Nepal,NPL,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,158,Niger,562,NE,NER,Niger,NER,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,165,Pakistan,586,PK,PAK,Pakistan,PAK,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,170,Peru,604,PE,PER,Peru,PER,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,184,Rwanda,646,RW,RWA,Rwanda,RWA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,195,Senegal,686,SN,SEN,Senegal,SEN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,201,Somalia,706,SO,SOM,Somalia,SOM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,277,South Sudan,728,SS,SSD,Sudan,SDN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,276,Sudan,729,SD,SDN,Sudan,SDN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,206,Sudan (former),736,SD,,Sudan,SDN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,217,Togo,768,TG,TGO,Togo,TGO,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,222,Tunisia,788,TN,TUN,Tunisia,TUN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,226,Uganda,800,UG,UGA,Uganda,UGA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,249,Yemen,887,YE,YEM,Yemen,YEM,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,247,Yemen Dem,720,,,Yemen Dem,,Net Food Importing Developing Countries
+5817,Net Food Importing Developing Countries,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Net Food Importing Developing Countries
+5849,Non-Annex I countries,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Annex I countries
+5849,Non-Annex I countries,3,Albania,8,AL,ALB,Albania,ALB,Annex I countries
+5849,Non-Annex I countries,4,Algeria,12,DZ,DZA,Algeria,DZA,Annex I countries
+5849,Non-Annex I countries,6,Andorra,20,AD,AND,Andorra,AND,Annex I countries
+5849,Non-Annex I countries,7,Angola,24,AO,AGO,Angola,AGO,Annex I countries
+5849,Non-Annex I countries,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,Annex I countries
+5849,Non-Annex I countries,9,Argentina,32,AR,ARG,Argentina,ARG,Annex I countries
+5849,Non-Annex I countries,1,Armenia,51,AM,ARM,Armenia,ARM,Annex I countries
+5849,Non-Annex I countries,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,Annex I countries
+5849,Non-Annex I countries,12,Bahamas,44,BS,BHS,Bahamas,BHS,Annex I countries
+5849,Non-Annex I countries,13,Bahrain,48,BH,BHR,Bahrain,BHR,Annex I countries
+5849,Non-Annex I countries,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Annex I countries
+5849,Non-Annex I countries,14,Barbados,52,BB,BRB,Barbados,BRB,Annex I countries
+5849,Non-Annex I countries,23,Belize,84,BZ,BLZ,Belize,BLZ,Annex I countries
+5849,Non-Annex I countries,53,Benin,204,BJ,BEN,Benin,BEN,Annex I countries
+5849,Non-Annex I countries,18,Bhutan,64,BT,BTN,Bhutan,BTN,Annex I countries
+5849,Non-Annex I countries,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,Annex I countries
+5849,Non-Annex I countries,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,Annex I countries
+5849,Non-Annex I countries,20,Botswana,72,BW,BWA,Botswana,BWA,Annex I countries
+5849,Non-Annex I countries,21,Brazil,76,BR,BRA,Brazil,BRA,Annex I countries
+5849,Non-Annex I countries,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,Annex I countries
+5849,Non-Annex I countries,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Annex I countries
+5849,Non-Annex I countries,29,Burundi,108,BI,BDI,Burundi,BDI,Annex I countries
+5849,Non-Annex I countries,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,Annex I countries
+5849,Non-Annex I countries,115,Cambodia,116,KH,KHM,Cambodia,KHM,Annex I countries
+5849,Non-Annex I countries,32,Cameroon,120,CM,CMR,Cameroon,CMR,Annex I countries
+5849,Non-Annex I countries,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,Annex I countries
+5849,Non-Annex I countries,39,Chad,148,TD,TCD,Chad,TCD,Annex I countries
+5849,Non-Annex I countries,40,Chile,152,CL,CHL,Chile,CHL,Annex I countries
+5849,Non-Annex I countries,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,Annex I countries
+5849,Non-Annex I countries,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,Annex I countries
+5849,Non-Annex I countries,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,Annex I countries
+5849,Non-Annex I countries,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,Annex I countries
+5849,Non-Annex I countries,44,Colombia,170,CO,COL,Colombia,COL,Annex I countries
+5849,Non-Annex I countries,45,Comoros,174,KM,COM,Comoros,COM,Annex I countries
+5849,Non-Annex I countries,46,Congo,178,CG,COG,Congo,COG,Annex I countries
+5849,Non-Annex I countries,47,Cook Islands,184,CK,COK,Cook Islands,COK,Annex I countries
+5849,Non-Annex I countries,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,Annex I countries
+5849,Non-Annex I countries,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Annex I countries
+5849,Non-Annex I countries,49,Cuba,192,CU,CUB,Cuba,CUB,Annex I countries
+5849,Non-Annex I countries,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,Annex I countries
+5849,Non-Annex I countries,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,Annex I countries
+5849,Non-Annex I countries,72,Djibouti,262,DJ,DJI,Djibouti,DJI,Annex I countries
+5849,Non-Annex I countries,55,Dominica,212,DM,DMA,Dominica,DMA,Annex I countries
+5849,Non-Annex I countries,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,Annex I countries
+5849,Non-Annex I countries,58,Ecuador,218,EC,ECU,Ecuador,ECU,Annex I countries
+5849,Non-Annex I countries,59,Egypt,818,EG,EGY,Egypt,EGY,Annex I countries
+5849,Non-Annex I countries,60,El Salvador,222,SV,SLV,El Salvador,SLV,Annex I countries
+5849,Non-Annex I countries,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,Annex I countries
+5849,Non-Annex I countries,178,Eritrea,232,ER,ERI,Eritrea,ERI,Annex I countries
+5849,Non-Annex I countries,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Annex I countries
+5849,Non-Annex I countries,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,Annex I countries
+5849,Non-Annex I countries,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,Annex I countries
+5849,Non-Annex I countries,66,Fiji,242,FJ,FJI,Fiji,FJI,Annex I countries
+5849,Non-Annex I countries,74,Gabon,266,GA,GAB,Gabon,GAB,Annex I countries
+5849,Non-Annex I countries,75,Gambia,270,GM,GMB,Gambia,GMB,Annex I countries
+5849,Non-Annex I countries,73,Georgia,268,GE,GEO,Georgia,GEO,Annex I countries
+5849,Non-Annex I countries,81,Ghana,288,GH,GHA,Ghana,GHA,Annex I countries
+5849,Non-Annex I countries,86,Grenada,308,GD,GRD,Grenada,GRD,Annex I countries
+5849,Non-Annex I countries,89,Guatemala,320,GT,GTM,Guatemala,GTM,Annex I countries
+5849,Non-Annex I countries,90,Guinea,324,GN,GIN,Guinea,GIN,Annex I countries
+5849,Non-Annex I countries,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Annex I countries
+5849,Non-Annex I countries,91,Guyana,328,GY,GUY,Guyana,GUY,Annex I countries
+5849,Non-Annex I countries,93,Haiti,332,HT,HTI,Haiti,HTI,Annex I countries
+5849,Non-Annex I countries,95,Honduras,340,HN,HND,Honduras,HND,Annex I countries
+5849,Non-Annex I countries,100,India,356,IN,IND,India,IND,Annex I countries
+5849,Non-Annex I countries,101,Indonesia,360,ID,IDN,Indonesia,IDN,Annex I countries
+5849,Non-Annex I countries,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,Annex I countries
+5849,Non-Annex I countries,103,Iraq,368,IQ,IRQ,Iraq,IRQ,Annex I countries
+5849,Non-Annex I countries,105,Israel,376,IL,ISR,Israel,ISR,Annex I countries
+5849,Non-Annex I countries,109,Jamaica,388,JM,JAM,Jamaica,JAM,Annex I countries
+5849,Non-Annex I countries,112,Jordan,400,JO,JOR,Jordan,JOR,Annex I countries
+5849,Non-Annex I countries,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,Annex I countries
+5849,Non-Annex I countries,114,Kenya,404,KE,KEN,Kenya,KEN,Annex I countries
+5849,Non-Annex I countries,83,Kiribati,296,KI,KIR,Kiribati,KIR,Annex I countries
+5849,Non-Annex I countries,118,Kuwait,414,KW,KWT,Kuwait,KWT,Annex I countries
+5849,Non-Annex I countries,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,Annex I countries
+5849,Non-Annex I countries,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Annex I countries
+5849,Non-Annex I countries,121,Lebanon,422,LB,LBN,Lebanon,LBN,Annex I countries
+5849,Non-Annex I countries,122,Lesotho,426,LS,LSO,Lesotho,LSO,Annex I countries
+5849,Non-Annex I countries,123,Liberia,430,LR,LBR,Liberia,LBR,Annex I countries
+5849,Non-Annex I countries,124,Libya,434,LY,LBY,Libya,LBY,Annex I countries
+5849,Non-Annex I countries,129,Madagascar,450,MG,MDG,Madagascar,MDG,Annex I countries
+5849,Non-Annex I countries,130,Malawi,454,MW,MWI,Malawi,MWI,Annex I countries
+5849,Non-Annex I countries,131,Malaysia,458,MY,MYS,Malaysia,MYS,Annex I countries
+5849,Non-Annex I countries,132,Maldives,462,MV,MDV,Maldives,MDV,Annex I countries
+5849,Non-Annex I countries,133,Mali,466,ML,MLI,Mali,MLI,Annex I countries
+5849,Non-Annex I countries,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,Annex I countries
+5849,Non-Annex I countries,136,Mauritania,478,MR,MRT,Mauritania,MRT,Annex I countries
+5849,Non-Annex I countries,137,Mauritius,480,MU,MUS,Mauritius,MUS,Annex I countries
+5849,Non-Annex I countries,138,Mexico,484,MX,MEX,Mexico,MEX,Annex I countries
+5849,Non-Annex I countries,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,Annex I countries
+5849,Non-Annex I countries,141,Mongolia,496,MN,MNG,Mongolia,MNG,Annex I countries
+5849,Non-Annex I countries,273,Montenegro,499,ME,MNE,Montenegro,MNE,Annex I countries
+5849,Non-Annex I countries,143,Morocco,504,MA,MAR,Morocco,MAR,Annex I countries
+5849,Non-Annex I countries,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,Annex I countries
+5849,Non-Annex I countries,28,Myanmar,104,MM,MMR,Myanmar,MMR,Annex I countries
+5849,Non-Annex I countries,147,Namibia,516,NA,NAM,Namibia,NAM,Annex I countries
+5849,Non-Annex I countries,148,Nauru,520,NR,NRU,Nauru,NRU,Annex I countries
+5849,Non-Annex I countries,149,Nepal,524,NP,NPL,Nepal,NPL,Annex I countries
+5849,Non-Annex I countries,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,Annex I countries
+5849,Non-Annex I countries,158,Niger,562,NE,NER,Niger,NER,Annex I countries
+5849,Non-Annex I countries,159,Nigeria,566,NG,NGA,Nigeria,NGA,Annex I countries
+5849,Non-Annex I countries,160,Niue,570,NU,NIU,Niue,NIU,Annex I countries
+5849,Non-Annex I countries,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,Annex I countries
+5849,Non-Annex I countries,221,Oman,512,OM,OMN,Oman,OMN,Annex I countries
+5849,Non-Annex I countries,165,Pakistan,586,PK,PAK,Pakistan,PAK,Annex I countries
+5849,Non-Annex I countries,180,Palau,585,PW,PLW,Palau,PLW,Annex I countries
+5849,Non-Annex I countries,166,Panama,591,PA,PAN,Panama,PAN,Annex I countries
+5849,Non-Annex I countries,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,Annex I countries
+5849,Non-Annex I countries,169,Paraguay,600,PY,PRY,Paraguay,PRY,Annex I countries
+5849,Non-Annex I countries,170,Peru,604,PE,PER,Peru,PER,Annex I countries
+5849,Non-Annex I countries,171,Philippines,608,PH,PHL,Philippines,PHL,Annex I countries
+5849,Non-Annex I countries,179,Qatar,634,QA,QAT,Qatar,QAT,Annex I countries
+5849,Non-Annex I countries,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,Annex I countries
+5849,Non-Annex I countries,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,Annex I countries
+5849,Non-Annex I countries,184,Rwanda,646,RW,RWA,Rwanda,RWA,Annex I countries
+5849,Non-Annex I countries,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,Annex I countries
+5849,Non-Annex I countries,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,Annex I countries
+5849,Non-Annex I countries,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,Annex I countries
+5849,Non-Annex I countries,244,Samoa,882,WS,WSM,Samoa,WSM,Annex I countries
+5849,Non-Annex I countries,192,San Marino,674,SM,SMR,San Marino,SMR,Annex I countries
+5849,Non-Annex I countries,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Annex I countries
+5849,Non-Annex I countries,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,Annex I countries
+5849,Non-Annex I countries,195,Senegal,686,SN,SEN,Senegal,SEN,Annex I countries
+5849,Non-Annex I countries,272,Serbia,688,RS,SRB,Serbia,SRB,Annex I countries
+5849,Non-Annex I countries,186,Serbia and Montenegro,891,CS,SCG,Serbia and Montenegro,SCG,Annex I countries
+5849,Non-Annex I countries,196,Seychelles,690,SC,SYC,Seychelles,SYC,Annex I countries
+5849,Non-Annex I countries,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Annex I countries
+5849,Non-Annex I countries,200,Singapore,702,SG,SGP,Singapore,SGP,Annex I countries
+5849,Non-Annex I countries,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Annex I countries
+5849,Non-Annex I countries,201,Somalia,706,SO,SOM,Somalia,SOM,Annex I countries
+5849,Non-Annex I countries,202,South Africa,710,ZA,ZAF,South Africa,ZAF,Annex I countries
+5849,Non-Annex I countries,277,South Sudan,728,SS,SSD,Sudan,SDN,Annex I countries
+5849,Non-Annex I countries,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,Annex I countries
+5849,Non-Annex I countries,276,Sudan,729,SD,SDN,Sudan,SDN,Annex I countries
+5849,Non-Annex I countries,206,Sudan (former),736,SD,,Sudan,SDN,Annex I countries
+5849,Non-Annex I countries,207,Suriname,740,SR,SUR,Suriname,SUR,Annex I countries
+5849,Non-Annex I countries,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,Annex I countries
+5849,Non-Annex I countries,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,Annex I countries
+5849,Non-Annex I countries,216,Thailand,764,TH,THA,Thailand,THA,Annex I countries
+5849,Non-Annex I countries,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Annex I countries
+5849,Non-Annex I countries,217,Togo,768,TG,TGO,Togo,TGO,Annex I countries
+5849,Non-Annex I countries,219,Tonga,776,TO,TON,Tonga,TON,Annex I countries
+5849,Non-Annex I countries,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,Annex I countries
+5849,Non-Annex I countries,222,Tunisia,788,TN,TUN,Tunisia,TUN,Annex I countries
+5849,Non-Annex I countries,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,Annex I countries
+5849,Non-Annex I countries,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Annex I countries
+5849,Non-Annex I countries,226,Uganda,800,UG,UGA,Uganda,UGA,Annex I countries
+5849,Non-Annex I countries,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,Annex I countries
+5849,Non-Annex I countries,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,Annex I countries
+5849,Non-Annex I countries,234,Uruguay,858,UY,URY,Uruguay,URY,Annex I countries
+5849,Non-Annex I countries,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,Annex I countries
+5849,Non-Annex I countries,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Annex I countries
+5849,Non-Annex I countries,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,Annex I countries
+5849,Non-Annex I countries,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,Annex I countries
+5849,Non-Annex I countries,249,Yemen,887,YE,YEM,Yemen,YEM,Annex I countries
+5849,Non-Annex I countries,248,Yugoslav SFR,890,,,Yugoslav SFR,YUG,Annex I countries
+5849,Non-Annex I countries,251,Zambia,894,ZM,ZMB,Zambia,ZMB,Annex I countries
+5849,Non-Annex I countries,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,Annex I countries
+429,North Africa (exc Sudan),4,Algeria,12,DZ,DZA,Algeria,DZA,
+429,North Africa (exc Sudan),59,Egypt,818,EG,EGY,Egypt,EGY,
+429,North Africa (exc Sudan),124,Libya,434,LY,LBY,Libya,LBY,
+429,North Africa (exc Sudan),143,Morocco,504,MA,MAR,Morocco,MAR,
+429,North Africa (exc Sudan),222,Tunisia,788,TN,TUN,Tunisia,TUN,
+5103,Northern Africa,4,Algeria,12,DZ,DZA,Algeria,DZA,Small region
+5103,Northern Africa,59,Egypt,818,EG,EGY,Egypt,EGY,Small region
+5103,Northern Africa,124,Libya,434,LY,LBY,Libya,LBY,Small region
+5103,Northern Africa,143,Morocco,504,MA,MAR,Morocco,MAR,Small region
+5103,Northern Africa,276,Sudan,729,SD,SDN,Sudan,SDN,Small region
+5103,Northern Africa,206,Sudan (former),736,SD,,Sudan,SDN,Small region
+5103,Northern Africa,222,Tunisia,788,TN,TUN,Tunisia,TUN,Small region
+5103,Northern Africa,205,Western Sahara,732,EH,ESH,Western Sahara,ESH,Small region
+5203,Northern America,17,Bermuda,60,BM,BMU,Bermuda,BMU,Small region
+5203,Northern America,33,Canada,124,CA,CAN,Canada,CAN,Small region
+5203,Northern America,85,Greenland,304,GL,GRL,Greenland,GRL,Small region
+5203,Northern America,190,Saint Pierre and Miquelon,666,PM,SPM,Saint Pierre and Miquelon,SPM,Small region
+5203,Northern America,231,United States of America,840,US,USA,United States of America,USA,Small region
+5208,Northern America and Europe,3,Albania,8,AL,ALB,Albania,ALB,
+5208,Northern America and Europe,6,Andorra,20,AD,AND,Andorra,AND,
+5208,Northern America and Europe,11,Austria,40,AT,AUT,Austria,AUT,
+5208,Northern America and Europe,57,Belarus,112,BY,BLR,Belarus,BLR,
+5208,Northern America and Europe,255,Belgium,56,BE,BEL,Belgium,BEL,
+5208,Northern America and Europe,17,Bermuda,60,BM,BMU,Bermuda,BMU,
+5208,Northern America and Europe,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,
+5208,Northern America and Europe,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,
+5208,Northern America and Europe,33,Canada,124,CA,CAN,Canada,CAN,
+5208,Northern America and Europe,98,Croatia,191,HR,HRV,Croatia,HRV,
+5208,Northern America and Europe,167,Czechia,203,CZ,CZE,Czechia,CZE,
+5208,Northern America and Europe,54,Denmark,208,DK,DNK,Denmark,DNK,
+5208,Northern America and Europe,63,Estonia,233,EE,EST,Estonia,EST,
+5208,Northern America and Europe,67,Finland,246,FI,FIN,Finland,FIN,
+5208,Northern America and Europe,68,France,250,FR,FRA,France,FRA,
+5208,Northern America and Europe,79,Germany,276,DE,DEU,Germany,DEU,
+5208,Northern America and Europe,84,Greece,300,GR,GRC,Greece,GRC,
+5208,Northern America and Europe,85,Greenland,304,GL,GRL,Greenland,GRL,
+5208,Northern America and Europe,97,Hungary,348,HU,HUN,Hungary,HUN,
+5208,Northern America and Europe,99,Iceland,352,IS,ISL,Iceland,ISL,
+5208,Northern America and Europe,104,Ireland,372,IE,IRL,Ireland,IRL,
+5208,Northern America and Europe,106,Italy,380,IT,ITA,Italy,ITA,
+5208,Northern America and Europe,119,Latvia,428,LV,LVA,Latvia,LVA,
+5208,Northern America and Europe,126,Lithuania,440,LT,LTU,Lithuania,LTU,
+5208,Northern America and Europe,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,
+5208,Northern America and Europe,134,Malta,470,MT,MLT,Malta,MLT,
+5208,Northern America and Europe,273,Montenegro,499,ME,MNE,Montenegro,MNE,
+5208,Northern America and Europe,150,Netherlands,528,NL,NLD,Netherlands,NLD,
+5208,Northern America and Europe,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,
+5208,Northern America and Europe,162,Norway,578,NO,NOR,Norway,NOR,
+5208,Northern America and Europe,173,Poland,616,PL,POL,Poland,POL,
+5208,Northern America and Europe,174,Portugal,620,PT,PRT,Portugal,PRT,
+5208,Northern America and Europe,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,
+5208,Northern America and Europe,183,Romania,642,RO,ROU,Romania,ROU,
+5208,Northern America and Europe,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,
+5208,Northern America and Europe,272,Serbia,688,RS,SRB,Serbia,SRB,
+5208,Northern America and Europe,199,Slovakia,703,SK,SVK,Slovakia,SVK,
+5208,Northern America and Europe,198,Slovenia,705,SI,SVN,Slovenia,SVN,
+5208,Northern America and Europe,203,Spain,724,ES,ESP,Spain,ESP,
+5208,Northern America and Europe,210,Sweden,752,SE,SWE,Sweden,SWE,
+5208,Northern America and Europe,211,Switzerland,756,CH,CHE,Switzerland,CHE,
+5208,Northern America and Europe,230,Ukraine,804,UA,UKR,Ukraine,UKR,
+5208,Northern America and Europe,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,
+5208,Northern America and Europe,231,United States of America,840,US,USA,United States of America,USA,
+5402,Northern Europe,284,Åland Islands,248,,ALA,Åland Islands,ALA,Small region
+5402,Northern Europe,259,Channel Islands,830,,CHA,Channel Islands,CHA,Small region
+5402,Northern Europe,54,Denmark,208,DK,DNK,Denmark,DNK,Small region
+5402,Northern Europe,63,Estonia,233,EE,EST,Estonia,EST,Small region
+5402,Northern Europe,64,Faroe Islands,234,FO,FRO,Faroe Islands,FRO,Small region
+5402,Northern Europe,67,Finland,246,FI,FIN,Finland,FIN,Small region
+5402,Northern Europe,99,Iceland,352,IS,ISL,Iceland,ISL,Small region
+5402,Northern Europe,104,Ireland,372,IE,IRL,Ireland,IRL,Small region
+5402,Northern Europe,264,Isle of Man,833,IM,IMN,Isle of Man,IMN,Small region
+5402,Northern Europe,283,Jersey,832,,JEY,Jersey,JEY,Small region
+5402,Northern Europe,119,Latvia,428,LV,LVA,Latvia,LVA,Small region
+5402,Northern Europe,126,Lithuania,440,LT,LTU,Lithuania,LTU,Small region
+5402,Northern Europe,162,Norway,578,NO,NOR,Norway,NOR,Small region
+5402,Northern Europe,260,Svalbard and Jan Mayen Islands,744,SJ,SJM,Svalbard and Jan Mayen Islands,SJM,Small region
+5402,Northern Europe,210,Sweden,752,SE,SWE,Sweden,SWE,Small region
+5402,Northern Europe,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,Small region
+5500,Oceania,5,American Samoa,16,AS,ASM,American Samoa,ASM,Continents
+5500,Oceania,10,Australia,36,AU,AUS,Australia,AUS,Continents
+5500,Oceania,42,Christmas Island,162,CX,CXR,Christmas Island,CXR,Continents
+5500,Oceania,43,Cocos (Keeling) Islands,166,CC,CCK,Cocos (Keeling) Islands,CCK,Continents
+5500,Oceania,47,Cook Islands,184,CK,COK,Cook Islands,COK,Continents
+5500,Oceania,66,Fiji,242,FJ,FJI,Fiji,FJI,Continents
+5500,Oceania,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,Continents
+5500,Oceania,88,Guam,316,GU,GUM,Guam,GUM,Continents
+5500,Oceania,83,Kiribati,296,KI,KIR,Kiribati,KIR,Continents
+5500,Oceania,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,Continents
+5500,Oceania,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,Continents
+5500,Oceania,617,"Micronesia, unspecified",,,,"Micronesia, unspecified",,Continents
+5500,Oceania,148,Nauru,520,NR,NRU,Nauru,NRU,Continents
+5500,Oceania,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,Continents
+5500,Oceania,156,New Zealand,554,NZ,NZL,New Zealand,NZL,Continents
+5500,Oceania,160,Niue,570,NU,NIU,Niue,NIU,Continents
+5500,Oceania,161,Norfolk Island,574,NF,NFK,Norfolk Island,NFK,Continents
+5500,Oceania,163,Northern Mariana Islands,580,MP,MNP,Northern Mariana Islands,MNP,Continents
+5500,Oceania,164,Pacific Islands Trust Territory,582,,164,Pacific Islands Trust Territory,164,Continents
+5500,Oceania,180,Palau,585,PW,PLW,Palau,PLW,Continents
+5500,Oceania,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,Continents
+5500,Oceania,172,Pitcairn Islands,612,PN,PCN,Pitcairn Islands,PCN,Continents
+5500,Oceania,618,"Polynesia, unspecified",,,,"Polynesia, unspecified",,Continents
+5500,Oceania,244,Samoa,882,WS,WSM,Samoa,WSM,Continents
+5500,Oceania,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Continents
+5500,Oceania,218,Tokelau,772,TK,TKL,Tokelau,TKL,Continents
+5500,Oceania,219,Tonga,776,TO,TON,Tonga,TON,Continents
+5500,Oceania,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Continents
+5500,Oceania,232,US Minor Is.,581,UM,UMI,US Minor Is.,UMI,Continents
+5500,Oceania,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Continents
+5500,Oceania,242,Wake Island,,WK,WAK,Wake Island,WAK,Continents
+5500,Oceania,243,Wallis and Futuna Islands,876,WF,WLF,Wallis and Futuna Islands,WLF,Continents
+5807,Oceania excluding Australia and New Zealand,5,American Samoa,16,AS,ASM,American Samoa,ASM,
+5807,Oceania excluding Australia and New Zealand,47,Cook Islands,184,CK,COK,Cook Islands,COK,
+5807,Oceania excluding Australia and New Zealand,66,Fiji,242,FJ,FJI,Fiji,FJI,
+5807,Oceania excluding Australia and New Zealand,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,
+5807,Oceania excluding Australia and New Zealand,83,Kiribati,296,KI,KIR,Kiribati,KIR,
+5807,Oceania excluding Australia and New Zealand,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,
+5807,Oceania excluding Australia and New Zealand,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,
+5807,Oceania excluding Australia and New Zealand,148,Nauru,520,NR,NRU,Nauru,NRU,
+5807,Oceania excluding Australia and New Zealand,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,
+5807,Oceania excluding Australia and New Zealand,160,Niue,570,NU,NIU,Niue,NIU,
+5807,Oceania excluding Australia and New Zealand,180,Palau,585,PW,PLW,Palau,PLW,
+5807,Oceania excluding Australia and New Zealand,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,
+5807,Oceania excluding Australia and New Zealand,244,Samoa,882,WS,WSM,Samoa,WSM,
+5807,Oceania excluding Australia and New Zealand,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,
+5807,Oceania excluding Australia and New Zealand,218,Tokelau,772,TK,TKL,Tokelau,TKL,
+5807,Oceania excluding Australia and New Zealand,219,Tonga,776,TO,TON,Tonga,TON,
+5807,Oceania excluding Australia and New Zealand,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,
+5807,Oceania excluding Australia and New Zealand,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,
+5873,OECD,10,Australia,36,AU,AUS,Australia,AUS,OECD
+5873,OECD,11,Austria,40,AT,AUT,Austria,AUT,OECD
+5873,OECD,255,Belgium,56,BE,BEL,Belgium,BEL,OECD
+5873,OECD,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,OECD
+5873,OECD,33,Canada,124,CA,CAN,Canada,CAN,OECD
+5873,OECD,40,Chile,152,CL,CHL,Chile,CHL,OECD
+5873,OECD,167,Czechia,203,CZ,CZE,Czechia,CZE,OECD
+5873,OECD,54,Denmark,208,DK,DNK,Denmark,DNK,OECD
+5873,OECD,63,Estonia,233,EE,EST,Estonia,EST,OECD
+5873,OECD,67,Finland,246,FI,FIN,Finland,FIN,OECD
+5873,OECD,68,France,250,FR,FRA,France,FRA,OECD
+5873,OECD,79,Germany,276,DE,DEU,Germany,DEU,OECD
+5873,OECD,84,Greece,300,GR,GRC,Greece,GRC,OECD
+5873,OECD,97,Hungary,348,HU,HUN,Hungary,HUN,OECD
+5873,OECD,99,Iceland,352,IS,ISL,Iceland,ISL,OECD
+5873,OECD,104,Ireland,372,IE,IRL,Ireland,IRL,OECD
+5873,OECD,105,Israel,376,IL,ISR,Israel,ISR,OECD
+5873,OECD,106,Italy,380,IT,ITA,Italy,ITA,OECD
+5873,OECD,110,Japan,392,JP,JPN,Japan,JPN,OECD
+5873,OECD,119,Latvia,428,LV,LVA,Latvia,LVA,OECD
+5873,OECD,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,OECD
+5873,OECD,138,Mexico,484,MX,MEX,Mexico,MEX,OECD
+5873,OECD,150,Netherlands,528,NL,NLD,Netherlands,NLD,OECD
+5873,OECD,156,New Zealand,554,NZ,NZL,New Zealand,NZL,OECD
+5873,OECD,162,Norway,578,NO,NOR,Norway,NOR,OECD
+5873,OECD,173,Poland,616,PL,POL,Poland,POL,OECD
+5873,OECD,174,Portugal,620,PT,PRT,Portugal,PRT,OECD
+5873,OECD,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,OECD
+5873,OECD,199,Slovakia,703,SK,SVK,Slovakia,SVK,OECD
+5873,OECD,198,Slovenia,705,SI,SVN,Slovenia,SVN,OECD
+5873,OECD,203,Spain,724,ES,ESP,Spain,ESP,OECD
+5873,OECD,210,Sweden,752,SE,SWE,Sweden,SWE,OECD
+5873,OECD,211,Switzerland,756,CH,CHE,Switzerland,CHE,OECD
+5873,OECD,223,Turkey,792,TR,TUR,Turkey,TUR,OECD
+5873,OECD,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,OECD
+5873,OECD,231,United States of America,840,US,USA,United States of America,USA,OECD
+5504,Polynesia,5,American Samoa,16,AS,ASM,American Samoa,ASM,Small region
+5504,Polynesia,47,Cook Islands,184,CK,COK,Cook Islands,COK,Small region
+5504,Polynesia,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,Small region
+5504,Polynesia,160,Niue,570,NU,NIU,Niue,NIU,Small region
+5504,Polynesia,172,Pitcairn Islands,612,PN,PCN,Pitcairn Islands,PCN,Small region
+5504,Polynesia,618,"Polynesia, unspecified",,,,"Polynesia, unspecified",,Small region
+5504,Polynesia,244,Samoa,882,WS,WSM,Samoa,WSM,Small region
+5504,Polynesia,218,Tokelau,772,TK,TKL,Tokelau,TKL,Small region
+5504,Polynesia,219,Tonga,776,TO,TON,Tonga,TON,Small region
+5504,Polynesia,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Small region
+5504,Polynesia,242,Wake Island,,WK,WAK,Wake Island,WAK,Small region
+5504,Polynesia,243,Wallis and Futuna Islands,876,WF,WLF,Wallis and Futuna Islands,WLF,Small region
+5803,Small Island Developing States,5,American Samoa,16,AS,ASM,American Samoa,ASM,Small Island Developing States
+5803,Small Island Developing States,258,Anguilla,660,AI,AIA,Anguilla,AIA,Small Island Developing States
+5803,Small Island Developing States,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,Small Island Developing States
+5803,Small Island Developing States,22,Aruba,533,AW,ABW,Aruba,ABW,Small Island Developing States
+5803,Small Island Developing States,12,Bahamas,44,BS,BHS,Bahamas,BHS,Small Island Developing States
+5803,Small Island Developing States,13,Bahrain,48,BH,BHR,Bahrain,BHR,Small Island Developing States
+5803,Small Island Developing States,14,Barbados,52,BB,BRB,Barbados,BRB,Small Island Developing States
+5803,Small Island Developing States,23,Belize,84,BZ,BLZ,Belize,BLZ,Small Island Developing States
+5803,Small Island Developing States,17,Bermuda,60,BM,BMU,Bermuda,BMU,Small Island Developing States
+5803,Small Island Developing States,239,British Virgin Islands,92,VG,VGB,British Virgin Islands,VGB,Small Island Developing States
+5803,Small Island Developing States,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,Small Island Developing States
+5803,Small Island Developing States,36,Cayman Islands,136,KY,CYM,Cayman Islands,CYM,Small Island Developing States
+5803,Small Island Developing States,45,Comoros,174,KM,COM,Comoros,COM,Small Island Developing States
+5803,Small Island Developing States,47,Cook Islands,184,CK,COK,Cook Islands,COK,Small Island Developing States
+5803,Small Island Developing States,49,Cuba,192,CU,CUB,Cuba,CUB,Small Island Developing States
+5803,Small Island Developing States,279,Curaçao,531,,CUW,Curaçao,CUW,Small Island Developing States
+5803,Small Island Developing States,55,Dominica,212,DM,DMA,Dominica,DMA,Small Island Developing States
+5803,Small Island Developing States,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,Small Island Developing States
+5803,Small Island Developing States,66,Fiji,242,FJ,FJI,Fiji,FJI,Small Island Developing States
+5803,Small Island Developing States,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,Small Island Developing States
+5803,Small Island Developing States,86,Grenada,308,GD,GRD,Grenada,GRD,Small Island Developing States
+5803,Small Island Developing States,87,Guadeloupe,312,GP,GLP,Guadeloupe,GLP,Small Island Developing States
+5803,Small Island Developing States,88,Guam,316,GU,GUM,Guam,GUM,Small Island Developing States
+5803,Small Island Developing States,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Small Island Developing States
+5803,Small Island Developing States,91,Guyana,328,GY,GUY,Guyana,GUY,Small Island Developing States
+5803,Small Island Developing States,93,Haiti,332,HT,HTI,Haiti,HTI,Small Island Developing States
+5803,Small Island Developing States,109,Jamaica,388,JM,JAM,Jamaica,JAM,Small Island Developing States
+5803,Small Island Developing States,83,Kiribati,296,KI,KIR,Kiribati,KIR,Small Island Developing States
+5803,Small Island Developing States,132,Maldives,462,MV,MDV,Maldives,MDV,Small Island Developing States
+5803,Small Island Developing States,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,Small Island Developing States
+5803,Small Island Developing States,135,Martinique,474,MQ,MTQ,Martinique,MTQ,Small Island Developing States
+5803,Small Island Developing States,137,Mauritius,480,MU,MUS,Mauritius,MUS,Small Island Developing States
+5803,Small Island Developing States,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,Small Island Developing States
+5803,Small Island Developing States,142,Montserrat,500,MS,MSR,Montserrat,MSR,Small Island Developing States
+5803,Small Island Developing States,148,Nauru,520,NR,NRU,Nauru,NRU,Small Island Developing States
+5803,Small Island Developing States,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,Small Island Developing States
+5803,Small Island Developing States,160,Niue,570,NU,NIU,Niue,NIU,Small Island Developing States
+5803,Small Island Developing States,163,Northern Mariana Islands,580,MP,MNP,Northern Mariana Islands,MNP,Small Island Developing States
+5803,Small Island Developing States,180,Palau,585,PW,PLW,Palau,PLW,Small Island Developing States
+5803,Small Island Developing States,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,Small Island Developing States
+5803,Small Island Developing States,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,Small Island Developing States
+5803,Small Island Developing States,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,Small Island Developing States
+5803,Small Island Developing States,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,Small Island Developing States
+5803,Small Island Developing States,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,Small Island Developing States
+5803,Small Island Developing States,244,Samoa,882,WS,WSM,Samoa,WSM,Small Island Developing States
+5803,Small Island Developing States,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,Small Island Developing States
+5803,Small Island Developing States,196,Seychelles,690,SC,SYC,Seychelles,SYC,Small Island Developing States
+5803,Small Island Developing States,200,Singapore,702,SG,SGP,Singapore,SGP,Small Island Developing States
+5803,Small Island Developing States,280,Sint Maarten (Dutch Part),534,,SXM,Sint Maarten (Dutch Part),SXM,Small Island Developing States
+5803,Small Island Developing States,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,Small Island Developing States
+5803,Small Island Developing States,207,Suriname,740,SR,SUR,Suriname,SUR,Small Island Developing States
+5803,Small Island Developing States,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Small Island Developing States
+5803,Small Island Developing States,219,Tonga,776,TO,TON,Tonga,TON,Small Island Developing States
+5803,Small Island Developing States,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,Small Island Developing States
+5803,Small Island Developing States,224,Turks and Caicos Islands,796,TC,TCA,Turks and Caicos Islands,TCA,Small Island Developing States
+5803,Small Island Developing States,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Small Island Developing States
+5803,Small Island Developing States,240,United States Virgin Islands,850,VI,VIR,United States Virgin Islands,VIR,Small Island Developing States
+5803,Small Island Developing States,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,Small Island Developing States
+5207,South America,9,Argentina,32,AR,ARG,Argentina,ARG,Small region
+5207,South America,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,Small region
+5207,South America,21,Brazil,76,BR,BRA,Brazil,BRA,Small region
+5207,South America,40,Chile,152,CL,CHL,Chile,CHL,Small region
+5207,South America,44,Colombia,170,CO,COL,Colombia,COL,Small region
+5207,South America,58,Ecuador,218,EC,ECU,Ecuador,ECU,Small region
+5207,South America,65,Falkland Islands (Malvinas),238,FK,FLK,Falkland Islands (Malvinas),FLK,Small region
+5207,South America,69,French Guiana,254,GF,GUF,French Guiana,GUF,Small region
+5207,South America,91,Guyana,328,GY,GUY,Guyana,GUY,Small region
+5207,South America,169,Paraguay,600,PY,PRY,Paraguay,PRY,Small region
+5207,South America,170,Peru,604,PE,PER,Peru,PER,Small region
+5207,South America,207,Suriname,740,SR,SUR,Suriname,SUR,Small region
+5207,South America,234,Uruguay,858,UY,URY,Uruguay,URY,Small region
+5207,South America,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,Small region
+5855,South Asia (exc India),2,Afghanistan,4,AF,AFG,Afghanistan,AFG,
+5855,South Asia (exc India),16,Bangladesh,50,BD,BGD,Bangladesh,BGD,
+5855,South Asia (exc India),18,Bhutan,64,BT,BTN,Bhutan,BTN,
+5855,South Asia (exc India),102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,
+5855,South Asia (exc India),132,Maldives,462,MV,MDV,Maldives,MDV,
+5855,South Asia (exc India),149,Nepal,524,NP,NPL,Nepal,NPL,
+5855,South Asia (exc India),165,Pakistan,586,PK,PAK,Pakistan,PAK,
+5855,South Asia (exc India),38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,
+5304,South-Eastern Asia,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,Small region
+5304,South-Eastern Asia,115,Cambodia,116,KH,KHM,Cambodia,KHM,Small region
+5304,South-Eastern Asia,101,Indonesia,360,ID,IDN,Indonesia,IDN,Small region
+5304,South-Eastern Asia,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,Small region
+5304,South-Eastern Asia,131,Malaysia,458,MY,MYS,Malaysia,MYS,Small region
+5304,South-Eastern Asia,28,Myanmar,104,MM,MMR,Myanmar,MMR,Small region
+5304,South-Eastern Asia,171,Philippines,608,PH,PHL,Philippines,PHL,Small region
+5304,South-Eastern Asia,200,Singapore,702,SG,SGP,Singapore,SGP,Small region
+5304,South-Eastern Asia,216,Thailand,764,TH,THA,Thailand,THA,Small region
+5304,South-Eastern Asia,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,Small region
+5304,South-Eastern Asia,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,Small region
+5104,Southern Africa,20,Botswana,72,BW,BWA,Botswana,BWA,Small region
+5104,Southern Africa,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,Small region
+5104,Southern Africa,122,Lesotho,426,LS,LSO,Lesotho,LSO,Small region
+5104,Southern Africa,147,Namibia,516,NA,NAM,Namibia,NAM,Small region
+5104,Southern Africa,202,South Africa,710,ZA,ZAF,South Africa,ZAF,Small region
+5303,Southern Asia,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,Small region
+5303,Southern Asia,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,Small region
+5303,Southern Asia,18,Bhutan,64,BT,BTN,Bhutan,BTN,Small region
+5303,Southern Asia,100,India,356,IN,IND,India,IND,Small region
+5303,Southern Asia,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,Small region
+5303,Southern Asia,132,Maldives,462,MV,MDV,Maldives,MDV,Small region
+5303,Southern Asia,149,Nepal,524,NP,NPL,Nepal,NPL,Small region
+5303,Southern Asia,165,Pakistan,586,PK,PAK,Pakistan,PAK,Small region
+5303,Southern Asia,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,Small region
+5403,Southern Europe,3,Albania,8,AL,ALB,Albania,ALB,Small region
+5403,Southern Europe,6,Andorra,20,AD,AND,Andorra,AND,Small region
+5403,Southern Europe,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,Small region
+5403,Southern Europe,98,Croatia,191,HR,HRV,Croatia,HRV,Small region
+5403,Southern Europe,82,Gibraltar,292,GI,GIB,Gibraltar,GIB,Small region
+5403,Southern Europe,84,Greece,300,GR,GRC,Greece,GRC,Small region
+5403,Southern Europe,94,Holy See,336,VA,VAT,Holy See,VAT,Small region
+5403,Southern Europe,106,Italy,380,IT,ITA,Italy,ITA,Small region
+5403,Southern Europe,275,Kosovo,,,XKX,Kosovo,XKX,Small region
+5403,Southern Europe,134,Malta,470,MT,MLT,Malta,MLT,Small region
+5403,Southern Europe,273,Montenegro,499,ME,MNE,Montenegro,MNE,Small region
+5403,Southern Europe,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,Small region
+5403,Southern Europe,174,Portugal,620,PT,PRT,Portugal,PRT,Small region
+5403,Southern Europe,192,San Marino,674,SM,SMR,San Marino,SMR,Small region
+5403,Southern Europe,272,Serbia,688,RS,SRB,Serbia,SRB,Small region
+5403,Southern Europe,286,Serbia (exc Kosovo),,,,Serbia (exc Kosovo),,Small region
+5403,Southern Europe,186,Serbia and Montenegro,891,CS,SCG,Serbia and Montenegro,SCG,Small region
+5403,Southern Europe,198,Slovenia,705,SI,SVN,Slovenia,SVN,Small region
+5403,Southern Europe,203,Spain,724,ES,ESP,Spain,ESP,Small region
+5403,Southern Europe,248,Yugoslav SFR,890,,,Yugoslav SFR,YUG,Small region
+420,Sub-Saharan Africa,7,Angola,24,AO,AGO,Angola,AGO,
+420,Sub-Saharan Africa,53,Benin,204,BJ,BEN,Benin,BEN,
+420,Sub-Saharan Africa,20,Botswana,72,BW,BWA,Botswana,BWA,
+420,Sub-Saharan Africa,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,
+420,Sub-Saharan Africa,29,Burundi,108,BI,BDI,Burundi,BDI,
+420,Sub-Saharan Africa,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,
+420,Sub-Saharan Africa,32,Cameroon,120,CM,CMR,Cameroon,CMR,
+420,Sub-Saharan Africa,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,
+420,Sub-Saharan Africa,39,Chad,148,TD,TCD,Chad,TCD,
+420,Sub-Saharan Africa,45,Comoros,174,KM,COM,Comoros,COM,
+420,Sub-Saharan Africa,46,Congo,178,CG,COG,Congo,COG,
+420,Sub-Saharan Africa,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,
+420,Sub-Saharan Africa,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,
+420,Sub-Saharan Africa,72,Djibouti,262,DJ,DJI,Djibouti,DJI,
+420,Sub-Saharan Africa,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,
+420,Sub-Saharan Africa,178,Eritrea,232,ER,ERI,Eritrea,ERI,
+420,Sub-Saharan Africa,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,
+420,Sub-Saharan Africa,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,
+420,Sub-Saharan Africa,74,Gabon,266,GA,GAB,Gabon,GAB,
+420,Sub-Saharan Africa,75,Gambia,270,GM,GMB,Gambia,GMB,
+420,Sub-Saharan Africa,81,Ghana,288,GH,GHA,Ghana,GHA,
+420,Sub-Saharan Africa,90,Guinea,324,GN,GIN,Guinea,GIN,
+420,Sub-Saharan Africa,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,
+420,Sub-Saharan Africa,114,Kenya,404,KE,KEN,Kenya,KEN,
+420,Sub-Saharan Africa,122,Lesotho,426,LS,LSO,Lesotho,LSO,
+420,Sub-Saharan Africa,123,Liberia,430,LR,LBR,Liberia,LBR,
+420,Sub-Saharan Africa,129,Madagascar,450,MG,MDG,Madagascar,MDG,
+420,Sub-Saharan Africa,130,Malawi,454,MW,MWI,Malawi,MWI,
+420,Sub-Saharan Africa,133,Mali,466,ML,MLI,Mali,MLI,
+420,Sub-Saharan Africa,136,Mauritania,478,MR,MRT,Mauritania,MRT,
+420,Sub-Saharan Africa,137,Mauritius,480,MU,MUS,Mauritius,MUS,
+420,Sub-Saharan Africa,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,
+420,Sub-Saharan Africa,147,Namibia,516,NA,NAM,Namibia,NAM,
+420,Sub-Saharan Africa,158,Niger,562,NE,NER,Niger,NER,
+420,Sub-Saharan Africa,159,Nigeria,566,NG,NGA,Nigeria,NGA,
+420,Sub-Saharan Africa,184,Rwanda,646,RW,RWA,Rwanda,RWA,
+420,Sub-Saharan Africa,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,
+420,Sub-Saharan Africa,195,Senegal,686,SN,SEN,Senegal,SEN,
+420,Sub-Saharan Africa,196,Seychelles,690,SC,SYC,Seychelles,SYC,
+420,Sub-Saharan Africa,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,
+420,Sub-Saharan Africa,201,Somalia,706,SO,SOM,Somalia,SOM,
+420,Sub-Saharan Africa,202,South Africa,710,ZA,ZAF,South Africa,ZAF,
+420,Sub-Saharan Africa,277,South Sudan,728,SS,SSD,Sudan,SDN,
+420,Sub-Saharan Africa,217,Togo,768,TG,TGO,Togo,TGO,
+420,Sub-Saharan Africa,226,Uganda,800,UG,UGA,Uganda,UGA,
+420,Sub-Saharan Africa,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,
+420,Sub-Saharan Africa,251,Zambia,894,ZM,ZMB,Zambia,ZMB,
+420,Sub-Saharan Africa,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,
+5810,Sub-Saharan Africa (including Sudan),7,Angola,24,AO,AGO,Angola,AGO,
+5810,Sub-Saharan Africa (including Sudan),53,Benin,204,BJ,BEN,Benin,BEN,
+5810,Sub-Saharan Africa (including Sudan),20,Botswana,72,BW,BWA,Botswana,BWA,
+5810,Sub-Saharan Africa (including Sudan),233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,
+5810,Sub-Saharan Africa (including Sudan),29,Burundi,108,BI,BDI,Burundi,BDI,
+5810,Sub-Saharan Africa (including Sudan),35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,
+5810,Sub-Saharan Africa (including Sudan),32,Cameroon,120,CM,CMR,Cameroon,CMR,
+5810,Sub-Saharan Africa (including Sudan),37,Central African Republic,140,CF,CAF,Central African Republic,CAF,
+5810,Sub-Saharan Africa (including Sudan),39,Chad,148,TD,TCD,Chad,TCD,
+5810,Sub-Saharan Africa (including Sudan),45,Comoros,174,KM,COM,Comoros,COM,
+5810,Sub-Saharan Africa (including Sudan),46,Congo,178,CG,COG,Congo,COG,
+5810,Sub-Saharan Africa (including Sudan),107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,
+5810,Sub-Saharan Africa (including Sudan),250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,
+5810,Sub-Saharan Africa (including Sudan),72,Djibouti,262,DJ,DJI,Djibouti,DJI,
+5810,Sub-Saharan Africa (including Sudan),61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,
+5810,Sub-Saharan Africa (including Sudan),178,Eritrea,232,ER,ERI,Eritrea,ERI,
+5810,Sub-Saharan Africa (including Sudan),209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,
+5810,Sub-Saharan Africa (including Sudan),238,Ethiopia,231,ET,ETH,Ethiopia,ETH,
+5810,Sub-Saharan Africa (including Sudan),74,Gabon,266,GA,GAB,Gabon,GAB,
+5810,Sub-Saharan Africa (including Sudan),75,Gambia,270,GM,GMB,Gambia,GMB,
+5810,Sub-Saharan Africa (including Sudan),81,Ghana,288,GH,GHA,Ghana,GHA,
+5810,Sub-Saharan Africa (including Sudan),90,Guinea,324,GN,GIN,Guinea,GIN,
+5810,Sub-Saharan Africa (including Sudan),175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,
+5810,Sub-Saharan Africa (including Sudan),114,Kenya,404,KE,KEN,Kenya,KEN,
+5810,Sub-Saharan Africa (including Sudan),122,Lesotho,426,LS,LSO,Lesotho,LSO,
+5810,Sub-Saharan Africa (including Sudan),123,Liberia,430,LR,LBR,Liberia,LBR,
+5810,Sub-Saharan Africa (including Sudan),129,Madagascar,450,MG,MDG,Madagascar,MDG,
+5810,Sub-Saharan Africa (including Sudan),130,Malawi,454,MW,MWI,Malawi,MWI,
+5810,Sub-Saharan Africa (including Sudan),133,Mali,466,ML,MLI,Mali,MLI,
+5810,Sub-Saharan Africa (including Sudan),136,Mauritania,478,MR,MRT,Mauritania,MRT,
+5810,Sub-Saharan Africa (including Sudan),137,Mauritius,480,MU,MUS,Mauritius,MUS,
+5810,Sub-Saharan Africa (including Sudan),144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,
+5810,Sub-Saharan Africa (including Sudan),147,Namibia,516,NA,NAM,Namibia,NAM,
+5810,Sub-Saharan Africa (including Sudan),158,Niger,562,NE,NER,Niger,NER,
+5810,Sub-Saharan Africa (including Sudan),159,Nigeria,566,NG,NGA,Nigeria,NGA,
+5810,Sub-Saharan Africa (including Sudan),184,Rwanda,646,RW,RWA,Rwanda,RWA,
+5810,Sub-Saharan Africa (including Sudan),193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,
+5810,Sub-Saharan Africa (including Sudan),195,Senegal,686,SN,SEN,Senegal,SEN,
+5810,Sub-Saharan Africa (including Sudan),196,Seychelles,690,SC,SYC,Seychelles,SYC,
+5810,Sub-Saharan Africa (including Sudan),197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,
+5810,Sub-Saharan Africa (including Sudan),201,Somalia,706,SO,SOM,Somalia,SOM,
+5810,Sub-Saharan Africa (including Sudan),202,South Africa,710,ZA,ZAF,South Africa,ZAF,
+5810,Sub-Saharan Africa (including Sudan),277,South Sudan,728,SS,SSD,Sudan,SDN,
+5810,Sub-Saharan Africa (including Sudan),276,Sudan,729,SD,SDN,Sudan,SDN,
+5810,Sub-Saharan Africa (including Sudan),217,Togo,768,TG,TGO,Togo,TGO,
+5810,Sub-Saharan Africa (including Sudan),226,Uganda,800,UG,UGA,Uganda,UGA,
+5810,Sub-Saharan Africa (including Sudan),215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,
+5810,Sub-Saharan Africa (including Sudan),251,Zambia,894,ZM,ZMB,Zambia,ZMB,
+5810,Sub-Saharan Africa (including Sudan),181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,
+9011,Upper-middle-income economies,3,Albania,8,AL,ALB,Albania,ALB,Income
+9011,Upper-middle-income economies,4,Algeria,12,DZ,DZA,Algeria,DZA,Income
+9011,Upper-middle-income economies,5,American Samoa,16,AS,ASM,American Samoa,ASM,Income
+9011,Upper-middle-income economies,1,Armenia,51,AM,ARM,Armenia,ARM,Income
+9011,Upper-middle-income economies,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,Income
+9011,Upper-middle-income economies,57,Belarus,112,BY,BLR,Belarus,BLR,Income
+9011,Upper-middle-income economies,23,Belize,84,BZ,BLZ,Belize,BLZ,Income
+9011,Upper-middle-income economies,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,Income
+9011,Upper-middle-income economies,20,Botswana,72,BW,BWA,Botswana,BWA,Income
+9011,Upper-middle-income economies,21,Brazil,76,BR,BRA,Brazil,BRA,Income
+9011,Upper-middle-income economies,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,Income
+9011,Upper-middle-income economies,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,Income
+9011,Upper-middle-income economies,44,Colombia,170,CO,COL,Colombia,COL,Income
+9011,Upper-middle-income economies,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,Income
+9011,Upper-middle-income economies,49,Cuba,192,CU,CUB,Cuba,CUB,Income
+9011,Upper-middle-income economies,55,Dominica,212,DM,DMA,Dominica,DMA,Income
+9011,Upper-middle-income economies,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,Income
+9011,Upper-middle-income economies,58,Ecuador,218,EC,ECU,Ecuador,ECU,Income
+9011,Upper-middle-income economies,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,Income
+9011,Upper-middle-income economies,66,Fiji,242,FJ,FJI,Fiji,FJI,Income
+9011,Upper-middle-income economies,74,Gabon,266,GA,GAB,Gabon,GAB,Income
+9011,Upper-middle-income economies,86,Grenada,308,GD,GRD,Grenada,GRD,Income
+9011,Upper-middle-income economies,89,Guatemala,320,GT,GTM,Guatemala,GTM,Income
+9011,Upper-middle-income economies,91,Guyana,328,GY,GUY,Guyana,GUY,Income
+9011,Upper-middle-income economies,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,Income
+9011,Upper-middle-income economies,103,Iraq,368,IQ,IRQ,Iraq,IRQ,Income
+9011,Upper-middle-income economies,109,Jamaica,388,JM,JAM,Jamaica,JAM,Income
+9011,Upper-middle-income economies,112,Jordan,400,JO,JOR,Jordan,JOR,Income
+9011,Upper-middle-income economies,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,Income
+9011,Upper-middle-income economies,121,Lebanon,422,LB,LBN,Lebanon,LBN,Income
+9011,Upper-middle-income economies,124,Libya,434,LY,LBY,Libya,LBY,Income
+9011,Upper-middle-income economies,131,Malaysia,458,MY,MYS,Malaysia,MYS,Income
+9011,Upper-middle-income economies,132,Maldives,462,MV,MDV,Maldives,MDV,Income
+9011,Upper-middle-income economies,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,Income
+9011,Upper-middle-income economies,137,Mauritius,480,MU,MUS,Mauritius,MUS,Income
+9011,Upper-middle-income economies,138,Mexico,484,MX,MEX,Mexico,MEX,Income
+9011,Upper-middle-income economies,273,Montenegro,499,ME,MNE,Montenegro,MNE,Income
+9011,Upper-middle-income economies,147,Namibia,516,NA,NAM,Namibia,NAM,Income
+9011,Upper-middle-income economies,148,Nauru,520,NR,NRU,Nauru,NRU,Income
+9011,Upper-middle-income economies,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,Income
+9011,Upper-middle-income economies,169,Paraguay,600,PY,PRY,Paraguay,PRY,Income
+9011,Upper-middle-income economies,170,Peru,604,PE,PER,Peru,PER,Income
+9011,Upper-middle-income economies,183,Romania,642,RO,ROU,Romania,ROU,Income
+9011,Upper-middle-income economies,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,Income
+9011,Upper-middle-income economies,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,Income
+9011,Upper-middle-income economies,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,Income
+9011,Upper-middle-income economies,244,Samoa,882,WS,WSM,Samoa,WSM,Income
+9011,Upper-middle-income economies,272,Serbia,688,RS,SRB,Serbia,SRB,Income
+9011,Upper-middle-income economies,202,South Africa,710,ZA,ZAF,South Africa,ZAF,Income
+9011,Upper-middle-income economies,207,Suriname,740,SR,SUR,Suriname,SUR,Income
+9011,Upper-middle-income economies,216,Thailand,764,TH,THA,Thailand,THA,Income
+9011,Upper-middle-income economies,219,Tonga,776,TO,TON,Tonga,TON,Income
+9011,Upper-middle-income economies,223,Turkey,792,TR,TUR,Turkey,TUR,Income
+9011,Upper-middle-income economies,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,Income
+9011,Upper-middle-income economies,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,Income
+9011,Upper-middle-income economies,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,Income
+5105,Western Africa,53,Benin,204,BJ,BEN,Benin,BEN,Small region
+5105,Western Africa,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,Small region
+5105,Western Africa,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,Small region
+5105,Western Africa,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,Small region
+5105,Western Africa,75,Gambia,270,GM,GMB,Gambia,GMB,Small region
+5105,Western Africa,81,Ghana,288,GH,GHA,Ghana,GHA,Small region
+5105,Western Africa,90,Guinea,324,GN,GIN,Guinea,GIN,Small region
+5105,Western Africa,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,Small region
+5105,Western Africa,123,Liberia,430,LR,LBR,Liberia,LBR,Small region
+5105,Western Africa,133,Mali,466,ML,MLI,Mali,MLI,Small region
+5105,Western Africa,136,Mauritania,478,MR,MRT,Mauritania,MRT,Small region
+5105,Western Africa,158,Niger,562,NE,NER,Niger,NER,Small region
+5105,Western Africa,159,Nigeria,566,NG,NGA,Nigeria,NGA,Small region
+5105,Western Africa,187,"Saint Helena, Ascension and Tristan da Cunha",654,SH,SHN,"Saint Helena, Ascension and Tristan da Cunha",SHN,Small region
+5105,Western Africa,195,Senegal,686,SN,SEN,Senegal,SEN,Small region
+5105,Western Africa,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,Small region
+5105,Western Africa,217,Togo,768,TG,TGO,Togo,TGO,Small region
+5305,Western Asia,1,Armenia,51,AM,ARM,Armenia,ARM,Small region
+5305,Western Asia,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,Small region
+5305,Western Asia,13,Bahrain,48,BH,BHR,Bahrain,BHR,Small region
+5305,Western Asia,50,Cyprus,196,CY,CYP,Cyprus,CYP,Small region
+5305,Western Asia,73,Georgia,268,GE,GEO,Georgia,GEO,Small region
+5305,Western Asia,103,Iraq,368,IQ,IRQ,Iraq,IRQ,Small region
+5305,Western Asia,105,Israel,376,IL,ISR,Israel,ISR,Small region
+5305,Western Asia,112,Jordan,400,JO,JOR,Jordan,JOR,Small region
+5305,Western Asia,118,Kuwait,414,KW,KWT,Kuwait,KWT,Small region
+5305,Western Asia,121,Lebanon,422,LB,LBN,Lebanon,LBN,Small region
+5305,Western Asia,221,Oman,512,OM,OMN,Oman,OMN,Small region
+5305,Western Asia,299,Palestine,275,,PSE,Palestine,PSE,Small region
+5305,Western Asia,179,Qatar,634,QA,QAT,Qatar,QAT,Small region
+5305,Western Asia,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,Small region
+5305,Western Asia,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,Small region
+5305,Western Asia,223,Turkey,792,TR,TUR,Turkey,TUR,Small region
+5305,Western Asia,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,Small region
+5305,Western Asia,249,Yemen,887,YE,YEM,Yemen,YEM,Small region
+5305,Western Asia,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,Small region
+5305,Western Asia,247,Yemen Dem,720,,,Yemen Dem,,Small region
+5308,Western Asia and Northern Africa,4,Algeria,12,DZ,DZA,Algeria,DZA,
+5308,Western Asia and Northern Africa,1,Armenia,51,AM,ARM,Armenia,ARM,
+5308,Western Asia and Northern Africa,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,
+5308,Western Asia and Northern Africa,13,Bahrain,48,BH,BHR,Bahrain,BHR,
+5308,Western Asia and Northern Africa,50,Cyprus,196,CY,CYP,Cyprus,CYP,
+5308,Western Asia and Northern Africa,59,Egypt,818,EG,EGY,Egypt,EGY,
+5308,Western Asia and Northern Africa,73,Georgia,268,GE,GEO,Georgia,GEO,
+5308,Western Asia and Northern Africa,103,Iraq,368,IQ,IRQ,Iraq,IRQ,
+5308,Western Asia and Northern Africa,105,Israel,376,IL,ISR,Israel,ISR,
+5308,Western Asia and Northern Africa,112,Jordan,400,JO,JOR,Jordan,JOR,
+5308,Western Asia and Northern Africa,118,Kuwait,414,KW,KWT,Kuwait,KWT,
+5308,Western Asia and Northern Africa,121,Lebanon,422,LB,LBN,Lebanon,LBN,
+5308,Western Asia and Northern Africa,124,Libya,434,LY,LBY,Libya,LBY,
+5308,Western Asia and Northern Africa,143,Morocco,504,MA,MAR,Morocco,MAR,
+5308,Western Asia and Northern Africa,221,Oman,512,OM,OMN,Oman,OMN,
+5308,Western Asia and Northern Africa,299,Palestine,275,,PSE,Palestine,PSE,
+5308,Western Asia and Northern Africa,179,Qatar,634,QA,QAT,Qatar,QAT,
+5308,Western Asia and Northern Africa,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,
+5308,Western Asia and Northern Africa,276,Sudan,729,SD,SDN,Sudan,SDN,
+5308,Western Asia and Northern Africa,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,
+5308,Western Asia and Northern Africa,222,Tunisia,788,TN,TUN,Tunisia,TUN,
+5308,Western Asia and Northern Africa,223,Turkey,792,TR,TUR,Turkey,TUR,
+5308,Western Asia and Northern Africa,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,
+5308,Western Asia and Northern Africa,249,Yemen,887,YE,YEM,Yemen,YEM,
+5404,Western Europe,11,Austria,40,AT,AUT,Austria,AUT,Small region
+5404,Western Europe,255,Belgium,56,BE,BEL,Belgium,BEL,Small region
+5404,Western Europe,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,Small region
+5404,Western Europe,68,France,250,FR,FRA,France,FRA,Small region
+5404,Western Europe,79,Germany,276,DE,DEU,Germany,DEU,Small region
+5404,Western Europe,125,Liechtenstein,438,LI,LIE,Liechtenstein,LIE,Small region
+5404,Western Europe,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,Small region
+5404,Western Europe,140,Monaco,492,MC,MCO,Monaco,MCO,Small region
+5404,Western Europe,150,Netherlands,528,NL,NLD,Netherlands,NLD,Small region
+5404,Western Europe,211,Switzerland,756,CH,CHE,Switzerland,CHE,Small region
+5000,World,2,Afghanistan,4,AF,AFG,Afghanistan,AFG,World
+5000,World,284,Åland Islands,248,,ALA,Åland Islands,ALA,World
+5000,World,3,Albania,8,AL,ALB,Albania,ALB,World
+5000,World,4,Algeria,12,DZ,DZA,Algeria,DZA,World
+5000,World,5,American Samoa,16,AS,ASM,American Samoa,ASM,World
+5000,World,6,Andorra,20,AD,AND,Andorra,AND,World
+5000,World,7,Angola,24,AO,AGO,Angola,AGO,World
+5000,World,258,Anguilla,660,AI,AIA,Anguilla,AIA,World
+5000,World,30,Antarctica,10,AQ,ATA,Antarctica,ATA,World
+5000,World,8,Antigua and Barbuda,28,AG,ATG,Antigua and Barbuda,ATG,World
+5000,World,9,Argentina,32,AR,ARG,Argentina,ARG,World
+5000,World,1,Armenia,51,AM,ARM,Armenia,ARM,World
+5000,World,22,Aruba,533,AW,ABW,Aruba,ABW,World
+5000,World,10,Australia,36,AU,AUS,Australia,AUS,World
+5000,World,11,Austria,40,AT,AUT,Austria,AUT,World
+5000,World,52,Azerbaijan,31,AZ,AZE,Azerbaijan,AZE,World
+5000,World,12,Bahamas,44,BS,BHS,Bahamas,BHS,World
+5000,World,13,Bahrain,48,BH,BHR,Bahrain,BHR,World
+5000,World,16,Bangladesh,50,BD,BGD,Bangladesh,BGD,World
+5000,World,14,Barbados,52,BB,BRB,Barbados,BRB,World
+5000,World,57,Belarus,112,BY,BLR,Belarus,BLR,World
+5000,World,255,Belgium,56,BE,BEL,Belgium,BEL,World
+5000,World,15,Belgium-Luxembourg,58,,,Belgium-Luxembourg,BLE,World
+5000,World,23,Belize,84,BZ,BLZ,Belize,BLZ,World
+5000,World,53,Benin,204,BJ,BEN,Benin,BEN,World
+5000,World,17,Bermuda,60,BM,BMU,Bermuda,BMU,World
+5000,World,18,Bhutan,64,BT,BTN,Bhutan,BTN,World
+5000,World,19,Bolivia (Plurinational State of),68,BO,BOL,Bolivia (Plurinational State of),BOL,World
+5000,World,278,"Bonaire, Sint Eustatius and Saba",535,,BES,"Bonaire, Sint Eustatius and Saba",BES,World
+5000,World,80,Bosnia and Herzegovina,70,BA,BIH,Bosnia and Herzegovina,BIH,World
+5000,World,20,Botswana,72,BW,BWA,Botswana,BWA,World
+5000,World,31,Bouvet Island,74,BV,BVT,Bouvet Island,BVT,World
+5000,World,21,Brazil,76,BR,BRA,Brazil,BRA,World
+5000,World,24,British Indian Ocean Territory,86,IO,IOT,British Indian Ocean Territory,IOT,World
+5000,World,239,British Virgin Islands,92,VG,VGB,British Virgin Islands,VGB,World
+5000,World,26,Brunei Darussalam,96,BN,BRN,Brunei Darussalam,BRN,World
+5000,World,27,Bulgaria,100,BG,BGR,Bulgaria,BGR,World
+5000,World,233,Burkina Faso,854,BF,BFA,Burkina Faso,BFA,World
+5000,World,29,Burundi,108,BI,BDI,Burundi,BDI,World
+5000,World,35,Cabo Verde,132,CV,CPV,Cabo Verde,CPV,World
+5000,World,115,Cambodia,116,KH,KHM,Cambodia,KHM,World
+5000,World,32,Cameroon,120,CM,CMR,Cameroon,CMR,World
+5000,World,33,Canada,124,CA,CAN,Canada,CAN,World
+5000,World,609,"Caribbean, unspecified",,,,"Caribbean, unspecified",,World
+5000,World,36,Cayman Islands,136,KY,CYM,Cayman Islands,CYM,World
+5000,World,37,Central African Republic,140,CF,CAF,Central African Republic,CAF,World
+5000,World,39,Chad,148,TD,TCD,Chad,TCD,World
+5000,World,259,Channel Islands,830,,CHA,Channel Islands,CHA,World
+5000,World,40,Chile,152,CL,CHL,Chile,CHL,World
+5000,World,96,"China, Hong Kong SAR",344,HK,HKG,"China, Hong Kong SAR",HKG,World
+5000,World,128,"China, Macao SAR",446,MO,MAC,"China, Macao SAR",MAC,World
+5000,World,41,"China, mainland",1248,CN,CHN,"China, mainland",CHN,World
+5000,World,214,"China, Taiwan Province of",158,TW,TWN,"China, Taiwan Province of",TWN,World
+5000,World,42,Christmas Island,162,CX,CXR,Christmas Island,CXR,World
+5000,World,43,Cocos (Keeling) Islands,166,CC,CCK,Cocos (Keeling) Islands,CCK,World
+5000,World,44,Colombia,170,CO,COL,Colombia,COL,World
+5000,World,45,Comoros,174,KM,COM,Comoros,COM,World
+5000,World,46,Congo,178,CG,COG,Congo,COG,World
+5000,World,47,Cook Islands,184,CK,COK,Cook Islands,COK,World
+5000,World,48,Costa Rica,188,CR,CRI,Costa Rica,CRI,World
+5000,World,107,Côte d'Ivoire,384,CI,CIV,Côte d'Ivoire,CIV,World
+5000,World,98,Croatia,191,HR,HRV,Croatia,HRV,World
+5000,World,49,Cuba,192,CU,CUB,Cuba,CUB,World
+5000,World,279,Curaçao,531,,CUW,Curaçao,CUW,World
+5000,World,50,Cyprus,196,CY,CYP,Cyprus,CYP,World
+5000,World,167,Czechia,203,CZ,CZE,Czechia,CZE,World
+5000,World,51,Czechoslovakia,200,,,Czechoslovakia,CSK,World
+5000,World,116,Democratic People's Republic of Korea,408,KP,PRK,Democratic People's Republic of Korea,PRK,World
+5000,World,250,Democratic Republic of the Congo,180,CD,COD,Democratic Republic of the Congo,COD,World
+5000,World,54,Denmark,208,DK,DNK,Denmark,DNK,World
+5000,World,72,Djibouti,262,DJ,DJI,Djibouti,DJI,World
+5000,World,55,Dominica,212,DM,DMA,Dominica,DMA,World
+5000,World,56,Dominican Republic,214,DO,DOM,Dominican Republic,DOM,World
+5000,World,58,Ecuador,218,EC,ECU,Ecuador,ECU,World
+5000,World,59,Egypt,818,EG,EGY,Egypt,EGY,World
+5000,World,60,El Salvador,222,SV,SLV,El Salvador,SLV,World
+5000,World,61,Equatorial Guinea,226,GQ,GNQ,Equatorial Guinea,GNQ,World
+5000,World,178,Eritrea,232,ER,ERI,Eritrea,ERI,World
+5000,World,63,Estonia,233,EE,EST,Estonia,EST,World
+5000,World,209,Eswatini,748,SZ,SWZ,Eswatini,SWZ,World
+5000,World,238,Ethiopia,231,ET,ETH,Ethiopia,ETH,World
+5000,World,62,Ethiopia PDR,230,,,Ethiopia PDR,ETH,World
+5000,World,65,Falkland Islands (Malvinas),238,FK,FLK,Falkland Islands (Malvinas),FLK,World
+5000,World,64,Faroe Islands,234,FO,FRO,Faroe Islands,FRO,World
+5000,World,66,Fiji,242,FJ,FJI,Fiji,FJI,World
+5000,World,67,Finland,246,FI,FIN,Finland,FIN,World
+5000,World,68,France,250,FR,FRA,France,FRA,World
+5000,World,69,French Guiana,254,GF,GUF,French Guiana,GUF,World
+5000,World,70,French Polynesia,258,PF,PYF,French Polynesia,PYF,World
+5000,World,71,French Southern and Antarctic Territories,260,TF,ATF,French Southern and Antarctic Territories,ATF,World
+5000,World,74,Gabon,266,GA,GAB,Gabon,GAB,World
+5000,World,75,Gambia,270,GM,GMB,Gambia,GMB,World
+5000,World,73,Georgia,268,GE,GEO,Georgia,GEO,World
+5000,World,79,Germany,276,DE,DEU,Germany,DEU,World
+5000,World,78,Germany Fr,280,,,Germany Fr,,World
+5000,World,77,Germany Nl,278,,,Germany Nl,,World
+5000,World,81,Ghana,288,GH,GHA,Ghana,GHA,World
+5000,World,82,Gibraltar,292,GI,GIB,Gibraltar,GIB,World
+5000,World,84,Greece,300,GR,GRC,Greece,GRC,World
+5000,World,85,Greenland,304,GL,GRL,Greenland,GRL,World
+5000,World,86,Grenada,308,GD,GRD,Grenada,GRD,World
+5000,World,87,Guadeloupe,312,GP,GLP,Guadeloupe,GLP,World
+5000,World,88,Guam,316,GU,GUM,Guam,GUM,World
+5000,World,89,Guatemala,320,GT,GTM,Guatemala,GTM,World
+5000,World,90,Guinea,324,GN,GIN,Guinea,GIN,World
+5000,World,175,Guinea-Bissau,624,GW,GNB,Guinea-Bissau,GNB,World
+5000,World,91,Guyana,328,GY,GUY,Guyana,GUY,World
+5000,World,93,Haiti,332,HT,HTI,Haiti,HTI,World
+5000,World,92,Heard and McDonald Islands,334,HM,HMD,Heard and McDonald Islands,HMD,World
+5000,World,94,Holy See,336,VA,VAT,Holy See,VAT,World
+5000,World,95,Honduras,340,HN,HND,Honduras,HND,World
+5000,World,97,Hungary,348,HU,HUN,Hungary,HUN,World
+5000,World,99,Iceland,352,IS,ISL,Iceland,ISL,World
+5000,World,100,India,356,IN,IND,India,IND,World
+5000,World,101,Indonesia,360,ID,IDN,Indonesia,IDN,World
+5000,World,102,Iran (Islamic Republic of),364,IR,IRN,Iran (Islamic Republic of),IRN,World
+5000,World,103,Iraq,368,IQ,IRQ,Iraq,IRQ,World
+5000,World,104,Ireland,372,IE,IRL,Ireland,IRL,World
+5000,World,264,Isle of Man,833,IM,IMN,Isle of Man,IMN,World
+5000,World,105,Israel,376,IL,ISR,Israel,ISR,World
+5000,World,106,Italy,380,IT,ITA,Italy,ITA,World
+5000,World,109,Jamaica,388,JM,JAM,Jamaica,JAM,World
+5000,World,110,Japan,392,JP,JPN,Japan,JPN,World
+5000,World,283,Jersey,832,,JEY,Jersey,JEY,World
+5000,World,111,Johnston Island,,JT,JTN,Johnston Island,JTN,World
+5000,World,112,Jordan,400,JO,JOR,Jordan,JOR,World
+5000,World,108,Kazakhstan,398,KZ,KAZ,Kazakhstan,KAZ,World
+5000,World,114,Kenya,404,KE,KEN,Kenya,KEN,World
+5000,World,83,Kiribati,296,KI,KIR,Kiribati,KIR,World
+5000,World,275,Kosovo,,,,Kosovo,,World
+5000,World,118,Kuwait,414,KW,KWT,Kuwait,KWT,World
+5000,World,113,Kyrgyzstan,417,KG,KGZ,Kyrgyzstan,KGZ,World
+5000,World,120,Lao People's Democratic Republic,418,LA,LAO,Lao People's Democratic Republic,LAO,World
+5000,World,119,Latvia,428,LV,LVA,Latvia,LVA,World
+5000,World,121,Lebanon,422,LB,LBN,Lebanon,LBN,World
+5000,World,122,Lesotho,426,LS,LSO,Lesotho,LSO,World
+5000,World,123,Liberia,430,LR,LBR,Liberia,LBR,World
+5000,World,124,Libya,434,LY,LBY,Libya,LBY,World
+5000,World,125,Liechtenstein,438,LI,LIE,Liechtenstein,LIE,World
+5000,World,126,Lithuania,440,LT,LTU,Lithuania,LTU,World
+5000,World,256,Luxembourg,442,LU,LUX,Luxembourg,LUX,World
+5000,World,129,Madagascar,450,MG,MDG,Madagascar,MDG,World
+5000,World,130,Malawi,454,MW,MWI,Malawi,MWI,World
+5000,World,131,Malaysia,458,MY,MYS,Malaysia,MYS,World
+5000,World,132,Maldives,462,MV,MDV,Maldives,MDV,World
+5000,World,133,Mali,466,ML,MLI,Mali,MLI,World
+5000,World,134,Malta,470,MT,MLT,Malta,MLT,World
+5000,World,127,Marshall Islands,584,MH,MHL,Marshall Islands,MHL,World
+5000,World,135,Martinique,474,MQ,MTQ,Martinique,MTQ,World
+5000,World,136,Mauritania,478,MR,MRT,Mauritania,MRT,World
+5000,World,137,Mauritius,480,MU,MUS,Mauritius,MUS,World
+5000,World,270,Mayotte,175,YT,MYT,Mayotte,MYT,World
+5000,World,138,Mexico,484,MX,MEX,Mexico,MEX,World
+5000,World,145,Micronesia (Federated States of),583,FM,FSM,Micronesia (Federated States of),FSM,World
+5000,World,617,"Micronesia, unspecified",,,,"Micronesia, unspecified",,World
+5000,World,139,Midway Island,,MI,MID,Midway Island,MID,World
+5000,World,140,Monaco,492,MC,MCO,Monaco,MCO,World
+5000,World,141,Mongolia,496,MN,MNG,Mongolia,MNG,World
+5000,World,273,Montenegro,499,ME,MNE,Montenegro,MNE,World
+5000,World,142,Montserrat,500,MS,MSR,Montserrat,MSR,World
+5000,World,143,Morocco,504,MA,MAR,Morocco,MAR,World
+5000,World,144,Mozambique,508,MZ,MOZ,Mozambique,MOZ,World
+5000,World,28,Myanmar,104,MM,MMR,Myanmar,MMR,World
+5000,World,147,Namibia,516,NA,NAM,Namibia,NAM,World
+5000,World,148,Nauru,520,NR,NRU,Nauru,NRU,World
+5000,World,149,Nepal,524,NP,NPL,Nepal,NPL,World
+5000,World,150,Netherlands,528,NL,NLD,Netherlands,NLD,World
+5000,World,151,Netherlands Antilles (former),530,AN,ANT,Netherlands Antilles (former),ANT,World
+5000,World,153,New Caledonia,540,NC,NCL,New Caledonia,NCL,World
+5000,World,156,New Zealand,554,NZ,NZL,New Zealand,NZL,World
+5000,World,157,Nicaragua,558,NI,NIC,Nicaragua,NIC,World
+5000,World,158,Niger,562,NE,NER,Niger,NER,World
+5000,World,159,Nigeria,566,NG,NGA,Nigeria,NGA,World
+5000,World,160,Niue,570,NU,NIU,Niue,NIU,World
+5000,World,161,Norfolk Island,574,NF,NFK,Norfolk Island,NFK,World
+5000,World,154,North Macedonia,807,MK,MKD,North Macedonia,MKD,World
+5000,World,622,"Northern America, unspecified",,,,"Northern America, unspecified",,World
+5000,World,619,"Northern Europe, unspecified",,,,"Northern Europe, unspecified",,World
+5000,World,163,Northern Mariana Islands,580,MP,MNP,Northern Mariana Islands,MNP,World
+5000,World,162,Norway,578,NO,NOR,Norway,NOR,World
+5000,World,221,Oman,512,OM,OMN,Oman,OMN,World
+5000,World,164,Pacific Islands Trust Territory,582,,164,Pacific Islands Trust Territory,164,World
+5000,World,165,Pakistan,586,PK,PAK,Pakistan,PAK,World
+5000,World,180,Palau,585,PW,PLW,Palau,PLW,World
+5000,World,299,Palestine,275,,PSE,Palestine,PSE,World
+5000,World,166,Panama,591,PA,PAN,Panama,PAN,World
+5000,World,168,Papua New Guinea,598,PG,PNG,Papua New Guinea,PNG,World
+5000,World,169,Paraguay,600,PY,PRY,Paraguay,PRY,World
+5000,World,170,Peru,604,PE,PER,Peru,PER,World
+5000,World,171,Philippines,608,PH,PHL,Philippines,PHL,World
+5000,World,172,Pitcairn Islands,612,PN,PCN,Pitcairn Islands,PCN,World
+5000,World,173,Poland,616,PL,POL,Poland,POL,World
+5000,World,618,"Polynesia, unspecified",,,,"Polynesia, unspecified",,World
+5000,World,174,Portugal,620,PT,PRT,Portugal,PRT,World
+5000,World,177,Puerto Rico,630,PR,PRI,Puerto Rico,PRI,World
+5000,World,179,Qatar,634,QA,QAT,Qatar,QAT,World
+5000,World,117,Republic of Korea,410,KR,KOR,Republic of Korea,KOR,World
+5000,World,146,Republic of Moldova,498,MD,MDA,Republic of Moldova,MDA,World
+5000,World,182,Réunion,638,RE,REU,Réunion,REU,World
+5000,World,183,Romania,642,RO,ROU,Romania,ROU,World
+5000,World,185,Russian Federation,643,RU,RUS,Russian Federation,RUS,World
+5000,World,184,Rwanda,646,RW,RWA,Rwanda,RWA,World
+5000,World,282,Saint Barthélemy,652,,BLM,Saint Barthélemy,BLM,World
+5000,World,187,"Saint Helena, Ascension and Tristan da Cunha",654,SH,SHN,"Saint Helena, Ascension and Tristan da Cunha",SHN,World
+5000,World,188,Saint Kitts and Nevis,659,KN,KNA,Saint Kitts and Nevis,KNA,World
+5000,World,189,Saint Lucia,662,LC,LCA,Saint Lucia,LCA,World
+5000,World,190,Saint Pierre and Miquelon,666,PM,SPM,Saint Pierre and Miquelon,SPM,World
+5000,World,191,Saint Vincent and the Grenadines,670,VC,VCT,Saint Vincent and the Grenadines,VCT,World
+5000,World,281,Saint-Martin (French Part),663,,MAF,Saint-Martin (French Part),MAF,World
+5000,World,244,Samoa,882,WS,WSM,Samoa,WSM,World
+5000,World,192,San Marino,674,SM,SMR,San Marino,SMR,World
+5000,World,193,Sao Tome and Principe,678,ST,STP,Sao Tome and Principe,STP,World
+5000,World,194,Saudi Arabia,682,SA,SAU,Saudi Arabia,SAU,World
+5000,World,195,Senegal,686,SN,SEN,Senegal,SEN,World
+5000,World,272,Serbia,688,RS,SRB,Serbia,SRB,World
+5000,World,286,Serbia (exc Kosovo),,,,Serbia (exc Kosovo),,World
+5000,World,186,Serbia and Montenegro,891,CS,SCG,Serbia and Montenegro,SCG,World
+5000,World,196,Seychelles,690,SC,SYC,Seychelles,SYC,World
+5000,World,197,Sierra Leone,694,SL,SLE,Sierra Leone,SLE,World
+5000,World,200,Singapore,702,SG,SGP,Singapore,SGP,World
+5000,World,280,Sint Maarten (Dutch Part),534,,SXM,Sint Maarten (Dutch Part),SXM,World
+5000,World,199,Slovakia,703,SK,SVK,Slovakia,SVK,World
+5000,World,198,Slovenia,705,SI,SVN,Slovenia,SVN,World
+5000,World,25,Solomon Islands,90,SB,SLB,Solomon Islands,SLB,World
+5000,World,201,Somalia,706,SO,SOM,Somalia,SOM,World
+5000,World,202,South Africa,710,ZA,ZAF,South Africa,ZAF,World
+5000,World,614,"South America, unspecified",,,,"South America, unspecified",,World
+5000,World,271,South Georgia and the South Sandwich Islands,239,GS,SGS,South Georgia and the South Sandwich Islands,SGS,World
+5000,World,277,South Sudan,728,SS,SSD,Sudan,SDN,World
+5000,World,620,"Southern Europe, unspecified",,,,"Southern Europe, unspecified",,World
+5000,World,203,Spain,724,ES,ESP,Spain,ESP,World
+5000,World,38,Sri Lanka,144,LK,LKA,Sri Lanka,LKA,World
+5000,World,276,Sudan,729,SD,SDN,Sudan,SDN,World
+5000,World,206,Sudan (former),736,SD,,Sudan,SDN,World
+5000,World,207,Suriname,740,SR,SUR,Suriname,SUR,World
+5000,World,260,Svalbard and Jan Mayen Islands,744,SJ,SJM,Svalbard and Jan Mayen Islands,SJM,World
+5000,World,210,Sweden,752,SE,SWE,Sweden,SWE,World
+5000,World,211,Switzerland,756,CH,CHE,Switzerland,CHE,World
+5000,World,212,Syrian Arab Republic,760,SY,SYR,Syrian Arab Republic,SYR,World
+5000,World,208,Tajikistan,762,TJ,TJK,Tajikistan,TJK,World
+5000,World,216,Thailand,764,TH,THA,Thailand,THA,World
+5000,World,176,Timor-Leste,626,TL,TLS,Timor-Leste,TLS,World
+5000,World,217,Togo,768,TG,TGO,Togo,TGO,World
+5000,World,218,Tokelau,772,TK,TKL,Tokelau,TKL,World
+5000,World,219,Tonga,776,TO,TON,Tonga,TON,World
+5000,World,220,Trinidad and Tobago,780,TT,TTO,Trinidad and Tobago,TTO,World
+5000,World,222,Tunisia,788,TN,TUN,Tunisia,TUN,World
+5000,World,223,Turkey,792,TR,TUR,Turkey,TUR,World
+5000,World,213,Turkmenistan,795,TM,TKM,Turkmenistan,TKM,World
+5000,World,224,Turks and Caicos Islands,796,TC,TCA,Turks and Caicos Islands,TCA,World
+5000,World,227,Tuvalu,798,TV,TUV,Tuvalu,TUV,World
+5000,World,226,Uganda,800,UG,UGA,Uganda,UGA,World
+5000,World,230,Ukraine,804,UA,UKR,Ukraine,UKR,World
+5000,World,225,United Arab Emirates,784,AE,ARE,United Arab Emirates,ARE,World
+5000,World,229,United Kingdom,826,GB,GBR,United Kingdom,GBR,World
+5000,World,215,United Republic of Tanzania,834,TZ,TZA,United Republic of Tanzania,TZA,World
+5000,World,3698,"United Republic of Tanzania, Zanzibar",,,,"United Republic of Tanzania, Zanzibar",,World
+5000,World,231,United States of America,840,US,USA,United States of America,USA,World
+5000,World,240,United States Virgin Islands,850,VI,VIR,United States Virgin Islands,VIR,World
+5000,World,234,Uruguay,858,UY,URY,Uruguay,URY,World
+5000,World,232,US Minor Is.,581,UM,UMI,US Minor Is.,UMI,World
+5000,World,228,USSR,810,,,USSR,SUN,World
+5000,World,235,Uzbekistan,860,UZ,UZB,Uzbekistan,UZB,World
+5000,World,155,Vanuatu,548,VU,VUT,Vanuatu,VUT,World
+5000,World,236,Venezuela (Bolivarian Republic of),862,VE,VEN,Venezuela (Bolivarian Republic of),VEN,World
+5000,World,237,Viet Nam,704,VN,VNM,Viet Nam,VNM,World
+5000,World,242,Wake Island,,WK,WAK,Wake Island,WAK,World
+5000,World,243,Wallis and Futuna Islands,876,WF,WLF,Wallis and Futuna Islands,WLF,World
+5000,World,616,"Western Africa, unspecified",,,,"Western Africa, unspecified",,World
+5000,World,621,"Western Europe, unspecified",,,,"Western Europe, unspecified",,World
+5000,World,205,Western Sahara,732,EH,ESH,Western Sahara,ESH,World
+5000,World,249,Yemen,887,YE,YEM,Yemen,YEM,World
+5000,World,246,Yemen Ar Rp,886,,,Yemen Ar Rp,,World
+5000,World,247,Yemen Dem,720,,,Yemen Dem,,World
+5000,World,248,Yugoslav SFR,890,,,Yugoslav SFR,YUG,World
+5000,World,251,Zambia,894,ZM,ZMB,Zambia,ZMB,World
+5000,World,181,Zimbabwe,716,ZW,ZWE,Zimbabwe,ZWE,World

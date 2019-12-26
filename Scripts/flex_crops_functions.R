@@ -1139,6 +1139,9 @@ plot_HH_index_map = function(crop_data){
 
 get_break_points_per_country = function(crop_data, crop, measure){
   
+  # Get FAO_codes
+  FAO_codes = get_fao_codes()
+  
   crop_time_data_filtered = crop_data %>% 
     filter(item %in% crop, measures == measure)
   
@@ -1206,11 +1209,6 @@ get_break_points_per_country = function(crop_data, crop, measure){
     labs(title = str_wrap("Distribution of years between introduction and break year", 45), x = "") +
     theme_classic(base_size = 6)
     
-  # Get FAO_codes
-  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
-    clean_names() %>%
-    dplyr::select(country_code, iso3_code)
-  
   # Join the break map data with map data
   break_year_map_data = df %>% 
     rename("country" = "country_data") %>%

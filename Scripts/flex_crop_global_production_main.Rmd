@@ -1,0 +1,269 @@
+---
+title: "Flex crop global production main analysis"
+author: "Robin Lindström"
+date: "20/10/2019"
+output:
+  html_document:
+      number_sections: true
+      self_contained: false
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(root.dir = "~/Google Drive/Skola/SRC/Thesis/")
+knitr::opts_chunk$set(fig.path = "images/")
+Sys.setlocale('LC_ALL','C')
+
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+#library(tmap)
+library(plotly)
+theme_set(theme_light(base_size = 8))
+setwd(getwd())
+```
+
+
+```{r read_functions, echo = FALSE, include = FALSE}
+
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
+#setwd("~/Google Drive/SRC/Thesis/")
+```
+
+
+```{r get_raw_data, echo = FALSE, include = FALSE}
+# Get the crop prproduction data from the raw data
+data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/crop_production_data.csv"
+crop_production_data_raw = read_production_data(data_path) %>% 
+  filter(measures == "Area harvested")
+```
+
+```{r get_raw_data, echo = FALSE, include = FALSE}
+# Get the crop value data from the raw data
+data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/crop_value_data.csv"
+crop_value_data_raw = read_production_data(data_path) %>% 
+  filter(measures == "Net Production Value (constant 2004-2006 1000 I$)")
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+# Get names of different crop groups
+all_crops = unique(crop_production_data_raw$item)
+flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize", "Cassava")
+emerging_flex_crops = c("Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts")
+other_crops = setdiff(flex_crops, all_crops)
+used_measure = c("Production", "Area harvested", "Yield")
+
+#world = map_data("world") %>%
+#  filter(region != "Antarctica")
+
+year = 1961:2016
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_production_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year) %>% 
+  rename(production = value)
+#rm(crop_production_data_raw)
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_value_data = get_crop_data(crop_value_data_raw, all_crops, measure = used_measure, year) %>%
+  select(country, iso3_code, item, year, value) %>% 
+  mutate(value = 1000*value)
+#rm(crop_production_data_raw)
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_data = crop_production_data %>% 
+  inner_join(crop_value_data, by = c("country" = "country", "iso3_code" = "iso3_code",
+                                    "item" = "item", "year" = "year"))
+```
+
+```{r}
+global_production_data = as.data.frame(year)
+```
+
+
+## Global aggregated analysis of flex crop production
+
+First it is interesting to see how the total production of flex crops and non flex crops has been evolving over time. Since increasing yields requires intensive farming with high inputs, leading to greater envitonmental impacts (Mózner et al. 2012), it is also interesting to compare the average yield of the two categories.
+
+### Global total production of different crop groups
+Time series of the abolute and relative area harvested of different crops groups.
+
+```{r fig.height = 3, fig.width = 10, echo = FALSE}
+
+crop_group_global_harvest = crop_data %>% 
+#  filter(crop_category != "Spices") %>% 
+#  filter(measures == "Area harvested") %>% 
+  group_by(year, crop_category) %>% 
+  summarise(total_crop_category_harvest = sum(production, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  group_by(year) %>% 
+  mutate(total_annual_crop_harvest = sum(total_crop_category_harvest)) %>% 
+  mutate(crop_category_share = ifelse(total_annual_crop_harvest == 0, NA, total_crop_category_harvest / total_annual_crop_harvest))
+
+# Plot the relative and absolute temporal change in export value of the different crop groups ---
+p1 = crop_group_global_harvest %>% 
+  ggplot(aes(x = year, y = crop_category_share, color = str_wrap(crop_category, 10))) +
+  geom_line() +
+  labs(title = "Crop group harvest amount", subtitle = "Relative", x = "", y = "proportion", color = "")
+
+p2 = crop_group_global_harvest %>% 
+  ggplot(aes(x = year, y = total_crop_category_harvest, color = str_wrap(crop_category, 10))) +
+  geom_line() +
+  labs(title = "Crop group harvest amount", subtitle = "Absolute", x = "", y = "hectares", color = "")
+
+ggarrange(p1, p2, ncol = 2)
+
+
+
+# Save the plot
+# suppressMessages(ggsave('images/global_area_harvested_per_crop_group.png', ggplot()))
+
+# export_commodity_value = export_value %>% 
+#   group_by(year, crop_category) %>% 
+#   summarise(total_crop_category_value_per_year = sum(export_value)) %>% 
+#   ungroup() %>% 
+#   group_by(year) %>% 
+#   mutate(total_value_per_year = sum(total_crop_category_value_per_year)) %>% 
+#   mutate(crop_category_share = total_crop_category_value_per_year / total_value_per_year)
+```
+
+
+```{r}
+crop_group_global_harvest %>% 
+  ggplot(aes(x = year, y = total_crop_category_harvest, color = str_wrap(crop_category, 10))) +
+  geom_line() +
+  labs(title = "Crop group harvest amount", subtitle = "Absolute", x = "", y = "hectares", color = "") +
+  facet_wrap(~crop_category, scales = "free_y")
+```
+
+# Flex crop on the rise?
+
+Flex crops are on a rise, both in absolute numbers and as a proportion. If these trends continue these five crops (soybeans, oil palm, maize, sugar cane and cassava) are possible that they will surpass all other commodity crops. Which of these five crops are driving this increase?
+
+Nuts and spices are in this view so small that they aren't plotted.
+
+```{r, echo = FALSE, include = FALSE}
+# Join global production data
+global_production_data = global_production_data %>% 
+  left_join(crop_group_global_harvest %>% select(year, crop_category, total_crop_category_harvest, crop_category_share), by = "year")
+```
+
+```{r, fig.height = 20, fig.width = 10}
+flex_crop_global_harvest = crop_production_data %>% 
+  filter(crop_category == "Flex crops") %>% 
+#  filter(measures == "Area harvested") %>% 
+  group_by(year, country) %>% 
+  summarise(total_flex_crop_harvest = sum(production, na.rm = TRUE))
+
+flex_crop_global_harvest %>% 
+  ggplot(aes(x = year, y = total_flex_crop_harvest, fill = )) +
+  geom_line() +
+  facet_wrap(~country, scales = "free_y", ncol = 8)
+
+```
+
+```{r, fig.height = 8, fig.width = 8}
+
+filtered_countries = c("Argentina", "Benin", "Bolivia", "Brazil", "Canada", "Burkina faso", "Burundi", "Cambodia", "Cameroom", "Chad", "China", "Cote d'Ivore", "Czechia", "DR Congo", "Ecuador", "Germany", "Ghana", "Guinea", "India", "Indonesia", "Iran", "Kazakhstan", "Kyrgyzstan", "Laos", "Madagascar", "Malaysia", "Mali", "Mozambique", "Myanmar", "Papua New Guinea", "Paraguay", "Russia", "Rwanda", "Solomon Islands", "Thailand", "Togo", "USA", "Uganda", "Ukraine", "Uruguay", "Viet Nam")
+
+flex_crop_global_harvest = crop_production_data %>% 
+  filter(crop_category == "Flex crops") %>% 
+#  filter(country %in% filtered_countries) %>% 
+#  filter(measures == "Area harvested") %>% 
+  group_by(year, country, source) %>% 
+  summarise(individual_flex_crop_harvest = sum(production, na.rm = TRUE))
+
+flex_crop_global_harvest %>% 
+  ggplot(aes(x = year, y = individual_flex_crop_harvest, fill = source)) +
+  geom_area() +
+  facet_wrap(~country, scales = "free_y", ncol = 6)
+
+```
+
+```{r}
+
+flex_crop_global_harvest = crop_production_data %>% 
+  filter(crop_category == "Flex crops") %>% 
+#  filter(measures == "Area harvested") %>% 
+  group_by(year, crop_category) %>% 
+  mutate(total_crop_category_harvest = sum(production, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  group_by(year, source) %>% 
+  summarise(harvest_per_flexcrop = sum(production))
+
+flex_crop_global_harvest %>% 
+  ggplot(aes(x = year, y = harvest_per_flexcrop, color = source)) +
+  geom_line() +
+  labs(title = "Flex crop harvest amount", subtitle = "Absolute vale", x = "", y = "hectares", color = "") +
+  facet_wrap(~source, scales = "free_y")
+
+# Save the plot
+# suppressMessages(ggsave('images/global_area_harvested_per_flex_crop_ts.png', ggplot()))
+
+```
+
+### Individual flex crop planted area proportion of total land area
+Large countries will naturally be the ones with the largest area planted. Here we look what proportion of the total crop production is flex crop production and how has it changed over time. With this information we can see if the flex crop production is actually displacing other production.
+
+Here a threshold is set that a country has at minimum 40% of the total area planted are flex crops in 2017. This number was mainly chosen because most countries after that are nations that have maize as a large part of their total production, but has had it for a long time and that share has been fairly stable over time. The reason why 2017 is chosen as a baseline is because it is interesting to focus on the where the production is dominant today, and how that have developed for those countries historically.
+
+```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+
+crop_proportion_plot_per_country(crop_production_data, category = "Flex crops", min_land_area = 500000, min_proportion = 0.20, max_proportion = 1, stacked = TRUE)
+
+```
+
+
+
+```{r}
+measure = c("Production", "Area harvested", "Yield")
+measure = "Area harvested"
+category = "Flex crops"
+
+crop_plot_data = crop_data %>% 
+  filter(crop_category == category, measures %in% measure) %>% 
+  dplyr::select(year, value, measures, item) %>%
+  group_by(year, measures, item) %>% 
+  summarize(total_value = sum(value)) %>% 
+  group_by(measures) %>%
+  mutate(value_index = total_value / total_value) %>% 
+  #print()
+  group_by(measures, item) %>% 
+  mutate(value_index = total_value/total_value[year == min(unique(year))]) %>% 
+  group_by(measures, year) %>%
+  mutate(fraction_value = total_value / sum(total_value))
+
+# Plot the change over time of flex crops
+ggplot(crop_plot_data) +
+  geom_line(aes(x=year, y=total_value, colour = str_wrap(item, width = 8))) +
+  theme_light(base_size = 10) +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  #      geom_vline(xintercept = 2009, linetype = "dotted", color = "black") +
+  labs(y = "Area harvested [hectares], Production [tonnes], Yield [tonnes / hectares]", x = "", title = "Crop harvest, production and yield") +
+  facet_wrap(~item + measures, ncol = 3, scales = "free_y", labeller = label_wrap_gen(multi_line=FALSE)) +
+  scale_y_continuous(limits=c(0,NA), labels = scaleFUN) +
+  theme(axis.text.x = element_text(angle=60, hjust=1)) +
+  #      guides(shape = guide_legend(override.aes = list(size = 0.5)))
+  theme(legend.key.size = unit(0.5, "cm"), legend.text = element_text(size = 6), legend.title = element_blank())
+
+```
+
+
+Some interesting points from these graphs
+* The first interesting observation is that even though we have set the threshold to a 25% and excluded smaller nations we still have 37 countries that have more than (setting it to 10% gives us 78 countries, or 99 countries at 5%). This is a lot more countries than I thought would have their cropland use so dominated by flex crops.
+
+* Both Indonesia and Malaysia are two giants when it comes to production of Palm oil. Here it becomes very clear that Malaysia differs very much from Indonesia in the sense that Malaysia has had an remarkable increase of proportion of oil palm produced. From a almost nothing up until the 70s to more than 50% in 2015.
+
+* Besides the ususal suspects of Brazil and Argentina, in latin america Bolivia, Paraguay and Uruguay has had a growth which deserves more attention. Especially looking at Paraguay and Uruguay who grown from a proportion of area that soybeans are grown on from almost 0 in the 70s to around 60% in 2015 and from close to 0 in 2000 to over 50% in 2015. In the speed this has happened maybe Uruguay is the most remarkable. The question I ask myself is where this land has come from?
+
+* Maize is somewhat fluctuating in area harvested over time, but its proportion generally does not increase much, with a few exeptions (Tanzania, Guatemala and DR Congo).
+
+An interesting question overall here would be on what expense is this expansion of flex crops? In many tropical countries it is known that important biomes, like rainforest in Latin America or South-east Asia or the cerrado in Brazil is cleared for production of for example soy, oil palm and sugar cane plantations. The questions is if flex crops also are expanding into other food production, e.g. if other crops are replaced by the flex crops? If this is true, given that these crops tend to a greater extent (source???) be used for other uses than directly for food, how does that affect food security in a region where this transition has happened? What are the effects on livelihoods of the people who used to live on growing other crops? Are corporations behind this expansion? Where does the demand come from? Have people been displaced from their lands because of this expansion? Have some benefitted and others not? Are these benefits gendered? What sort of governing institutions has made this possible? Where does the financing come from for this expansion? How much are the financial institutions interacting with the governing institutions?
+
+A reflection I have when I write this is that flex crops is bit of a problematic word. The way I use and think of the word is that they are problematic crops, since they have been shown in some cases to have been used to other things that aren't food related (e.g. biofuels, industrial materials etc.) and things that could be argued are not very effective use of calories (e.g. feed). This is true in some cases of course, but in many countries these are staple goods and a very important part of food security. I think it is important to sometimes reflect over that the producton of Maize in the US is very different from Maize production in Malawi, and that should be taken into account when doing this type of analysis.

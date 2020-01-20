@@ -31,9 +31,18 @@ source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
 
 ```{r get_raw_data, echo = FALSE, include = FALSE}
 # Get the crop data from the raw data
-data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/Production_Crops_E_All_Data.csv"
-crop_production_data_raw = read_production_data(data_path)
+data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/crop_production_data.csv"
+crop_production_data_raw = read_production_data(data_path) %>% 
+  filter(measures == "Area harvested")
 ```
+
+```{r get_raw_data, echo = FALSE, include = FALSE}
+# Get the crop data from the raw data
+data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Data/Crop production/crop_value_data.csv"
+crop_value_data_raw = read_production_data(data_path) %>% 
+  filter(measures == "Net Production Value (constant 2004-2006 1000 I$)")
+```
+
 
 ```{r get_crop_data, echo = FALSE, include = FALSE}
 # Get names of different crop groups
@@ -43,14 +52,41 @@ emerging_flex_crops = c("Rapeseed", "Sugar beet", "Sunflower seed", "Coconuts")
 other_crops = setdiff(flex_crops, all_crops)
 used_measure = c("Production", "Area harvested", "Yield")
 
-world = map_data("world") %>%
-  filter(region != "Antarctica")
+#world = map_data("world") %>%
+#  filter(region != "Antarctica")
 
 # check decade before and after financial crash
-year = 1961:2017
-
-crop_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year)
+year = 1961:2016
 ```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_production_data = get_crop_data(crop_production_data_raw, all_crops, measure = used_measure, year) %>% 
+  rename(production = value)
+#rm(crop_production_data_raw)
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_value_data = get_crop_data(crop_value_data_raw, all_crops, measure = used_measure, year) %>%
+  select(country, iso3_code, item, year, value) %>% 
+  mutate(value = 1000*value)
+#rm(crop_production_data_raw)
+```
+
+
+```{r get_crop_data, echo = FALSE, include = FALSE}
+crop_data = crop_production_data %>% 
+  inner_join(crop_value_data, by = c("country" = "country", "iso3_code" = "iso3_code",
+                                    "item" = "item", "year" = "year"))
+```
+```{r}
+
+crop_data
+
+
+```
+
 
 ## Global aggregated analysis of flex crop production
 
@@ -59,25 +95,26 @@ First it is interesting to see how the total production of flex crops and non fl
 ### Global total production of flex crops
 Time series of total production, area harvested and yield of flex crops and non flex crops. Non flex crops is just defined as all other crops that are not defined as flex crops or emerging flex crops.
 
-```{r fig.height = 2, fig.width = 7}
+```{r fig.height = 3, fig.width = 10}
 
 crop_group_global_harvest = crop_data %>% 
-  filter(measures == "Area harvested") %>% 
+#  filter(crop_category != "Spices") %>% 
+#  filter(measures == "Area harvested") %>% 
   group_by(year, crop_category) %>% 
-  summarise(total_crop_category_harvest = sum(value)) %>% 
+  summarise(total_crop_category_harvest = sum(production, na.rm = TRUE)) %>% 
   ungroup() %>% 
   group_by(year) %>% 
   mutate(total_annual_crop_harvest = sum(total_crop_category_harvest)) %>% 
-  mutate(crop_category_share = total_crop_category_harvest / total_annual_crop_harvest)
+  mutate(crop_category_share = ifelse(total_annual_crop_harvest == 0, NA, total_crop_category_harvest / total_annual_crop_harvest))
 
 # Plot the relative and absolute temporal change in export value of the different crop groups ---
 p1 = crop_group_global_harvest %>% 
-  ggplot(aes(x = year, y = crop_category_share, color = crop_category)) +
+  ggplot(aes(x = year, y = crop_category_share, color = str_wrap(crop_category,10))) +
   geom_line() +
   labs(title = "Crop group harvest amount", subtitle = "Relative", x = "", y = "proportion", color = "")
 
 p2 = crop_group_global_harvest %>% 
-  ggplot(aes(x = year, y = total_crop_category_harvest, color = crop_category)) +
+  ggplot(aes(x = year, y = total_crop_category_harvest, color = str_wrap(crop_category, 10))) +
   geom_line() +
   labs(title = "Crop group harvest amount", subtitle = "Absolute", x = "", y = "hectares", color = "")
 
@@ -93,24 +130,27 @@ ggarrange(p1, p2, ncol = 2)
 ```
 
 ```{r}
-crop_group_global_harvest = crop_data %>% 
+crop_group_regional_harvest = crop_data %>% 
   filter(measures == "Area harvested") %>% 
   group_by(year, crop_category) %>% 
   mutate(total_crop_category_harvest = sum(value)) %>% 
   ungroup() %>% 
-  group_by(year, country_group) %>% 
-  mutate(total_annual_crop_harvest = sum(total_crop_category_harvest)) %>% 
-  mutate(crop_category_share = total_crop_category_harvest / total_annual_crop_harvest)
+  group_by(year, crop_category, country_group) %>% 
+  mutate(regional_crop_category_harvest = sum(value)) %>%
+  distinct(year, country_group, crop_category, .keep_all = TRUE) %>%
+  ungroup() %>% 
+  mutate(crop_category_share =  regional_crop_category_harvest / total_crop_category_harvest) %>%
+  select(country, iso3_code, crop_category, country_group, year, total_crop_category_harvest, regional_crop_category_harvest, crop_category_share)
 
 # Plot the relative and absolute temporal change in export value of the different crop groups ---
-p1 = crop_group_global_harvest %>% 
+p1 = crop_group_regional_harvest %>% 
   ggplot(aes(x = year, y = crop_category_share, color = crop_category)) +
   geom_line() +
   labs(title = "Area harvested for crop group, relative value", x = "", y = "proportion", color = "") +
   facet_wrap(~country_group, scales = "free_y")
 
-p2 = crop_group_global_harvest %>% 
-  ggplot(aes(x = year, y = total_crop_category_harvest, color = crop_category)) +
+p2 = crop_group_regional_harvest %>% 
+  ggplot(aes(x = year, y = regional_crop_harvest, color = crop_category)) +
   geom_line() +
   labs(title = "Area harvested for crop group, absolute value", x = "", y = "hectares", color = "") +
   facet_wrap(~country_group, scales = "free_y")
@@ -127,11 +167,11 @@ p2
 
 df = crop_data %>% 
   filter(measures == "Area harvested") %>% 
-  select(country, iso3_code, year, crop_category, value, cropland, item, land_area, country_group) %>%
+  select(country, iso3_code, year, crop_category, value, item, country_group) %>%
   group_by(year, country) %>% 
   mutate(total_harvested_yearly = sum(value)) %>% 
   #mutate(total_AH = sum(value)) %>% 
-  filter(crop_category == "Flex crop") %>%
+  filter(crop_category == "Flex crops") %>%
   mutate(total_harvested_flex_crop = sum(value)) %>% 
   mutate(flex_crop_proportion_harvested = total_harvested_flex_crop / total_harvested_yearly) %>% 
   ungroup() %>% 
@@ -182,16 +222,16 @@ df_mean_flex_crop_country_group %>%
 ```
 
 
-```{r flex_crop_total_production, fig.height = 4, fig.width = 8, echo = FALSE}
+```{r flex_crop_total_production2, fig.height = 4, fig.width = 8, echo = FALSE}
 df_change = df %>%
   ungroup() %>% 
   select(year, flex_crop_proportion_harvested, country, item, iso3_code) %>% 
-  filter(year %in% c(1993, 2017)) %>% 
+  filter(year %in% c(1993, 2016)) %>% 
   spread(year, flex_crop_proportion_harvested) %>% 
   select(-item) %>% 
   distinct(country, .keep_all = TRUE) %>% 
-  mutate(change_abs = `2017` - `1993`) %>% 
-  mutate(change_perc = `2017` / `1993`)
+  mutate(change_abs = `2016` - `1993`) %>% 
+  mutate(change_perc = `2016` / `1993`)
   
 df_change_map_data = make_map_data(df_change) %>% 
   mutate(change_perc = as.numeric(change_perc))
@@ -207,9 +247,9 @@ df_change_map_data %>%
 ```
 
 
-```{r flex_crop_proportion_per_country out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
+```{r flex_crop_proportion_per_country, out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
+crop_proportion_plot_per_country(crop_data, category = "Potential flex crops", min_land_area = 500000, min_proportion = 0.1, max_proportion = 1, stacked = TRUE)
 
 ```
 
@@ -241,7 +281,7 @@ Here a threshold is set that a country has at minimum 40% of the total area plan
 
 ```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
+crop_proportion_plot_per_country(crop_production_data, category = "Flex crop", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
 
 ```
 

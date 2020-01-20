@@ -1,0 +1,198 @@
+---
+title: "crop_import_analysis"
+author: "Robin Lindström"
+date: "29/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
+Sys.setlocale('LC_ALL','C')
+
+
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+#library(tmap)
+library(plotly)
+#theme_set(theme_light(base_size = 8))
+setwd(getwd())
+```
+
+```{r read_functions, echo = FALSE, include = FALSE}
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
+#setwd("~/Google Drive/SRC/Thesis/")
+```
+
+```{r get_raw_data, echo = FALSE, include = FALSE}
+# Read the trade data
+
+trade_data_path = "/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Data/Trade data FAO/Trade_Crops_Livestock_E_All_Data_NOFLAG.csv"
+
+import_data_raw = read_trade_data(trade_data_path) %>% 
+  filter(str_detect(measures, "Import")) %>% 
+  filter(crop_category != "Non crops")
+
+```
+
+
+```{r variables_and_general_data, echo = FALSE, include = FALSE}
+years = 2010:2016
+all_years = 1961:2016
+years = all_years
+
+all_years_columns = paste("y",all_years, sep = "")
+year_columns = paste("y",years, sep = "")
+
+remove_years = setdiff(all_years_columns, year_columns)
+
+# Which columns am I interested in
+selected_columns = c("country", "iso3_code", "item", "source", "measures", "crop_category",
+                     "year", "value", "unit", "yearly_national_export", "country_group")
+
+FAO_codes = get_fao_codes()
+country_metrics = get_country_metrics()
+
+```
+
+
+```{r process_import_data, echo = FALSE, include = FALSE}
+selected_columns = c("country", "iso3_code", "item", "source", "measures", "crop_category",
+                     "year", "value", "unit", "yearly_national_import", "country_group")
+# Gather years into one column, replace all NA values with 0
+import_data_processed = import_data_raw %>% 
+#  filter(item_group == "Crops Primary") %>% 
+#  select(-remove_years) %>% 
+  gather(key = "year", "value", year_columns) %>% 
+  mutate(year = as.numeric(gsub("y", "", year))) %>% 
+  filter(item != "Total Merchandise Trade") %>% 
+  group_by(year, country, measures) %>% 
+  mutate(value = replace_na(value, 0)) %>% 
+  mutate(yearly_national_import = sum(value)) %>% 
+  ungroup() %>% 
+  select(selected_columns)
+
+# Filter out only the value of exports and add some countriy specific data
+import_value = import_data_processed %>% 
+  filter(unit == "1000 US$") %>% 
+  spread(measures, value) %>% 
+  clean_names() %>%
+#  left_join(land_area, by = "iso3_code") %>% 
+  left_join(country_metrics, by = "iso3_code") %>% 
+  filter(!is.na(land_area)) %>%  
+  filter(land_area > 5000)
+
+# These countries are excluded since they have an area smaller than 5000 sqm.
+
+```
+
+# Analysis
+
+```{r}
+national_crop_group_import_value = import_value %>% 
+  filter(crop_category != "Non crops",
+         year == 2017) %>% 
+  select(country, iso3_code, item, crop_category, import_value) %>% 
+  group_by(country) %>%
+  mutate(national_crop_import_value = sum(import_value)) %>% 
+  ungroup() %>% 
+  group_by(country, crop_category) %>% 
+  mutate(national_crop_category_import_value = sum(import_value),
+         national_crop_group_import_value_proportion = national_crop_category_import_value/national_crop_import_value)
+  
+national_crop_group_import_value_proportion = national_crop_group_import_value %>% 
+  ungroup() %>% 
+  filter(crop_category == "Flex crops") %>% 
+  distinct(iso3_code, national_crop_group_import_value_proportion)
+
+```
+
+
+```{r global_crop_import_analysis, fig.height = 2, fig.width = 7, echo = FALSE}
+
+# Make a plot over the global import value of different crop groups
+import_commodity_value = import_value %>% 
+  group_by(year, crop_category) %>% 
+  summarise(total_crop_category_value_per_year = sum(import_value)) %>% 
+  ungroup() %>% 
+  group_by(year) %>% 
+  mutate(total_value_per_year = sum(total_crop_category_value_per_year)) %>% 
+  mutate(crop_category_share = total_crop_category_value_per_year / total_value_per_year)
+
+# Plot the relative and absolute temporal change in import value of the different crop groups ---
+p1 = import_commodity_value %>% 
+  ggplot(aes(x = year, y = crop_category_share, color = crop_category)) +
+  geom_line() +
+  labs(title = "Crop group import value", subtitle = "Relative", x = "", y = "proportion", color = "")
+
+p2 = import_commodity_value %>% 
+  ggplot(aes(x = year, y = total_crop_category_value_per_year,
+             color = crop_category)) +
+  geom_line() +
+  labs(title = "Crop group import value", subtitle = "Absolute", x = "", y = "import value ($)", fill = "")
+
+ggarrange(p1, p2, ncol = 2)
+
+```
+
+```{r flex_crop_dominant_imports, echo = FALSE, include = FALSE}
+# Check how many countries that has a flex crop as the most dominating crop
+
+countries = sort((unique(import_value$country)))
+n_countries = length(countries)
+years = 1961:2017
+n_years = length(years)
+n_countries_with_flex_crop_dominating_import = rep(0, n_years)
+#nations_dominate_flex_list = data.frame(10, 2010, 2011)
+
+#nations_dominate_flex_list <- as.data.frame(matrix(0, ncol = n_years, nrow = n_countries))
+#colnames(nations_dominate_flex_list) = paste0("y", years)
+#rownames(nations_dominate_flex_list) = countries
+
+nations_dominate_flex_empty_list = as.data.frame(expand.grid(countries, year)) %>% 
+  rename(country = Var1, year = Var2)
+
+temp = data.frame()
+
+for(i in 1:n_years){
+  nations_dominate_flex = import_value %>% 
+    filter(year == years[i]) %>% 
+    group_by(country, year) %>%
+    mutate(yearly_national_import = sum(import_value)) %>% 
+    ungroup() %>%
+    group_by(country, year, source) %>%
+    summarise(source_crop_import_share = sum(import_value) / min(yearly_national_import),
+              crop_category = min(crop_category)) %>% 
+    group_by(year, country) %>%
+    top_n(1, source_crop_import_share) %>% 
+    ungroup() %>% 
+    select(country, year, source_crop_import_share, crop_category)
+  
+  temp = rbind(temp, nations_dominate_flex %>% 
+                 select(-crop_category))
+
+  #merge(nations_dominate_flex_list, nations_dominate_flex, by = c("country", "year"))
+  
+  current_value = nations_dominate_flex %>%
+    filter(crop_category == "Flex crops") %>% 
+    select(-crop_category) %>% 
+    summarise(n_countries_with_flex_crop_dominating_import = n()) %>% 
+    pull()
+  
+  n_countries_with_flex_crop_dominating_import[i] = current_value
+}
+
+nations_dominate_flex_list = nations_dominate_flex_empty_list %>% 
+    left_join(temp, by = c("country" = "country", "year" = "year"))
+
+flex_crop_import_share = data.frame(year = 1961:2017, n_countries_with_flex_crop_dominating_import = n_countries_with_flex_crop_dominating_import)
+```
+
+
+```{r flex_crop_dominant_imports_plot, echo = FALSE, include = FALSE}
+flex_crop_import_share %>% 
+  ggplot(aes(year, n_countries_with_flex_crop_dominating_import)) +
+    geom_line() +
+    labs(title = "Number of countries with flex crop as most imported crop", x = "", y = "Number fo countries")
+```

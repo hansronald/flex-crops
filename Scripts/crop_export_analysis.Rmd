@@ -1,0 +1,397 @@
+---
+title: "Crop trade analysis"
+author: "Robin Lindström"
+date: "20/10/2019"
+output:
+  html_document:
+      number_sections: true
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(root.dir = "~/Google Drive/SRC/Thesis/")
+Sys.setlocale('LC_ALL','C')
+
+
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+#library(tmap)
+library(plotly)
+#theme_set(theme_light(base_size = 8))
+setwd(getwd())
+```
+
+
+```{r read_functions, echo = FALSE, include = FALSE}
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
+#setwd("~/Google Drive/SRC/Thesis/")
+```
+
+```{r get_raw_data, echo = FALSE, include = FALSE}
+# Read the trade data
+
+trade_data_path = "/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Data/Trade data FAO/Trade_Crops_Livestock_E_All_Data_NOFLAG.csv"
+
+export_data_raw = read_trade_data(trade_data_path) %>% 
+  filter(str_detect(measures, "Export")) %>% 
+  filter(crop_category != "Non crops")
+
+```
+
+
+```{r variables_and_general_data, echo = FALSE, include = FALSE}
+years = 2010:2016
+all_years = 1961:2016
+years = all_years
+
+all_years_columns = paste("y",all_years, sep = "")
+year_columns = paste("y",years, sep = "")
+
+remove_years = setdiff(all_years_columns, year_columns)
+
+# Which columns am I interested in
+selected_columns = c("country", "iso3_code", "item", "source", "measures", "crop_category",
+                     "year", "value", "unit", "yearly_national_export", "country_group")
+
+FAO_codes = get_fao_codes()
+country_metrics = get_country_metrics()
+
+```
+
+```{r process_export_data, echo = FALSE, include = FALSE}
+# Which columns am I interested in
+selected_columns = c("country", "iso3_code", "item", "source", "measures", "crop_category",
+                     "year", "value", "unit", "yearly_national_export", "country_group")
+
+# Gather years into one column, replace all NA values with 0
+export_data_processed = export_data_raw %>% 
+#  filter(item_group == "Crops Primary") %>% 
+#  select(-remove_years) %>% 
+  gather(key = "year", "value", year_columns) %>% 
+  mutate(year = as.numeric(gsub("y", "", year))) %>% 
+  filter(item != "Total Merchandise Trade") %>% 
+  group_by(year, country, measures) %>% 
+  mutate(value = replace_na(value, 0)) %>% 
+  mutate(yearly_national_export = sum(value)) %>% 
+  ungroup() %>% 
+  select(selected_columns)
+
+# Filter out only the value of exports and add some countriy specific data
+export_value = export_data_processed %>% 
+  filter(unit == "1000 US$") %>% 
+  spread(measures, value) %>% 
+  clean_names() %>%
+#  left_join(land_area, by = "iso3_code") %>% 
+  left_join(country_metrics, by = "iso3_code") %>% 
+  filter(!is.na(land_area)) %>%  
+  filter(land_area > 5000)
+
+# These countries are excluded since they have an area smaller than 5000 sqm.
+
+```
+
+```{r flex_crop_total_production, fig.height = 4, fig.width = 8, echo = FALSE}
+
+# How big is the export share in each country and each year for each crop? ----
+
+# Calculate total annual national exports and each items export share of that total
+export_value_processed = export_value %>% 
+  mutate(export_value = replace_na(export_value, 0)) %>% 
+  group_by(country, year) %>%
+  mutate(total_export = sum(export_value)) %>% 
+  mutate(export_share = export_value / total_export) %>% 
+  arrange(desc(export_share))
+
+```
+
+
+
+```{r, echo = FALSE}
+# Which countries has the highest share of agricultural share of total exports in 2017? ----
+df_export_value_national = export_value %>%
+  distinct(country, iso3_code, agriculture_export_share) %>%
+  arrange(desc(agriculture_export_share))
+
+df_export_map_data = make_map_data(df_export_value_national)
+
+df_export_map_data %>%
+  ggplot(aes(fill = agriculture_export_share)) +
+  geom_sf() +
+  scale_fill_gradient2()
+  labs(title = "Flex crops as proportion of total area harvested", subtitle = "Change in percentage points",
+       fill = str_wrap("Percentage points",5))
+
+```
+
+```{r global_crop_export_analysis, fig.height = 2, fig.width = 7, echo = FALSE}
+
+# Make a plot over the global export value of different crop groups
+export_commodity_value = export_value %>% 
+  group_by(year, crop_category) %>% 
+  summarise(total_crop_category_value_per_year = sum(export_value)) %>% 
+  ungroup() %>% 
+  group_by(year) %>% 
+  mutate(total_value_per_year = sum(total_crop_category_value_per_year)) %>% 
+  mutate(crop_category_share = total_crop_category_value_per_year / total_value_per_year)
+
+# Plot the relative and absolute temporal change in export value of the different crop groups ---
+theme_set(theme_bw(base_size = 8))
+p1 = export_commodity_value %>% 
+  ggplot(aes(x = year, y = crop_category_share, color = crop_category)) +
+  geom_line() +
+  labs(title = "Crop group export value", subtitle = "Relative", x = "", y = "proportion", color = "")
+
+p2 = export_commodity_value %>% 
+  ggplot(aes(x = year, y = total_crop_category_value_per_year,
+             color = crop_category)) +
+  geom_line() +
+  labs(title = "Crop group export value",subtitle =  "Absolute", x = "", y = "export value ($)", color = "")
+
+ggarrange(p1, p2, ncol = 2)
+
+write.csv(export_commodity_value, "~/Google Drive/Skola/SRC/Thesis/Code/Output/global_annual_crop_group_export_data.csv")
+
+```
+
+
+
+
+
+```{r flex_crop_dominant_exports, echo = FALSE, include = FALSE}
+# Check how many countries that has a flex crop as the most dominating crop
+
+countries = sort((unique(export_value$country)))
+n_countries = length(countries)
+years = 1961:2016
+n_years = length(years)
+n_countries_with_flex_crop_dominating_export = rep(0, n_years)
+#nations_dominate_flex_list = data.frame(10, 2010, 2011)
+
+#nations_dominate_flex_list <- as.data.frame(matrix(0, ncol = n_years, nrow = n_countries))
+#colnames(nations_dominate_flex_list) = paste0("y", years)
+#rownames(nations_dominate_flex_list) = countries
+
+nations_dominate_flex_empty_list = as.data.frame(expand.grid(countries, years)) %>% 
+  rename(country = Var1, year = Var2)
+
+temp = data.frame()
+
+for(i in 1:n_years){
+  nations_dominate_flex = export_value %>% 
+    filter(year == years[i]) %>% 
+    group_by(country, year) %>%
+    mutate(yearly_national_export = sum(export_value)) %>% 
+    ungroup() %>%
+    group_by(country, year, source) %>%
+    summarise(source_crop_export_share = sum(export_value) / min(yearly_national_export),
+              crop_category = min(crop_category)) %>% 
+    group_by(year, country) %>%
+    top_n(1, source_crop_export_share) %>% 
+    ungroup() %>% 
+    select(country, year, source_crop_export_share, crop_category)
+  
+  temp = rbind(temp, nations_dominate_flex %>% 
+                 select(-crop_category))
+
+  #merge(nations_dominate_flex_list, nations_dominate_flex, by = c("country", "year"))
+  
+  current_value = nations_dominate_flex %>%
+    filter(crop_category == "Flex crops") %>% 
+    select(-crop_category) %>% 
+    summarise(n_countries_with_flex_crop_dominating_import = n()) %>% 
+    pull()
+  
+  n_countries_with_flex_crop_dominating_export[i] = current_value
+}
+
+nations_dominate_flex_list = nations_dominate_flex_empty_list %>% 
+    left_join(temp, by = c("country" = "country", "year" = "year"))
+
+flex_crop_export_share = data.frame(year = 1961:2016, n_countries_with_flex_crop_dominating_export = n_countries_with_flex_crop_dominating_export)
+
+```
+
+
+```{r flex_crop_dominant_export_plot}
+
+flex_crop_export_share %>% 
+  ggplot(aes(year, n_countries_with_flex_crop_dominating_export)) +
+    geom_line() +
+    labs(title = "Number of countries with flex crop as most exported crop", x = "", y = "Number fo countries")
+
+```
+
+
+
+
+```{r flex_crop_dominant_trade_plot, echo = FALSE}
+
+flex_crop_export_share %>% 
+  left_join(flex_crop_import_share, by = "year") %>%
+  rename(export = n_countries_with_flex_crop_dominating_export,import = n_countries_with_flex_crop_dominating_import) %>%
+  gather(trade_type, n_countries, c(export, import)) %>% 
+  ggplot(aes(year, n_countries, color = trade_type)) +
+  geom_line() +
+  labs(title = "Number of countries with flex crop as highest share of trade", x = "", y = "Number of countries",
+       color = "Trade type") +
+  theme_bw(base_size = 10)
+
+```
+
+
+# Find the change in exports (this is probably a bad way, do time series analysis instead)
+```{r, echo = FALSE, include = FALSE}
+# How much of total exports are 1, 3 and 5 crops?
+countries_df = export_value %>%
+  distinct(country, iso3_code) %>% 
+  arrange(country)
+
+variable <- sym(paste0("export_share_top", i, "_crops"))
+
+crop_value_2016 = export_value %>% 
+  filter(year == 2016) %>%
+#  filter(crop_category != "Non crops") %>% 
+  mutate(individual_crop_proportion_exports = export_value / yearly_national_export) %>% 
+  group_by(year, iso3_code, country, source) %>% 
+  summarise(commodity_export = sum(export_value / yearly_national_export),
+            crop_category = min(crop_category))
+
+crop_value_1961 = export_value %>% 
+  filter(year == 1961) %>%
+#  filter(crop_category == "Non crops") %>% 
+  mutate(individual_crop_proportion_exports = export_value / yearly_national_export) %>% 
+  group_by(year, iso3_code, country, source) %>% 
+  summarise(commodity_export = sum(export_value / yearly_national_export),
+            crop_category = min(crop_category))
+
+export_share_2016 = crop_value_2016 %>% 
+  top_n(1, commodity_export) %>% 
+  ungroup() %>%
+  group_by(iso3_code) %>% 
+  summarise(export_share_2016 = sum(commodity_export))
+
+export_share_1961 = crop_value_1961 %>% 
+  top_n(1, commodity_export) %>% 
+  ungroup() %>%
+  group_by(iso3_code) %>% 
+  summarise(export_share_1961 = sum(commodity_export))
+
+national_crop_export_proportion = countries_df %>%
+  left_join(export_share_2016, by = "iso3_code") %>%
+  left_join(export_share_1961, by = "iso3_code") %>% 
+  mutate(change = export_share_2016 - export_share_1961) %>%
+  left_join(country_metrics, by = "iso3_code") %>% 
+  left_join(FAO_codes, by = "iso3_code")
+  #gather("type", "value", -c(country, iso3_code))
+
+# countries_df %>%
+#   gather("number_of_exporters", "value", -c(country, iso3_code)) %>% 
+#   ggplot(aes(x = number_of_exporters, y = value)) +
+#   geom_violin() +
+#   geom_boxplot(width=0.1)
+# 
+# countries_df %>%
+#   gather("number_of_exporters", "value", -c(country, iso3_code)) %>% 
+#   ggplot(aes(value, fill = number_of_exporters)) +
+#   #geom_histogram(bins = 20) +
+#   geom_density(alpha=0.3)
+```
+
+# How has the national top exported crop share changed from 1961 to 2017?
+```{r top_crop_export_share, echo = FALSE}
+
+#FAO_codes = get_fao_codes() %>%
+#  select(-country_code)
+#country_metrics = get_country_metrics()
+
+
+national_crop_export_proportion %>% 
+  mutate(change_sign = change / abs(change)) %>% 
+  mutate(limit = ifelse(export_share_2016 > 0.1, "high", "low")) %>% 
+  filter(!is.na(limit)) %>%
+  ggplot(aes(x = export_share_1961, y = export_share_2016, label = iso3_code, color = income)) + 
+  geom_point() +
+  geom_abline() +
+  geom_text(hjust=0, vjust=0) +
+  facet_wrap(~limit, scales = "free_y", ncol = 1)
+
+  # ggplot(aes(x = export_share_1961, y = export_share_2017, label = iso3_code, color = income)) +
+  # geom_point() +
+  #   
+  # geom_text(data=subset(national_crop_export_proportion,
+  #                       export_share_1961 > 0.25 | export_share_2017 > 0.25), hjust=0, vjust=0) +
+  # facet_wrap(~limit)
+```
+
+# Flex crops change over time
+
+```{r, echo = FALSE, include = FALSE}
+flex_crop_export_share_2016 = export_value %>% 
+  filter(year == 2016) %>%
+  filter(crop_category == "Flex crops") %>% 
+  mutate(individual_crop_proportion_exports = export_value / yearly_national_export) %>% 
+  group_by(iso3_code) %>% 
+  summarise(flex_crop_export_share_2016 = sum(export_value / yearly_national_export))
+
+flex_crop_export_share_1961 = export_value %>% 
+  filter(year == 1961) %>%
+  filter(crop_category == "Flex crops") %>% 
+  mutate(individual_crop_proportion_exports = export_value / yearly_national_export) %>% 
+  group_by(iso3_code) %>% 
+  summarise(flex_crop_export_share_1961 = sum(export_value / yearly_national_export))
+
+national_crop_export_proportion = countries_df %>%
+  left_join(flex_crop_export_share_2016, by = "iso3_code") %>%
+  left_join(flex_crop_export_share_1961, by = "iso3_code") %>% 
+  mutate(change = flex_crop_export_share_2016 - flex_crop_export_share_1961) %>%
+  left_join(country_metrics, by = "iso3_code") %>% 
+  left_join(FAO_codes, by = "iso3_code")
+  #gather("type", "value", -c(country, iso3_code))
+```
+
+
+```{r fig.height = 6, fig.width = 12}
+#theme_set()
+national_crop_export_proportion %>% 
+  mutate(change_sign = change / abs(change)) %>% 
+  filter(!is.na(change_sign)) %>% 
+  mutate(limit = ifelse(flex_crop_export_share_2016 < 0.1 & flex_crop_export_share_1961 < 0.1, "low", "high")) %>% 
+  filter(!is.na(limit),
+         limit == "high") %>%
+  ggplot(aes(x = flex_crop_export_share_1961, y = flex_crop_export_share_2016, label = iso3_code, color = country_group)) + 
+  geom_point() +
+  geom_abline() +
+  geom_text(size = 6, hjust=0, vjust=0) +
+  #facet_wrap(~change_sign, scales = "free") +
+  theme_bw(base_size = 15)
+```
+
+
+
+
+```{r flex_crop_export_share_2, fig.width = 10, fig.height = 10}
+df_export_map_data = make_map_data(national_crop_export_proportion)
+
+temp = df_export_map_data %>% 
+  select(gdp, country_group)
+
+# df_export_map_data %>%
+#   ggplot(aes(fill = flex_crop_export_share_2017)) +
+#   geom_sf() +
+#   scale_fill_gradient2() +
+#   labs(title = "Flex crops export share", fill = "") +
+#   theme_bw(base_size = 10) +
+#   facet_grid(~country_group, scales = "free_y")
+#   #facet_wrap(~country_group, scales = "free") 
+
+df_export_map_data %>%
+  ggplot(aes(fill = gdp)) +
+  geom_sf() +
+  scale_fill_gradient2() +
+  theme_bw(base_size = 10)
+  #facet_grid(~country_group, scales = "free")
+  #facet_wrap(~country_group, scales = "free") 
+
+```
+

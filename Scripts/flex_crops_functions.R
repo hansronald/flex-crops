@@ -23,12 +23,12 @@ library(tmap)    # for static and interactive maps
 
 read_production_data = function(data_path){
   
-  crop_production_categories = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/crop_production_categories.csv")) %>% 
-    clean_names() %>%
+  crop_production_categories = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_item_categories.csv")) %>% 
+    clean_names() %>% 
   #  filter(item_group == "Crops Primary") %>% 
   #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
-    dplyr::select(crop, crop_category, item_group, item_code) %>% 
-    filter(item_group == "Crops Primary")
+    dplyr::select(source, crop_category, item_code)
+  #  filter(item_group == "Crops Primary")
   
   # Add regions and income level
   
@@ -44,7 +44,7 @@ read_production_data = function(data_path){
   #  select(-country_name, -country_iso3)
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
 #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code)
@@ -52,7 +52,7 @@ read_production_data = function(data_path){
 #    left_join(wits_filtered, by = "iso3")
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_group, country_code, iso3_code_new) %>% 
@@ -100,7 +100,7 @@ read_production_data = function(data_path){
 
 get_fao_codes = function(){
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_group, country_code, iso3_code_new) %>% 
@@ -111,11 +111,11 @@ get_fao_codes = function(){
 
 read_trade_data = function(data_path){
   
-  crop_trade_categories = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/crop_trade_categories.csv")) %>% 
+  crop_trade_categories = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_item_categories.csv")) %>% 
     clean_names() %>%
     #  filter(item_group == "Crops Primary") %>% 
     #  filter(category %in% c("Cereals", "Oilseeds", "Roots and tubers", "Sugars", "Vegetable oil", "Fruits")) %>% 
-    filter(item_group == "Agricult.Products,Total") %>% 
+    #filter(item_group == "Agricult.Products,Total") %>% 
     dplyr::select(source, crop_category, item_code) 
 #    filter(crop_category != "Non crops") %>% 
     
@@ -134,7 +134,7 @@ read_trade_data = function(data_path){
   #  select(-country_name, -country_iso3)
   
   # FAO data only has a country code, not the iso code. This is used to map with other data using iso3code
-  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
   #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code)
@@ -309,27 +309,39 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
   year_column = paste("y",year, sep = "")
   
   # Which columns am I interested in
-  selected_columns = c("country", "iso3_code", "item", "measures",
+  selected_columns = c("country_code", "country", "iso3_code", "item", "source", "measures",
                        "crop_category", "country_group", year_column)
   
     
-  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes.csv")) %>%
+  #FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes.csv")) %>%
   #  clean_names() %>%
 #    mutate(iso3_code = replace(iso3_code, country == "Namibia", "NA")) %>% 
   #  dplyr::select(country_code, iso3_code) %>% 
   #  left_join(FAO_small_regions, by = "iso3_code")
-  
-  # # Get land area from WDI, all years
-  # country_land_area_raw <- as_tibble(data.frame(
-  #   WDI(country = "all",
-  #       # Land area come as sqkm
-  #       indicator = c("AG.LND.TOTL.K2"),
-  #       start = min(year),
-  #       end = max(year),
-  #       extra = TRUE)))
+
+  # Get land area from WDI, all years
+# country_land_area_raw <- as_tibble(data.frame(
+#    WDI(country = "all",
+#        # Land area come as sqkm
+#        indicator = c("AG.LND.TOTL.K2"),
+#        start = min(year),
+#        end = max(year),
+#        extra = TRUE)))
   # 
-  # land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/x.Code/Data/Land use/land_use_cropland_agricultural_land_FAO.csv")) %>% 
-  #   clean_names()
+  
+land_use_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Code/Data/Land use/FAO_land_data.csv")) %>% 
+    clean_names() %>% 
+    filter(item %in% c("Cropland", "Land area")) %>%
+  select(area_code, item, value, year) %>% 
+  spread(item, value) %>% 
+  clean_names() %>%
+  rename(crop_land_area = cropland) %>% 
+  mutate(crop_land_area = 1000*crop_land_area,
+         land_area = 1000*land_area) %>%  # Comes in 1000s hectare, calculating to hectares
+  rename(country_code = area_code)
+  
+  
+
   # 
   # crop_area_share = land_use_raw %>% 
   #   filter(item == "Cropland",
@@ -344,13 +356,13 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
   # 
   # # Filter only countries and convert to hectares
   # land_use_data = country_land_area_raw %>%
-  #   
+  # 
   #   # Retrieve total land area, agricultural land area nad crop land area from the World Bank
-  #   filter(region != "Aggregates") %>% 
-  #   left_join(crop_area_share, by = c("iso3_code", "year")) %>% 
-  #   mutate(land_area = AG.LND.TOTL.K2 * 100) %>% 
+  #   filter(region != "Aggregates") %>%
+  #   left_join(crop_area_share, by = c("iso3_code", "year")) %>%
+  #   mutate(land_area = AG.LND.TOTL.K2 * 100) %>%
   #   # crop land comes as a proportion of total land area, this is to get the sqkm
-  #   mutate(cropland = crop_area_share_of_land_area * land_area) %>% 
+  #   mutate(cropland = crop_area_share_of_land_area * land_area) %>%
   #   dplyr::select(iso3_code, land_area, cropland, year)
 
     # TODO This is not working correctly    
@@ -358,8 +370,8 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
 #    group_by(iso3_code)
 #    fill(cropland, .direction = "down") %>%
 #    fill(agri_land_area, .direction = "down")
-  land_use_data = get_land_use_data() %>% 
-    select(-country_code)
+  #land_use_data = get_land_use_data() %>% 
+  #  select(-country_code)
   
   # Exclude all columns except for year ofr gathering
   toExclude = setdiff(selected_columns, year_column)
@@ -368,7 +380,7 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
   crop_data_out = crop_production_data_raw %>%
   #    dplyr::select(-land_area) %>% 
     filter(item %in% crops) %>%
-    filter(measures %in% measure) %>%
+  #  filter(measures %in% measure) %>%
     dplyr::select(selected_columns) %>%
 #    mutate(country = sub("C\xf4te d'Ivoire", "Cote d'Ivore", country)) %>% 
 #    mutate(country = sub("R\xe9union", "Reunion", country)) %>% 
@@ -381,18 +393,18 @@ get_crop_data = function(crop_production_data_raw, crops = unique(crop_productio
 #  gather("measures", "value", `Area harvested`, `Production`, `Yield`) %>%
     na.omit() %>% 
     mutate(year = as.numeric(gsub("y", "", year))) %>% 
-    left_join(land_use_data, by = c("iso3_code", "year")) %>% 
-    filter(!is.na(cropland))
+    left_join(land_use_raw, by = c("country_code", "year"))
+  #  filter(!is.na(cropland))
   
   return(crop_data_out)
 }
 
 get_land_use_data = function(){
   
-  setwd("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Land use")
-  path_name = "FAO_land_use.csv.zip"
-  fread_path = paste("unzip -p", path_name)
-  land_use_raw = as_tibble(fread(fread_path)) %>% 
+  setwd("~/Google Drive/Skola/SRC/Thesis/Code/Data/Land use")
+  path_name = "land_use_FAO.csv"
+  #fread_path = paste("unzip -p", path_name)
+  land_use_raw = as_tibble(fread(path_name)) %>% 
     clean_names()
   
   land_use_filtered = land_use_raw %>% 
@@ -409,7 +421,7 @@ get_land_use_data = function(){
 
 add_iso_fao_data = function(data){
 
-  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/x.Code/Data/Categories/FAO_codes_raw.csv")) %>% 
+  FAO_codes = as_tibble(fread("~/Google Drive/Skola/SRC/Thesis/Code/Data/Categories/FAO_codes_raw.csv")) %>% 
     clean_names() %>%
     filter(country_group_new == "Small region") %>% 
     select(country_code, iso3_code_new) %>% 
@@ -876,19 +888,21 @@ crop_proportion_plot_per_country = function(crop_data, category, min_land_area, 
 
   crop_data_proportion = crop_data %>% 
     filter(measures == "Area harvested",
-           crop_category == category) %>%  
+           crop_category == category) %>%
+    
+    #TODO: Change the cropland area to area harvested instead
     
     # First calculate the total area for all crops group
     group_by(country, year) %>%
-    mutate(crop_category_area = sum(value)) %>% 
-    mutate(crop_category_area_proportion = (crop_category_area) / cropland) %>% 
+    mutate(crop_category_area = sum(production)) %>% 
+    mutate(crop_category_area_proportion = (crop_category_area) / crop_land_area) %>% 
     ungroup() %>% 
     
     # Then calculate total area per individual crop
     group_by(country, year, item) %>%
-    mutate(crop_individual_area = sum(value)) %>%
-    mutate(crop_individual_area_proportion = (crop_individual_area) / cropland) %>% 
-    select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, cropland, land_area)
+    mutate(crop_individual_area = sum(production)) %>%
+    mutate(crop_individual_area_proportion = (crop_individual_area) / crop_land_area) %>% 
+    select(country, year, crop_individual_area_proportion, crop_category_area_proportion, item, crop_land_area, land_area)
   
   
   # crop_data_proportion %>% 
@@ -1011,7 +1025,7 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, cut_off =
     mutate(plot_label = factor(plot_label, levels = c((plot_order$item[1:n_items]), 'Other'))) %>%
     group_by(plot_label, year) %>%
     summarise(value = sum(value),
-              cropland = unique(cropland)) %>% 
+              crop_land_area = unique(crop_land_area)) %>% 
     group_by(year) %>% 
     mutate(percentage = value / sum(value))
   
@@ -1019,7 +1033,7 @@ plot_country_crop_data = function(crop_data, country_var, measure_var, cut_off =
     final_plot %>%
       ggplot(aes(x=year)) + 
       geom_area(aes(y=value, fill=plot_label)) +
-      geom_line(aes(y = cropland, color = "Total cropland")) +
+      geom_line(aes(y = crop_land_area, color = "Total cropland")) +
       scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
       scale_y_continuous(labels = scaleFUN) +
       theme(axis.text.x = element_text(angle=60, hjust=1)) +
@@ -1315,7 +1329,7 @@ get_ts_plot_crop_per_country = function(crop_data, crop, measure, country_var){
 }
 
 land_use_plot = function(country, stacked = TRUE){
-  land_use_all = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/x.Code/Data/Land use/land_use_all.csv")) %>% 
+  land_use_all = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Code/Data/Land use/land_use_all.csv")) %>% 
     clean_names()
   
   land_use_filtered = land_use_all %>% 
@@ -1348,7 +1362,7 @@ land_use_plot = function(country, stacked = TRUE){
 
 land_cover_plot = function(country){
   
-  land_cover_all_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/x.Code/Data/Land use/land_cover_all.csv")) %>% 
+  land_cover_all_raw = as_tibble(fread("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Code/Data/Land use/land_cover_all.csv")) %>% 
     clean_names()
   
   land_cover_all_filtered = land_cover_all_raw %>% 

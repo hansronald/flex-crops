@@ -23,7 +23,7 @@ setwd(getwd())
 
 ```{r read_functions, echo = FALSE, include = FALSE}
 
-source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
+source("~/Google Drive/SRC/Thesis/x.Code/Scripts/flex_crops_functions.R")
 #setwd("~/Google Drive/SRC/Thesis/")
 ```
 
@@ -97,7 +97,7 @@ Time series (as a proportion of all flex crops)
 
 used_measure = c("Production", "Area harvested")
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-time_series_crop_comparison_plot(crop_data, category = "Flex crops", measure = used_measure, fraction = FALSE)
+time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure = used_measure, fraction = FALSE)
 
 ```
 
@@ -110,7 +110,7 @@ Each flex crop is plotted as a proportion of total flex crop production.
 
 used_measure = c("Production", "Area harvested")
 #crop_data = get_crop_data(crop_production_data_raw, all_crops, measure, year)
-time_series_crop_comparison_plot(crop_data, category = "Flex crops", measure = used_measure, fraction = TRUE)
+time_series_crop_comparison_plot(crop_data, category = "Flex crop", measure = used_measure, fraction = TRUE)
 
 ```
 
@@ -126,13 +126,13 @@ This plot shows us, in terms om tonnes produced, which countries are producing t
 
 used_measure = "Area harvested"
   
-p1 = stacked_area_plot(crop_data, category = "Flex crops", crop = "Soybeans",
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop = "Soybeans",
                        measure = used_measure, cut_off = 0.7)
-p2 = stacked_area_plot(crop_data, category = "Flex crops", crop ="Sugar cane",
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
                        measure = used_measure, cut_off = 0.7)
-p3 = stacked_area_plot(crop_data, category = "Flex crops", crop ="Oil palm fruit",
+p3 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
                        measure = used_measure, cut_off = 0.7)
-p4 = stacked_area_plot(crop_data, category = "Flex crops", crop ="Maize",
+p4 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Maize",
                        measure = used_measure, cut_off = 0.7)
 
 #p2 = stacked_area_plot(crop_data, category = "Flex crop", crop = x,
@@ -153,9 +153,9 @@ For palm oil and sugar cane ther others group has historically been quite large.
 
 ```{r historical_producers, fig.height = 8, fig.width = 10, echo = FALSE}
 
-p1 = stacked_area_plot(crop_data, category = "Flex crops", crop ="Sugar cane",
+p1 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Sugar cane",
                        measure = "Production", cut_off = 0.90)
-p2 = stacked_area_plot(crop_data, category = "Flex crops", crop ="Oil palm fruit",
+p2 = stacked_area_plot(crop_data, category = "Flex crop", crop ="Oil palm fruit",
                        measure = "Production", cut_off = 0.98)
 
 grid.arrange(p1, p2)
@@ -175,7 +175,7 @@ The Herfindahl–Hirschman Index (HHI) is a measure of market concentration (Inv
 
 ```{r fig.height = 3, fig.width = 9, echo = FALSE}
 
-category = "Flex crops"
+category = "Flex crop"
 used_measure = c("Area harvested")
 plot_HH_index(crop_data, category, measure = used_measure)
 
@@ -192,7 +192,7 @@ Here a threshold is set that a country has at minimum 40% of the total area plan
 
 ```{r  out.width = "100%", out.height = "100%", fig.height = 6, echo = FALSE}
 
-crop_proportion_plot_per_country(crop_data, category = "Flex crops", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
+crop_proportion_plot_per_country(crop_data, category = "Flex crop", min_land_area = 500000, min_proportion = 0.4, max_proportion = 1, stacked = TRUE)
 
 ```
 

@@ -141,7 +141,7 @@ ggarrange(p1, p2, ncol = 2)
 
 countries = sort((unique(import_value$country)))
 n_countries = length(countries)
-years = 1961:2017
+years = 1961:2016
 n_years = length(years)
 n_countries_with_flex_crop_dominating_import = rep(0, n_years)
 #nations_dominate_flex_list = data.frame(10, 2010, 2011)
@@ -150,7 +150,7 @@ n_countries_with_flex_crop_dominating_import = rep(0, n_years)
 #colnames(nations_dominate_flex_list) = paste0("y", years)
 #rownames(nations_dominate_flex_list) = countries
 
-nations_dominate_flex_empty_list = as.data.frame(expand.grid(countries, year)) %>% 
+nations_dominate_flex_empty_list = as.data.frame(expand.grid(countries, years)) %>% 
   rename(country = Var1, year = Var2)
 
 temp = data.frame()
@@ -186,13 +186,13 @@ for(i in 1:n_years){
 nations_dominate_flex_list = nations_dominate_flex_empty_list %>% 
     left_join(temp, by = c("country" = "country", "year" = "year"))
 
-flex_crop_import_share = data.frame(year = 1961:2017, n_countries_with_flex_crop_dominating_import = n_countries_with_flex_crop_dominating_import)
+flex_crop_import_share = data.frame(years = years, n_countries_with_flex_crop_dominating_import = n_countries_with_flex_crop_dominating_import)
 ```
 
 
-```{r flex_crop_dominant_imports_plot, echo = FALSE, include = FALSE}
+```{r flex_crop_dominant_imports_plot, echo = FALSE}
 flex_crop_import_share %>% 
-  ggplot(aes(year, n_countries_with_flex_crop_dominating_import)) +
+  ggplot(aes(years, n_countries_with_flex_crop_dominating_import)) +
     geom_line() +
-    labs(title = "Number of countries with flex crop as most imported crop", x = "", y = "Number fo countries")
+    labs(title = "Number of countries with flex crop as most imported crop", x = "", y = "Number of countries")
 ```

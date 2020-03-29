@@ -1,0 +1,61 @@
+---
+title: "input"
+author: "Robin Lindström"
+date: "20/10/2019"
+output:
+  word_document
+
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(root.dir = "~/Google Drive/Skola/SRC/Thesis/Code/Scripts")
+#knitr::opts_chunk$set(fig.path = "images/")
+#knitr::opts_chunk$set(dev = 'pdf')
+Sys.setlocale('LC_ALL','C')
+
+#rmarkdown::render("input.Rmd")
+
+library(scales)
+library(gridExtra)
+library(sf) # For loading map data
+#library(tmap)
+library(plotly)
+theme_set(theme_light(base_size = 8))
+setwd("~/Google Drive/Skola/SRC/Thesis/Code/Scripts")
+```
+
+```{r testa, echo = FALSE, include = FALSE}
+#source("/Users/robinlindstrom/Google Drive/Skola/SRC/Thesis/Code/Scripts/read_production_data.R")
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/flex_crops_functions.R")
+crop_data_path = "~/Google Drive/Skola/SRC/Thesis/Code/Scripts/output/crop_data_processed.csv"
+crop_data = as_tibble(fread(crop_data_path))
+
+```
+
+
+```{r flex_crop_global_data, echo = FALSE, dpi = 300}
+# rm(list = ls(all.names = TRUE))
+## 
+
+measures_selected = c("Area harvested", "Yield")
+flex_crops = c("Soybeans", "Sugar cane", "Oil palm fruit", "Maize")
+
+flex_crop_global_data = crop_data %>% 
+  filter(source_crop %in% flex_crops,
+         measures %in% measures_selected) %>% 
+  group_by(year, measures, source_crop) %>% 
+  summarise(total_value = sum(value))
+
+flex_crop_global_data %>% 
+  ggplot(aes(x = year, y = total_value, color = source_crop)) +
+  geom_line() +
+  facet_wrap(~source_crop + measures, scales = "free_y", ncol = 2, labeller = label_wrap_gen(multi_line=FALSE)) +
+  labs(title = "Total area harvested (ha) and yield (t/ha) for flex crops (1961-2018)", x = "", color = "", y = "")
+
+
+```
+
+
+
+

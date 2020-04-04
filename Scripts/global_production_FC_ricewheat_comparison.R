@@ -1,7 +1,11 @@
+source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/common_settings.R")
 
-crops = c("Soybeans", "Maize", "Oil palm fruit", "Sugar cane", "Wheat", "Rice, paddy")
+crop_production_data_processed_path = here("Processed data", "crop_production_data_processed.csv")
+crop_production_data_processed = read_csv(crop_production_data_processed_path)
 
-flex_crops = crop_data %>% 
+selected_crops = c("Soybeans", "Maize", "Oil palm fruit", "Sugar cane", "Wheat", "Rice, paddy")
+
+flex_crops = crop_production_data_processed %>% 
   filter(crop_category == "Flex crops")
 
 # Just flex crops
@@ -15,10 +19,10 @@ flex_crops %>%
 
 
 # Other crops
-selected_crops = crop_data %>% 
-  filter(item %in% crops)
+selected_crops_data = crop_production_data_processed %>% 
+  filter(item %in% selected_crops)
 
-selected_crops %>% 
+selected_crops_data %>% 
   filter(measures == "Yield") %>% 
   group_by(year, item) %>% 
   summarise(avg_yield = mean(value)) %>% 
@@ -27,10 +31,9 @@ selected_crops %>%
   #facet_wrap(~item, scales = "free_y") +
   scale_y_continuous(label = scaleFUN)
 
-ggsave()
 
 # Global production (tonnes)
-selected_crops %>% 
+selected_crops_data %>% 
   filter(measures == "Production") %>% 
   group_by(year, item) %>% 
   summarise(global_production = sum(value)) %>% 
@@ -41,7 +44,7 @@ selected_crops %>%
   labs(title = "Global production", y = "Production (tonnes)")
 
 # Global area harvested
-selected_crops %>% 
+selected_crops_data %>% 
   filter(measures == "Area harvested") %>% 
   group_by(year, item) %>% 
   summarise(global_harvested = sum(value)) %>% 

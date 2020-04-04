@@ -17,7 +17,7 @@ len = length(raster_files)
 for(i in 1:1){
   start.time <- Sys.time()
   rast_id = raster_files[i]
-  rast <- raster(rast_id)
+  rast <- raster(here("GEOTIFF", rast_id))
   
   # Print file and number of file
   print(i)
@@ -87,14 +87,14 @@ for(i in 1:1){
   end.time <- Sys.time()
   
   # Extract the minutes it took for this file and print
-  time.taken <- as.numeric(end.time - start.time, units = "mins")
-  print(paste("This file took", round(time.taken, 1), "mins"))
+  time_taken <- as.numeric(end.time - start.time, units = "mins")
+  print(paste("This file took", round(time_taken, 1), "mins"))
   print(paste(i, "of", len, "files done"))
   
   # Calculate total file size left and see speed of this round, to estimate time left
   total_file_size_left = sum(file.info(raster_files[i:len])[1])
-  file_size = file.info(rast_id)$size
-  mins_left = round(total_file_size_left / (file_size / calc_time))
+  file_size = file.info(here("GEOTIFF", rast_id))$size
+  mins_left = round(total_file_size_left / (file_size / time_taken))
   print(paste("Minutes left:", mins_left))
   
   if(i%%10 == 0){

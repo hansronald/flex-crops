@@ -96,11 +96,29 @@ global_fertiliser_per_category = read_csv(here("Data", "Input", "Global fertilis
 global_fertiliser_per_category %>% 
   select(crop_category, starts_with("share")) %>% 
   filter(crop_category != "Fruits/Vegetables") %>%
-  gather(year, percent, -crop_category) %>% 
+  gather(year, percent, -crop_category) %>%
+  mutate(year = case_when(year == "share_percent_2007_08" ~ "2007-08",
+                          year == "share_percent_2010_11" ~ "2010-11",
+                          year == "share_percent_2014_15" ~ "2014-15")) %>%
+  mutate(crop_category = as.factor(crop_category)) %>%
+  mutate(crop_category = fct_relevel(crop_category,
+                                     c("Wheat", "Rice", "Maize", "Soybean", "Oil Palm" ,"Sugar Crops",
+                                       "Other Oilseeds", "Fibre Crops", "Other Cereals",  "Roots & Tubers", 
+                                       "Fruits", "Vegetables", "Grassland","Residual"))) %>% 
+  filter(!crop_category %in% c("Roots & Tubers", "Fruits", "Vegetables", "Grassland", "Residual", "Other crops")) %>%
+  mutate(percent = as.numeric(percent)/100) %>% 
   ggplot(aes(x = crop_category, y = percent, fill = year)) +
   geom_bar(position="dodge", stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90))
+  theme_classic(base_size = 6) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(x = "", fill = "", title = "Changes in global fertilizer crop contribution 2007-2014/15") +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust = 1),
+        legend.key.size = unit(0.5,"line"),
+        legend.position = "top") +
+  scale_fill_brewer(palette="Paired")
 
+ggsave(here("Output images", "global_fertiliser_contribution_change_per_crop.png"),
+       height = 2, width = 3, dpi = 300)
 
 # Total global NPK per crop
 global_NPK_use_per_category = read_csv(here("Data", "Input", "Global NPK use aggregated by category.csv")) %>% 

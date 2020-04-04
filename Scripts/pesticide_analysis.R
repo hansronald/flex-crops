@@ -3,12 +3,15 @@ library(rgdal)
 library(maptools)
 library(rnaturalearth)
 library(tidyverse)
+library(here)
 
 data(wrld_simpl)
 world_data = data.frame(wrld_simpl$NAME, wrld_simpl$ISO3)
-raster_files_path = "/Users/robinlindstrom/Downloads/PEST-CHEMGRIDS_v1_01_APR/GEOTIFF/Low/2015"
-setwd(raster_files_path)
-raster_files = list.files(raster_files_path)
+
+#raster_files_path = "/Users/robinlindstrom/Downloads/PEST-CHEMGRIDS_v1_01_APR/GEOTIFF/Low/2015"
+#setwd(raster_files_path)
+
+raster_files = list.files(here("GEOTIFF"))
 
 len = length(raster_files)
 for(i in 1:1){
@@ -65,6 +68,8 @@ for(i in 1:1){
   # plot(rast)
   
   # Put the mean pesticide use per country in a dataframe and name the column after the pesticide
+  # NaNs created because all raster cells are NA in country polygon, replace with 0
+  mean_application_rate_extract[is.nan(mean_application_rate_extract)] = 0
   mean_application_rate = data.frame(mean_application_rate_extract)
   colnames(mean_application_rate) = paste0(col_name, "_mean")
   
@@ -91,6 +96,11 @@ for(i in 1:1){
   file_size = file.info(rast_id)$size
   mins_left = round(total_file_size_left / (file_size / calc_time))
   print(paste("Minutes left:", mins_left))
+  
+  if(i%%10 == 0){
+    write_csv(world_data, here("data", paste0("world_data", i/10, ".csv")))
+  }
+  
 }
 
 # Plot data -------------

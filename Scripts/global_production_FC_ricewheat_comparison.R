@@ -1,9 +1,38 @@
 source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/common_settings.R")
 
-crop_production_data_processed_path = here("Processed data", "crop_production_data_processed.csv")
-crop_production_data_processed = read_csv(crop_production_data_processed_path)
+crop_production_data_processed_path = here("Output processed data", "crop_production_data_processed.csv")
+crop_production_data_processed = read_csv(crop_production_data_processed_path) %>% 
+  select(country, iso3_code, item, measures, year, value, crop_category)
 
 selected_crops = c("Soybeans", "Maize", "Oil palm fruit", "Sugar cane", "Wheat", "Rice, paddy")
+
+crop_production_summarised = crop_production_data_processed %>% 
+  filter(year == 2018) %>% 
+  group_by(item, measures) %>% 
+  mutate(value = ifelse(measures == "Yield", mean(value), sum(value))) %>% 
+  distinct(item, measures, value, crop_category) %>% 
+  ungroup() %>% 
+  group_by(measures) %>% 
+  mutate(total_value = sum(value),
+         share = value / total_value) %>% 
+  filter(item %in% selected_crops) %>% 
+  ungroup()
+
+analysed_crops_summarised = crop_production_summarised %>% 
+  filter(measures != "Yield") %>% 
+  select(-total_value) %>% 
+  
+  # Workaround to spread both values and share into for area harvested and production
+  gather(temp, value, c(value, share)) %>% 
+  unite(temp1, measures, temp, sep = ".") %>% 
+  spread(temp1, value) %>% 
+  clean_names() %>% 
+  select(item, area_harvested_value, area_harvested_share, production_value, production_share) %>% 
+  left_join(crop_production_summarised %>% 
+              filter(measures == "Yield") %>% 
+              select(item, yield = value), by = "item")
+
+write_csv(analysed_crops_summarised, here("Output data", "analysed_crops_summarised.csv"))
 
 flex_crops = crop_production_data_processed %>% 
   filter(crop_category == "Flex crops")
@@ -53,5 +82,6 @@ selected_crops_data %>%
   facet_wrap(~item, scales = "free_y") +
   scale_y_continuous(label = scaleFUN) +
   labs(title = "Global area harvested", y = "Area harvested (hectare)")
+
 
 

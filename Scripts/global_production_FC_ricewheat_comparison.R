@@ -6,12 +6,21 @@ crop_production_data_processed = read_csv(crop_production_data_processed_path) %
 
 selected_crops = c("Soybeans", "Maize", "Oil palm fruit", "Sugar cane", "Wheat", "Rice, paddy")
 
-crop_production_summarised = crop_production_data_processed %>% 
-  filter(year == 2018) %>% 
+crop_production_data_average = crop_production_data_processed %>% 
+  filter(year %in% 2015:2018) %>% 
   group_by(item, measures) %>% 
+  summarise(value = mean(value))
+
+crop_production_data_average
+
+crop_production_summarised = crop_production_data_processed %>% 
+  filter(year %in% 2015:2018) %>%
+  group_by(year, item, measures) %>% 
   mutate(value = ifelse(measures == "Yield", mean(value), sum(value))) %>% 
-  distinct(item, measures, value, crop_category) %>% 
+  distinct(item, measures, value) %>% 
   ungroup() %>% 
+  group_by(item, measures) %>% 
+  summarise(value = mean(value)) %>% 
   group_by(measures) %>% 
   mutate(total_value = sum(value),
          share = value / total_value) %>% 
@@ -32,7 +41,17 @@ analysed_crops_summarised = crop_production_summarised %>%
               filter(measures == "Yield") %>% 
               select(item, yield = value), by = "item")
 
-write_csv(analysed_crops_summarised, here("Output data", "analysed_crops_summarised.csv"))
+analysed_crops_summarised_formatted = analysed_crops_summarised %>% 
+  mutate(item = as.factor(item),
+         item = fct_reorder(item, c("Soybeans", "Oil palm fruit", "Sugar cane", "Maize", "Rice", "Wheat"))) %>% 
+  arrange(item) %>% 
+  mutate(area_harvested_value = area_harvested_value / 1e6,
+         production_value = production_value / 1e6,
+         yield = yield / 10000) %>% 
+  rename(Crop = item, `Area harvested` = area_harvested_value, `Area harvested share` = area_harvested_share,
+         Production = production_value, `Production share` = production_share, Yield = yield)
+
+write_csv(analysed_crops_summarised_formatted, here("Output data", "analysed_crops_summarised.csv"))
 
 flex_crops = crop_production_data_processed %>% 
   filter(crop_category == "Flex crops")

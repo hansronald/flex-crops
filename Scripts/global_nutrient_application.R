@@ -115,7 +115,7 @@ global_fertiliser_per_category %>%
   theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust = 1),
         legend.key.size = unit(0.5,"line"),
         legend.position = "top") +
-  scale_fill_brewer(palette="Paired")
+  scale_fill_brewer(palette="Set2")
 
 ggsave(here("Output images", "global_fertiliser_contribution_change_per_crop.png"),
        height = 2, width = 3, dpi = 300)

@@ -1,5 +1,6 @@
 source("~/Google Drive/Skola/SRC/Thesis/Code/Scripts/common_settings.R")
-here()
+
+# Read the data
 FC_national_production_data_2016 = read_csv(here("Output data", "FC_national_production_data_2016.csv"))
 
 FC_national_exports_2016 = read_csv(here("Output data", "FC_national_exports_2016.csv")) %>% 
@@ -8,9 +9,7 @@ FC_national_exports_2016 = read_csv(here("Output data", "FC_national_exports_201
 FC_national_imports_2016 = read_csv(here("Output data", "FC_national_imports_2016.csv")) %>% 
   select(iso3_code, country, source_crop, value, share, cumulative_share)
 
-
 # Plot the top producers of flex crops -----
-
 FC_major_producers = FC_national_production_data_2016 %>% 
   group_by(item) %>% 
   arrange(desc(value), .by_group = TRUE) %>% 
@@ -46,11 +45,7 @@ FC_major_producers %>%
 
 ggsave(here("Output images", "FC_major_producers.png"))
 
-# FC_national_production_data_2016 %>% 
-#   group_by(item) %>% 
-#   arrange(desc(value), .by_group = TRUE) %>% 
-#   filter(lag(cumulative_share <= 0.6, default = TRUE)) %>% 
-#   select(country, share)
+
 
 # Plot the major exports of flex crops -------
 FC_major_exporters = FC_national_exports_2016 %>% 
@@ -85,6 +80,9 @@ FC_national_major_exporters %>%
   scale_fill_brewer(palette="Set2")
 
 ggsave(here("Output images", "FC_major_exporters.png"))
+
+
+
 
 # Plot the major importers of flex crops -------
 FC_major_importers = FC_national_imports_2016 %>% 
